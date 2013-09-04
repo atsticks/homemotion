@@ -1,0 +1,46 @@
+package org.homemotion.events;
+
+public class ExecResult extends AbstractEvent {
+
+	/**
+	 * serialVersionUID.
+	 */
+	private static final long serialVersionUID = -2988176747407631219L;
+
+	private MethodCall methodCall;
+	private long duration;
+	private Status status;
+	private Throwable error;
+
+	public static String NOTIFTYPE_MACRO_FINISHED = "Macro:finished";
+
+	public enum Status {
+		NEW, OK, FAILED, RUNNING
+	}
+
+	public ExecResult(Status status) {
+		super("runtime");
+                if(status == null){
+                    throw new IllegalArgumentException("status required.");
+                }
+		this.status = status;
+	}
+
+	public MethodCall getMethodCall() {
+		return methodCall;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public long getDuration() {
+		return duration;
+	}
+
+
+	public Throwable getError() {
+		return error;
+	}
+
+}

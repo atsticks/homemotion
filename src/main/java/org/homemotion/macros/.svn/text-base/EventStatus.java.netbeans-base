@@ -1,0 +1,7 @@
+package org.homemotion.macros;
+
+public enum EventStatus {
+	REQUESTED,
+	FAILED,
+	SUCCESSFUL
+}

@@ -1,0 +1,15 @@
+[triggers]{tabular}
+# Possible values:
+# ________________
+#
+# @class										@config
+# org.homemotion.trigger.impl.Scheduled			TriggerCheckType=PERIODIC|FIXED, checkPolicy=HH:mm:ss, 
+# org.homemotion.trigger.impl.CRON              <cronExpression>
+# org.homemotion.trigger.impl.Periodic          seconds=00,minutes=00,hours=00,weekdays=Mo;Tu
+# org.homemotion.trigger.impl.Observer          eventType=sdsd, severity=DEBUG|INFO|WARNING|ERROR|ALARM|FATAL|CLEARED
+# org.homemotion.trigger.impl.Scriptable		scriptEngine=Java,scriptRef=SampleScript
+
+@id				@class									@config			@scripts					@synchronous	
+#------------------------------------------------------------------------------------------------------------------
+everySecond		org.homemotion.trigger.impl.Periodic	seconds=5		sayHello,sayHello,sayHello	true
+

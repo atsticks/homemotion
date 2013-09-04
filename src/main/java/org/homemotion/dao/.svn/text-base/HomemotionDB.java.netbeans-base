@@ -1,0 +1,31 @@
+package org.homemotion.dao;
+
+import javax.enterprise.inject.Produces;
+import javax.inject.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+//
+//@Singleton
+//public class HomemotionDB {
+//
+//	private static final String PERSISTENCE_UNIT_NAME = "Homemotion";
+//
+//	private EntityManagerFactory factory = Persistence
+//			.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+//
+//	@Produces
+//	@Singleton
+//	public synchronized EntityManagerFactory createEntityManagerFactory() {
+//		return factory;
+//	}
+//
+//	@Produces
+//	public synchronized EntityManager createEntityManager() {
+//		EntityManager entityManager;
+//		entityManager = Persistence.createEntityManagerFactory(
+//				PERSISTENCE_UNIT_NAME).createEntityManager();
+//		return entityManager;
+//	}
+//
+//}

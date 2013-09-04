@@ -1,0 +1,10 @@
+[roles]
+@id				@actions					@transitive-roles
+#---------------------------------------------------------------
+admin			admin-users,admin-domain	user
+user			login
+
+[default-roles]
+@role
+#---------------
+user

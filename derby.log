@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Wed Aug 29 09:10:59 CEST 2012:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance a816c00e-0139-7138-000f-0000083140e0 
+on database directory F:\Data\Benutzer\anatole\workspace\hm-core\target\testDB  with class loader sun.misc.Launcher$AppClassLoader@77d80e9 
+Loaded from file:/G:/.m2/repository/org/apache/derby/derby/10.8.2.2/derby-10.8.2.2.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_05-b05
+user.dir=F:\Data\Benutzer\anatole\workspace\hm-core
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

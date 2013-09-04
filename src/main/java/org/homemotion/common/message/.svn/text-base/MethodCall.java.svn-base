@@ -1,0 +1,119 @@
+package org.homemotion.events;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+public class MethodCall extends AbstractEvent {
+
+    /**
+     * serialVersionUID.
+     */
+    private static final long serialVersionUID = -107394880806535314L;
+    public static final String GROUP = "call";
+    private Object result;
+    private String target;
+    private boolean asynchronous = false;
+    private String method;
+    private Object[] params;
+
+    public MethodCall(String call, boolean asynch) {
+        super(GROUP);
+        if (call == null) {
+            throw new IllegalArgumentException("call required.");
+        }
+        String[] callParsed = parseCall(call);
+        this.target = callParsed[0];
+        this.method = callParsed[1];
+        this.params = parseParams(callParsed[2]);
+        if (params == null) {
+            params = new Object[0];
+        } else {
+            this.params = params.clone();
+        }
+        this.asynchronous = asynch;
+    }
+    
+    public static String[] parseCall(String call){
+        return new String[]{"?", "?", null}; // TODO
+    }
+    
+    public static Object[] parseParams(String params){
+        if(params == null){
+            return new Object[0];
+        }
+        return new Object[0]; // TODO
+    }
+    
+    public MethodCall(String target, String method, Object... params) {
+        this(target, method, false, params);
+    }
+
+    public MethodCall(String target, String method, boolean asynch, Object... params) {
+        super(GROUP);
+        if (method == null) {
+            throw new IllegalArgumentException("method required.");
+        }
+        this.target = target;
+        this.method = method;
+        if (params == null) {
+            params = new Object[0];
+        } else {
+            this.params = params.clone();
+        }
+        this.asynchronous = asynch;
+    }
+
+    public final boolean isAsynchronous() {
+        return asynchronous;
+    }
+
+    public Object setResult(Object value) {
+        Object old = result;
+        result = value;
+        return old;
+    }
+
+    public Object getResult() {
+        return this.result;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public Object[] getParams() {
+        return params.clone();
+    }
+
+    public Class[] getParamTypes() {
+        Class[] types = new Class[params.length];
+        for (int i = 0; i < params.length; i++) {
+            if (params[i] == null) {
+                continue;
+            }
+            types[i] = params[i].getClass();
+        }
+        return types;
+    }
+
+    public <T> T getParam(int index, Class<T> type) {
+        return (T) this.params[index];
+    }
+
+    public Class<?> getParamType(int index) {
+        Object o = this.params[index];
+        if (o == null) {
+            return null;
+        }
+        return o.getClass();
+    }
+
+    public int getParamCount() {
+        return this.params.length;
+    }
+}

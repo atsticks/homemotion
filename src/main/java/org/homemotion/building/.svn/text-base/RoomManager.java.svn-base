@@ -1,0 +1,11 @@
+package org.homemotion.building;
+
+import java.util.Collection;
+
+import org.homemotion.dao.ItemManager;
+
+public interface RoomManager extends ItemManager<Room, String> {
+
+	public Collection<Room> getAllItems(Building currentBuilding);
+
+}

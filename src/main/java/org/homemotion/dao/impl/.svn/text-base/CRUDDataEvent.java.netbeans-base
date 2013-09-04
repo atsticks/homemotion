@@ -1,0 +1,52 @@
+package org.homemotion.dao.impl;
+
+import org.homemotion.events.BindingType;
+import org.homemotion.events.Notification;
+import org.homemotion.events.Severity;
+
+public final class CRUDDataEvent extends Notification {
+
+	/**
+	 * serialVersionUID.
+	 */
+	private static final long serialVersionUID = -4166964762444944196L;
+
+	private static final String VALUE = "value";
+	private static final String OPERATION = "operation";
+	private static final String ITEM_TYPE = "itemType";
+
+	public static enum Operation {
+		CREATE, UPDATE, READ, DELETE, UNKNOWN, REFRESH
+	}
+
+	public CRUDDataEvent(Object instance, Operation op) {
+		super(BindingType.of(instance.getClass().getName(), op.toString()));
+		setOperation(op);
+		setSeverity(Severity.DEBUG);
+		setItem(instance);
+		setItemType(instance.getClass());
+	}
+
+	@SuppressWarnings("rawtypes")
+	public Class getItemType() {
+		return getData(ITEM_TYPE, Class.class);
+	}
+
+	@SuppressWarnings("rawtypes")
+	public void setItemType(Class itemType) {
+		setData(ITEM_TYPE, itemType);
+	}
+
+	public Operation getOperation() {
+		return getData(OPERATION, Operation.class);
+	}
+
+	public void setOperation(Operation op) {
+		setData(OPERATION, op);
+	}
+
+	public void setItem(Object item) {
+		setData(VALUE, item);
+	}
+
+}

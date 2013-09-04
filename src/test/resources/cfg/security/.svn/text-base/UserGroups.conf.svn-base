@@ -1,0 +1,6 @@
+[groups]
+@id				@roles
+#---------------------------------------------------------
+admin			admin,user
+users			user
+

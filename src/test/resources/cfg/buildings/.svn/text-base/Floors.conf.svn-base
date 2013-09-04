@@ -1,0 +1,9 @@
+[floors]
+@id					@building		@ordinal
+#-------------------------------------------------------------------------------------
+caveat				gl10			-1
+groundFloor			gl10			0
+firstFloor			gl10			1
+secondFloor			gl10			2
+roof				gl10			3
+garden				gl10			4

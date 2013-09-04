@@ -1,0 +1,6 @@
+package org.homemotion.devices;
+
+public enum TemparatureScale {
+	CELSIUS,
+	FAHRENHEIT
+}

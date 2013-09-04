@@ -1,0 +1,65 @@
+package org.homemotion.dao.impl;
+//
+//import javax.enterprise.event.Event;
+//import javax.inject.Inject;
+//
+//import org.homemotion.dao.AbstractItem;
+//import org.homemotion.dao.AbstractJPAItemManagerImpl;
+//import org.homemotion.dao.impl.CRUDDataEvent.Operation;
+//import org.homemotion.events.BindingType;
+//import org.homemotion.events.Notification;
+//import org.homemotion.events.PersistableEventManager;
+//
+//public abstract class AbstractEventAwareNamedItemManagerImpl<T extends AbstractItem>
+//		extends AbstractJPAItemManagerImpl<T> {
+//
+//	protected abstract String getEventSource();
+//
+//	protected BindingType eventDef;
+//
+//	private PersistableEventManager eventManager;
+//
+//	private Class<T> itemClass;
+//
+//	@Inject
+//	private Event<Notification> eventSink;
+//
+//	protected AbstractEventAwareNamedItemManagerImpl(Class<T> itemClass,
+//			PersistableEventManager eventManager) {
+//		this.eventManager = eventManager;
+//		this.itemClass = itemClass;
+//		logger.debug("Registering events for " + getClass() + "..:");
+//	}
+//
+//	protected Class<T> getItemClass() {
+//		return itemClass;
+//	}
+//
+//	protected PersistableEventManager getEventManager() {
+//		return this.eventManager;
+//	}
+//
+//	@Override
+//	public void create(T item) {
+//		try {
+//			super.create(item);
+//		} finally {
+//			eventSink.fire(new CRUDDataEvent(item, Operation.CREATE));
+//		}
+//	}
+//
+//	@Override
+//	public void delete(T item) {
+//		super.delete(item);
+//		eventSink.fire(new CRUDDataEvent(item, Operation.DELETE));
+//	}
+//
+//	@Override
+//	public T update(T item) {
+//		T result = null;
+//		result = super.update(item);
+//		eventSink.fire(new CRUDDataEvent(item, Operation.UPDATE));
+//		return result;
+//	}
+//
+//}

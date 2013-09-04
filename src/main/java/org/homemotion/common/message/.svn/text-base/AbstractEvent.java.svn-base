@@ -1,0 +1,107 @@
+package org.homemotion.events;
+
+import java.io.Serializable;
+import java.util.concurrent.atomic.AtomicLong;
+
+
+public abstract class AbstractEvent implements Serializable {
+
+	private static final long serialVersionUID = -3616620214662973147L;
+        
+        private static final AtomicLong IDGEN = new AtomicLong();
+        
+	private Severity severity = Severity.INFO;
+        
+        private long id = IDGEN.incrementAndGet();
+
+	private long createdDT = System.currentTimeMillis();
+
+	private boolean completed;
+        
+        private String group;
+
+	public AbstractEvent() {
+            this(null, Severity.INFO);
+	}
+        
+        public AbstractEvent(String group) {
+            this(group, Severity.INFO);
+	}
+
+        public AbstractEvent(Severity severity) {
+            this(null, severity);
+        }
+        
+	public AbstractEvent(String group, Severity severity) {
+		if (severity == null) {
+			throw new IllegalArgumentException("Severity required.");
+		}
+                if (group == null) {
+			group = "-";
+		}
+                this.group = group;
+		this.severity = severity;
+	}
+
+        public final String getGroup(){
+            return group;
+        }
+        
+	public final String getBindingId() {
+		return getClass().getName()+':'+getId();
+	}
+
+        public final long getId(){
+            return id;
+        }
+        
+
+	public Severity getSeverity() {
+		return this.severity;
+	}
+
+	public void setSeverity(Severity severity) {
+		if (this.severity == null) {
+			throw new IllegalArgumentException("Severity null.");
+		}
+		this.severity = severity;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return getCreatedDT() + " " + getSeverity() + " [" + getBindingId()
+				+ "] ";
+	}
+
+	public long getCreatedDT() {
+		return this.createdDT;
+	}
+
+
+	public final boolean isCompleted() {
+		return completed;
+	}
+
+	public final void setCompleted() {
+		this.completed = true;
+	}
+
+}
