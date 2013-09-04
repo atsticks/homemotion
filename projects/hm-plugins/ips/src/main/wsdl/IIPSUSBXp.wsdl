@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSUSBXpservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSModuleTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TUSBXpDevices">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TUSBXpDevice[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TUSBXpDevice">
+        <xs:sequence>
+          <xs:element name="SerialNumber" type="xs:string"/>
+          <xs:element name="Description" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SetBaudRate0Request">
+    <part name="BaudRate" type="xs:string"/>
+  </message>
+  <message name="SetBaudRate0Response"/>
+  <message name="SetBaudRate0headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetBaudRate0headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetStopBits1Request">
+    <part name="StopBits" type="xs:string"/>
+  </message>
+  <message name="SetStopBits1Response"/>
+  <message name="SetStopBits1headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetStopBits1headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetDataBits2Request">
+    <part name="DataBits" type="xs:string"/>
+  </message>
+  <message name="SetDataBits2Response"/>
+  <message name="SetDataBits2headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetDataBits2headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetParity3Request">
+    <part name="Parity" type="xs:string"/>
+  </message>
+  <message name="SetParity3Response"/>
+  <message name="SetParity3headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetParity3headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetBaudRate4Request"/>
+  <message name="GetBaudRate4Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetBaudRate4headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetBaudRate4headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetStopBits5Request"/>
+  <message name="GetStopBits5Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetStopBits5headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetStopBits5headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDataBits6Request"/>
+  <message name="GetDataBits6Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetDataBits6headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDataBits6headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetParity7Request"/>
+  <message name="GetParity7Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetParity7headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetParity7headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetOpen8Request">
+    <part name="Open" type="xs:boolean"/>
+  </message>
+  <message name="SetOpen8Response"/>
+  <message name="SetOpen8headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetOpen8headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetPort9Request">
+    <part name="Port" type="xs:string"/>
+  </message>
+  <message name="SetPort9Response"/>
+  <message name="SetPort9headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetPort9headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetOpen10Request"/>
+  <message name="GetOpen10Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetOpen10headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetOpen10headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetPort11Request"/>
+  <message name="GetPort11Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetPort11headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetPort11headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDevices12Request"/>
+  <message name="GetDevices12Response">
+    <part name="return" type="ns1:TUSBXpDevices"/>
+  </message>
+  <message name="GetDevices12headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDevices12headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SendText13Request">
+    <part name="Text" type="xs:string"/>
+  </message>
+  <message name="SendText13Response"/>
+  <message name="SendText13headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SendText13headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <portType name="IIPSUSBXp">
+    <operation name="SetBaudRate">
+      <input message="tns:SetBaudRate0Request"/>
+      <output message="tns:SetBaudRate0Response"/>
+    </operation>
+    <operation name="SetStopBits">
+      <input message="tns:SetStopBits1Request"/>
+      <output message="tns:SetStopBits1Response"/>
+    </operation>
+    <operation name="SetDataBits">
+      <input message="tns:SetDataBits2Request"/>
+      <output message="tns:SetDataBits2Response"/>
+    </operation>
+    <operation name="SetParity">
+      <input message="tns:SetParity3Request"/>
+      <output message="tns:SetParity3Response"/>
+    </operation>
+    <operation name="GetBaudRate">
+      <input message="tns:GetBaudRate4Request"/>
+      <output message="tns:GetBaudRate4Response"/>
+    </operation>
+    <operation name="GetStopBits">
+      <input message="tns:GetStopBits5Request"/>
+      <output message="tns:GetStopBits5Response"/>
+    </operation>
+    <operation name="GetDataBits">
+      <input message="tns:GetDataBits6Request"/>
+      <output message="tns:GetDataBits6Response"/>
+    </operation>
+    <operation name="GetParity">
+      <input message="tns:GetParity7Request"/>
+      <output message="tns:GetParity7Response"/>
+    </operation>
+    <operation name="SetOpen">
+      <input message="tns:SetOpen8Request"/>
+      <output message="tns:SetOpen8Response"/>
+    </operation>
+    <operation name="SetPort">
+      <input message="tns:SetPort9Request"/>
+      <output message="tns:SetPort9Response"/>
+    </operation>
+    <operation name="GetOpen">
+      <input message="tns:GetOpen10Request"/>
+      <output message="tns:GetOpen10Response"/>
+    </operation>
+    <operation name="GetPort">
+      <input message="tns:GetPort11Request"/>
+      <output message="tns:GetPort11Response"/>
+    </operation>
+    <operation name="GetDevices">
+      <input message="tns:GetDevices12Request"/>
+      <output message="tns:GetDevices12Response"/>
+    </operation>
+    <operation name="SendText">
+      <input message="tns:SendText13Request"/>
+      <output message="tns:SendText13Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSUSBXpbinding" type="tns:IIPSUSBXp">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SetBaudRate">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#SetBaudRate" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SetBaudRate0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SetBaudRate0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetStopBits">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#SetStopBits" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SetStopBits1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SetStopBits1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetDataBits">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#SetDataBits" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SetDataBits2headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SetDataBits2headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetParity">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#SetParity" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SetParity3headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SetParity3headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetBaudRate">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#GetBaudRate" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetBaudRate4headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetBaudRate4headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetStopBits">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#GetStopBits" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetStopBits5headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetStopBits5headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetDataBits">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#GetDataBits" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetDataBits6headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetDataBits6headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetParity">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#GetParity" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetParity7headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetParity7headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetOpen">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#SetOpen" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SetOpen8headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SetOpen8headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetPort">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#SetPort" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SetPort9headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SetPort9headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetOpen">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#GetOpen" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetOpen10headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetOpen10headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetPort">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#GetPort" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetPort11headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetPort11headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetDevices">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#GetDevices" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetDevices12headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:GetDevices12headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SendText">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUSBXp#SendText" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SendText13headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUSBXp"/>
+        <soap:header use="encoded" message="tns:SendText13headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSUSBXpservice">
+    <port name="IIPSUSBXpPort" binding="tns:IIPSUSBXpbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSUSBXp"/>
+    </port>
+  </service>
+</definitions>
+

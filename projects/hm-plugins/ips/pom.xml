@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>net.sf.homemotion.plugins</groupId>
+  	<artifactId>hm-plugins</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<relativePath>..</relativePath>
+  </parent>
+  <artifactId>ips</artifactId>
+  <packaging>jar</packaging>
+  
+  <!-- The Basics -->
+  <name>Homemotion IPS Plugin</name>
+  <description>Homemotion Automation Hardware Plugin for IP-SYMCON.</description>
+   
+  
+  <dependencies>
+   <dependency>
+     <groupId>${project.groupId}</groupId>
+     <artifactId>hmcore</artifactId>
+     <version>${project.version}</version>
+   </dependency>
+  </dependencies>
+  
+  <!-- Build Settings -->
+  <build>
+    
+  </build>
+
+  <!-- More Project Information -->
+
+  <!-- Environment Settings -->
+  <scm>
+    <connection>scm:svn:https://homemotion.svn.sourceforge.net/svnroot/homemotion/hmcore</connection>
+    <developerConnection>scm:svn:https://homemotion.svn.sourceforge.net/svnroot/homemotion/hmcore</developerConnection>
+    <tag>HEAD</tag>
+    <url>http://homemotion.svn.sourceforge.net/viewvc/homemotion/hmcore/</url>
+  </scm>
+
+</project>

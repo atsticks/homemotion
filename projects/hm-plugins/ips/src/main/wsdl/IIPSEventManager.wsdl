@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSEventManagerservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:simpleType name="TIPSEventType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="etTrigger"/>
+          <xs:enumeration value="etCyclic"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TIPSTriggerType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="evtOnUpdate"/>
+          <xs:enumeration value="evtOnChange"/>
+          <xs:enumeration value="evtOnLimitExceed"/>
+          <xs:enumeration value="evtOnLimitDrop"/>
+          <xs:enumeration value="evtOnValue"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TIPSCyclicDateType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="cdtNone"/>
+          <xs:enumeration value="cdtOnce"/>
+          <xs:enumeration value="cdtDay"/>
+          <xs:enumeration value="cdtWeek"/>
+          <xs:enumeration value="cdtMonth"/>
+          <xs:enumeration value="cdtYear"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TIPSCyclicTimeType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="cttOnce"/>
+          <xs:enumeration value="cttSecond"/>
+          <xs:enumeration value="cttMinute"/>
+          <xs:enumeration value="cttHour"/>
+          <xs:enumeration value="cttSpecial"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSEvent">
+        <xs:sequence>
+          <xs:element name="EventID" type="xs:unsignedShort"/>
+          <xs:element name="EventType" type="ns1:TIPSEventType"/>
+          <xs:element name="EventActive" type="xs:boolean"/>
+          <xs:element name="EventLimit" type="xs:int"/>
+          <xs:element name="TriggerType" type="ns1:TIPSTriggerType"/>
+          <xs:element name="TriggerVariableID" type="xs:unsignedShort"/>
+          <xs:element name="TriggerValue" type="xs:anyType"/>
+          <xs:element name="TriggerSubsequentExecution" type="xs:boolean"/>
+          <xs:element name="CyclicDateType" type="ns1:TIPSCyclicDateType"/>
+          <xs:element name="CyclicDateFrom" type="xs:dateTime"/>
+          <xs:element name="CyclicDateTo" type="xs:dateTime"/>
+          <xs:element name="CyclicDateValue" type="xs:int"/>
+          <xs:element name="CyclicDateDay" type="xs:int"/>
+          <xs:element name="CyclicDateDayValue" type="xs:int"/>
+          <xs:element name="CyclicTimeType" type="ns1:TIPSCyclicTimeType"/>
+          <xs:element name="CyclicTimeFrom" type="xs:dateTime"/>
+          <xs:element name="CyclicTimeTo" type="xs:dateTime"/>
+          <xs:element name="CyclicTimeValue" type="xs:int"/>
+          <xs:element name="EventScript" type="xs:string"/>
+          <xs:element name="LastRun" type="xs:dateTime"/>
+          <xs:element name="NextRun" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TEventIDs">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:unsignedShort[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSEvents">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSEvent[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="CreateEvent0Request">
+    <part name="EventType" type="ns1:TIPSEventType"/>
+  </message>
+  <message name="CreateEvent0Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateEventEx1Request">
+    <part name="EventType" type="ns1:TIPSEventType"/>
+    <part name="EventID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateEventEx1Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="DeleteEvent2Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+  </message>
+  <message name="DeleteEvent2Response"/>
+  <message name="SetEventActive3Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+    <part name="Active" type="xs:boolean"/>
+  </message>
+  <message name="SetEventActive3Response"/>
+  <message name="SetEventLimit4Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+    <part name="Count" type="xs:int"/>
+  </message>
+  <message name="SetEventLimit4Response"/>
+  <message name="SetEventTrigger5Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+    <part name="TriggerType" type="ns1:TIPSTriggerType"/>
+    <part name="TriggerVariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetEventTrigger5Response"/>
+  <message name="SetEventTriggerValue6Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+    <part name="TriggerValue" type="xs:anyType"/>
+  </message>
+  <message name="SetEventTriggerValue6Response"/>
+  <message name="SetEventTriggerSubsequentExecution7Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+    <part name="AllowSubsequentExecutions" type="xs:boolean"/>
+  </message>
+  <message name="SetEventTriggerSubsequentExecution7Response"/>
+  <message name="SetEventCyclic8Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+    <part name="DateType" type="ns1:TIPSCyclicDateType"/>
+    <part name="DateValue" type="xs:int"/>
+    <part name="DateDay" type="xs:int"/>
+    <part name="DateDayValue" type="xs:int"/>
+    <part name="TimeType" type="ns1:TIPSCyclicTimeType"/>
+    <part name="TimeValue" type="xs:int"/>
+  </message>
+  <message name="SetEventCyclic8Response"/>
+  <message name="SetEventCyclicDateBounds9Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+    <part name="FromDate" type="xs:dateTime"/>
+    <part name="ToDate" type="xs:dateTime"/>
+  </message>
+  <message name="SetEventCyclicDateBounds9Response"/>
+  <message name="SetEventCyclicTimeBounds10Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+    <part name="FromTime" type="xs:dateTime"/>
+    <part name="ToTime" type="xs:dateTime"/>
+  </message>
+  <message name="SetEventCyclicTimeBounds10Response"/>
+  <message name="SetEventScript11Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+    <part name="EventScript" type="xs:string"/>
+  </message>
+  <message name="SetEventScript11Response"/>
+  <message name="EventExists12Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+  </message>
+  <message name="EventExists12Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="CheckEvent13Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CheckEvent13Response"/>
+  <message name="GetEvent14Request">
+    <part name="EventID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetEvent14Response">
+    <part name="return" type="ns1:TIPSEvent"/>
+  </message>
+  <message name="GetEvents15Request">
+    <part name="EventIDs" type="ns1:TEventIDs"/>
+  </message>
+  <message name="GetEvents15Response">
+    <part name="return" type="ns1:TIPSEvents"/>
+  </message>
+  <message name="GetEventList16Request"/>
+  <message name="GetEventList16Response">
+    <part name="return" type="ns1:TEventIDs"/>
+  </message>
+  <message name="GetEventListByType17Request">
+    <part name="EventType" type="ns1:TIPSEventType"/>
+  </message>
+  <message name="GetEventListByType17Response">
+    <part name="return" type="ns1:TEventIDs"/>
+  </message>
+  <message name="GetEventIDByName18Request">
+    <part name="Name" type="xs:string"/>
+    <part name="ParentID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetEventIDByName18Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetVariableEventList19Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetVariableEventList19Response">
+    <part name="return" type="ns1:TEventIDs"/>
+  </message>
+  <message name="GetScriptEventList20Request">
+    <part name="ScriptID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetScriptEventList20Response">
+    <part name="return" type="ns1:TEventIDs"/>
+  </message>
+  <portType name="IIPSEventManager">
+    <operation name="CreateEvent">
+      <input message="tns:CreateEvent0Request"/>
+      <output message="tns:CreateEvent0Response"/>
+    </operation>
+    <operation name="CreateEventEx">
+      <input message="tns:CreateEventEx1Request"/>
+      <output message="tns:CreateEventEx1Response"/>
+    </operation>
+    <operation name="DeleteEvent">
+      <input message="tns:DeleteEvent2Request"/>
+      <output message="tns:DeleteEvent2Response"/>
+    </operation>
+    <operation name="SetEventActive">
+      <input message="tns:SetEventActive3Request"/>
+      <output message="tns:SetEventActive3Response"/>
+    </operation>
+    <operation name="SetEventLimit">
+      <input message="tns:SetEventLimit4Request"/>
+      <output message="tns:SetEventLimit4Response"/>
+    </operation>
+    <operation name="SetEventTrigger">
+      <input message="tns:SetEventTrigger5Request"/>
+      <output message="tns:SetEventTrigger5Response"/>
+    </operation>
+    <operation name="SetEventTriggerValue">
+      <input message="tns:SetEventTriggerValue6Request"/>
+      <output message="tns:SetEventTriggerValue6Response"/>
+    </operation>
+    <operation name="SetEventTriggerSubsequentExecution">
+      <input message="tns:SetEventTriggerSubsequentExecution7Request"/>
+      <output message="tns:SetEventTriggerSubsequentExecution7Response"/>
+    </operation>
+    <operation name="SetEventCyclic">
+      <input message="tns:SetEventCyclic8Request"/>
+      <output message="tns:SetEventCyclic8Response"/>
+    </operation>
+    <operation name="SetEventCyclicDateBounds">
+      <input message="tns:SetEventCyclicDateBounds9Request"/>
+      <output message="tns:SetEventCyclicDateBounds9Response"/>
+    </operation>
+    <operation name="SetEventCyclicTimeBounds">
+      <input message="tns:SetEventCyclicTimeBounds10Request"/>
+      <output message="tns:SetEventCyclicTimeBounds10Response"/>
+    </operation>
+    <operation name="SetEventScript">
+      <input message="tns:SetEventScript11Request"/>
+      <output message="tns:SetEventScript11Response"/>
+    </operation>
+    <operation name="EventExists">
+      <input message="tns:EventExists12Request"/>
+      <output message="tns:EventExists12Response"/>
+    </operation>
+    <operation name="CheckEvent">
+      <input message="tns:CheckEvent13Request"/>
+      <output message="tns:CheckEvent13Response"/>
+    </operation>
+    <operation name="GetEvent">
+      <input message="tns:GetEvent14Request"/>
+      <output message="tns:GetEvent14Response"/>
+    </operation>
+    <operation name="GetEvents">
+      <input message="tns:GetEvents15Request"/>
+      <output message="tns:GetEvents15Response"/>
+    </operation>
+    <operation name="GetEventList">
+      <input message="tns:GetEventList16Request"/>
+      <output message="tns:GetEventList16Response"/>
+    </operation>
+    <operation name="GetEventListByType">
+      <input message="tns:GetEventListByType17Request"/>
+      <output message="tns:GetEventListByType17Response"/>
+    </operation>
+    <operation name="GetEventIDByName">
+      <input message="tns:GetEventIDByName18Request"/>
+      <output message="tns:GetEventIDByName18Response"/>
+    </operation>
+    <operation name="GetVariableEventList">
+      <input message="tns:GetVariableEventList19Request"/>
+      <output message="tns:GetVariableEventList19Response"/>
+    </operation>
+    <operation name="GetScriptEventList">
+      <input message="tns:GetScriptEventList20Request"/>
+      <output message="tns:GetScriptEventList20Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSEventManagerbinding" type="tns:IIPSEventManager">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="CreateEvent">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#CreateEvent" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="CreateEventEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#CreateEventEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="DeleteEvent">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#DeleteEvent" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="SetEventActive">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#SetEventActive" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="SetEventLimit">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#SetEventLimit" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="SetEventTrigger">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#SetEventTrigger" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="SetEventTriggerValue">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#SetEventTriggerValue" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="SetEventTriggerSubsequentExecution">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#SetEventTriggerSubsequentExecution" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="SetEventCyclic">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#SetEventCyclic" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="SetEventCyclicDateBounds">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#SetEventCyclicDateBounds" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="SetEventCyclicTimeBounds">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#SetEventCyclicTimeBounds" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="SetEventScript">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#SetEventScript" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="EventExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#EventExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="CheckEvent">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#CheckEvent" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="GetEvent">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#GetEvent" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="GetEvents">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#GetEvents" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="GetEventList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#GetEventList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="GetEventListByType">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#GetEventListByType" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="GetEventIDByName">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#GetEventIDByName" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="GetVariableEventList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#GetVariableEventList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+    <operation name="GetScriptEventList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSEventManager#GetScriptEventList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSEventManager"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSEventManagerservice">
+    <port name="IIPSEventManagerPort" binding="tns:IIPSEventManagerbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSEventManager"/>
+    </port>
+  </service>
+</definitions>
+

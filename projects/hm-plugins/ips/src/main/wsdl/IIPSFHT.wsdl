@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSFHTservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSModuleTypes">
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+  <types>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:complexType name="TIDHeader">
+      <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SetAddress0Request">
+    <part name="Address" type="xs:string"/>
+  </message>
+  <message name="SetAddress0Response"/>
+  <message name="SetAddress0headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetAddress0headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetAddress1Request"/>
+  <message name="GetAddress1Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetAddress1headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetAddress1headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetTemperature2Request">
+    <part name="Temperature" type="xs:double"/>
+  </message>
+  <message name="SetTemperature2Response"/>
+  <message name="SetTemperature2headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetTemperature2headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetMode3Request">
+    <part name="Mode" type="xs:int"/>
+  </message>
+  <message name="SetMode3Response"/>
+  <message name="SetMode3headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetMode3headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetYear4Request">
+    <part name="Value" type="xs:int"/>
+  </message>
+  <message name="SetYear4Response"/>
+  <message name="SetYear4headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetYear4headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetMonth5Request">
+    <part name="Value" type="xs:int"/>
+  </message>
+  <message name="SetMonth5Response"/>
+  <message name="SetMonth5headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetMonth5headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetDay6Request">
+    <part name="Value" type="xs:int"/>
+  </message>
+  <message name="SetDay6Response"/>
+  <message name="SetDay6headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetDay6headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetHour7Request">
+    <part name="Value" type="xs:int"/>
+  </message>
+  <message name="SetHour7Response"/>
+  <message name="SetHour7headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetHour7headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetMinute8Request">
+    <part name="Value" type="xs:int"/>
+  </message>
+  <message name="SetMinute8Response"/>
+  <message name="SetMinute8headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetMinute8headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="RequestData9Request"/>
+  <message name="RequestData9Response"/>
+  <message name="RequestData9headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="RequestData9headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <portType name="IIPSFHT">
+    <operation name="SetAddress">
+      <input message="tns:SetAddress0Request"/>
+      <output message="tns:SetAddress0Response"/>
+    </operation>
+    <operation name="GetAddress">
+      <input message="tns:GetAddress1Request"/>
+      <output message="tns:GetAddress1Response"/>
+    </operation>
+    <operation name="SetTemperature">
+      <input message="tns:SetTemperature2Request"/>
+      <output message="tns:SetTemperature2Response"/>
+    </operation>
+    <operation name="SetMode">
+      <input message="tns:SetMode3Request"/>
+      <output message="tns:SetMode3Response"/>
+    </operation>
+    <operation name="SetYear">
+      <input message="tns:SetYear4Request"/>
+      <output message="tns:SetYear4Response"/>
+    </operation>
+    <operation name="SetMonth">
+      <input message="tns:SetMonth5Request"/>
+      <output message="tns:SetMonth5Response"/>
+    </operation>
+    <operation name="SetDay">
+      <input message="tns:SetDay6Request"/>
+      <output message="tns:SetDay6Response"/>
+    </operation>
+    <operation name="SetHour">
+      <input message="tns:SetHour7Request"/>
+      <output message="tns:SetHour7Response"/>
+    </operation>
+    <operation name="SetMinute">
+      <input message="tns:SetMinute8Request"/>
+      <output message="tns:SetMinute8Response"/>
+    </operation>
+    <operation name="RequestData">
+      <input message="tns:RequestData9Request"/>
+      <output message="tns:RequestData9Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSFHTbinding" type="tns:IIPSFHT">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SetAddress">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHT#SetAddress" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetAddress0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetAddress0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetAddress">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHT#GetAddress" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:GetAddress1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:GetAddress1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetTemperature">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHT#SetTemperature" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetTemperature2headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetTemperature2headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetMode">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHT#SetMode" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetMode3headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetMode3headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetYear">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHT#SetYear" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetYear4headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetYear4headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetMonth">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHT#SetMonth" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetMonth5headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetMonth5headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetDay">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHT#SetDay" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetDay6headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetDay6headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetHour">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHT#SetHour" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetHour7headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetHour7headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetMinute">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHT#SetMinute" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetMinute8headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:SetMinute8headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="RequestData">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHT#RequestData" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:RequestData9headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHT"/>
+        <soap:header use="encoded" message="tns:RequestData9headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSFHTservice">
+    <port name="IIPSFHTPort" binding="tns:IIPSFHTbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSFHT"/>
+    </port>
+  </service>
+</definitions>
+

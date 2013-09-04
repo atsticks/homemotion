@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSScriptEngineservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TIPSPHPFunctions">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSPHPFunction[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSPHPFunction">
+        <xs:sequence>
+          <xs:element name="FunctionName" type="xs:string"/>
+          <xs:element name="Parameters" type="ns1:TIPSPHPParameterInfos"/>
+          <xs:element name="Result" type="ns1:TIPSPHPParameterInfo"/>
+          <xs:element name="Instances" type="ns1:TIPSPHPInstances"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIPSPHPParameterInfos">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSPHPParameterInfo[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSPHPParameterInfo">
+        <xs:sequence>
+          <xs:element name="Description" type="xs:string"/>
+          <xs:element name="Type_" type="ns1:TIPSVarType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TIPSVarType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="vtBoolean"/>
+          <xs:enumeration value="vtInteger"/>
+          <xs:enumeration value="vtFloat"/>
+          <xs:enumeration value="vtString"/>
+          <xs:enumeration value="vtVariant"/>
+          <xs:enumeration value="vtArray"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSPHPInstances">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSPHPInstance[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSPHPInstance">
+        <xs:sequence>
+          <xs:element name="InstanceID" type="xs:unsignedShort"/>
+          <xs:element name="Singleton" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIPSScriptThreadInfo">
+        <xs:sequence>
+          <xs:element name="ThreadID" type="xs:unsignedInt"/>
+          <xs:element name="ExecuteCount" type="xs:unsignedInt"/>
+          <xs:element name="StartTime" type="xs:dateTime"/>
+          <xs:element name="Sender" type="xs:string"/>
+          <xs:element name="FilePath" type="xs:string"/>
+          <xs:element name="ScriptID" type="xs:unsignedShort"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TThreadIDs">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:int[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSScriptThreadInfos">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSScriptThreadInfo[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSExecuteInfo">
+        <xs:sequence>
+          <xs:element name="RequestMethod" type="ns1:TReqMethod"/>
+          <xs:element name="QueryString" type="xs:string"/>
+          <xs:element name="ServerVariables" type="ns1:TIPSPHPVariables"/>
+          <xs:element name="Cookies" type="xs:string"/>
+          <xs:element name="ScriptResult" type="xs:string"/>
+          <xs:element name="ScriptHeaders" type="ns1:TStringArray"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TReqMethod">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="rmGET"/>
+          <xs:enumeration value="rmPOST"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSPHPVariables">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSPHPVariable[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TStringArray">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:string[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSPHPVariable">
+        <xs:sequence>
+          <xs:element name="VariableName" type="xs:string"/>
+          <xs:element name="VariableValue" type="ns1:TIPSVarValue"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIPSVarValue">
+        <xs:sequence>
+          <xs:element name="ValueIndex" type="ns1:TIPSVarIndex"/>
+          <xs:element name="ValueType" type="ns1:TIPSVarType"/>
+          <xs:element name="ValueBoolean" type="xs:boolean"/>
+          <xs:element name="ValueInteger" type="xs:int"/>
+          <xs:element name="ValueFloat" type="xs:double"/>
+          <xs:element name="ValueString" type="xs:string"/>
+          <xs:element name="ValueVariant" type="xs:anyType"/>
+          <xs:element name="ValueArray" type="ns1:TIPSVarValues"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIPSVarIndex">
+        <xs:sequence>
+          <xs:element name="IndexType" type="ns1:TIPSVarIndexType"/>
+          <xs:element name="IndexInt" type="xs:int"/>
+          <xs:element name="IndexStr" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TIPSVarIndexType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="itInt"/>
+          <xs:enumeration value="itStr"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSVarValues">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSVarValue[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="GetFunctionList0Request">
+    <part name="Filter" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetFunctionList0Response">
+    <part name="return" type="ns1:TIPSPHPFunctions"/>
+  </message>
+  <message name="ScriptThreadExists1Request">
+    <part name="ThreadID" type="xs:int"/>
+  </message>
+  <message name="ScriptThreadExists1Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="CheckScriptThread2Request">
+    <part name="ThreadID" type="xs:int"/>
+  </message>
+  <message name="CheckScriptThread2Response"/>
+  <message name="GetScriptThread3Request">
+    <part name="ThreadID" type="xs:int"/>
+  </message>
+  <message name="GetScriptThread3Response">
+    <part name="return" type="ns1:TIPSScriptThreadInfo"/>
+  </message>
+  <message name="GetScriptThreads4Request">
+    <part name="ThreadIDs" type="ns1:TThreadIDs"/>
+  </message>
+  <message name="GetScriptThreads4Response">
+    <part name="return" type="ns1:TIPSScriptThreadInfos"/>
+  </message>
+  <message name="GetScriptThreadList5Request"/>
+  <message name="GetScriptThreadList5Response">
+    <part name="return" type="ns1:TThreadIDs"/>
+  </message>
+  <message name="ExecuteScript6Request">
+    <part name="ScriptID" type="xs:unsignedShort"/>
+    <part name="DoWait" type="xs:boolean"/>
+  </message>
+  <message name="ExecuteScript6Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="ExecuteFile7Request">
+    <part name="ScriptFile" type="xs:string"/>
+    <part name="DoWait" type="xs:boolean"/>
+  </message>
+  <message name="ExecuteFile7Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="ExecuteText8Request">
+    <part name="ScriptText" type="xs:string"/>
+    <part name="DoWait" type="xs:boolean"/>
+  </message>
+  <message name="ExecuteText8Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="ExecuteScriptEx9Request">
+    <part name="ScriptID" type="xs:unsignedShort"/>
+    <part name="Sender" type="xs:string"/>
+    <part name="DoWait" type="xs:boolean"/>
+    <part name="ExecuteInfo" type="ns1:TIPSExecuteInfo"/>
+  </message>
+  <message name="ExecuteScriptEx9Response">
+    <part name="ExecuteInfo" type="ns1:TIPSExecuteInfo"/>
+  </message>
+  <message name="ExecuteFileEx10Request">
+    <part name="ScriptFile" type="xs:string"/>
+    <part name="Sender" type="xs:string"/>
+    <part name="DoWait" type="xs:boolean"/>
+    <part name="ExecuteInfo" type="ns1:TIPSExecuteInfo"/>
+  </message>
+  <message name="ExecuteFileEx10Response">
+    <part name="ExecuteInfo" type="ns1:TIPSExecuteInfo"/>
+  </message>
+  <message name="ExecuteTextEx11Request">
+    <part name="ScriptText" type="xs:string"/>
+    <part name="Sender" type="xs:string"/>
+    <part name="DoWait" type="xs:boolean"/>
+    <part name="ExecuteInfo" type="ns1:TIPSExecuteInfo"/>
+  </message>
+  <message name="ExecuteTextEx11Response">
+    <part name="ExecuteInfo" type="ns1:TIPSExecuteInfo"/>
+  </message>
+  <portType name="IIPSScriptEngine">
+    <operation name="GetFunctionList">
+      <input message="tns:GetFunctionList0Request"/>
+      <output message="tns:GetFunctionList0Response"/>
+    </operation>
+    <operation name="ScriptThreadExists">
+      <input message="tns:ScriptThreadExists1Request"/>
+      <output message="tns:ScriptThreadExists1Response"/>
+    </operation>
+    <operation name="CheckScriptThread">
+      <input message="tns:CheckScriptThread2Request"/>
+      <output message="tns:CheckScriptThread2Response"/>
+    </operation>
+    <operation name="GetScriptThread">
+      <input message="tns:GetScriptThread3Request"/>
+      <output message="tns:GetScriptThread3Response"/>
+    </operation>
+    <operation name="GetScriptThreads">
+      <input message="tns:GetScriptThreads4Request"/>
+      <output message="tns:GetScriptThreads4Response"/>
+    </operation>
+    <operation name="GetScriptThreadList">
+      <input message="tns:GetScriptThreadList5Request"/>
+      <output message="tns:GetScriptThreadList5Response"/>
+    </operation>
+    <operation name="ExecuteScript">
+      <input message="tns:ExecuteScript6Request"/>
+      <output message="tns:ExecuteScript6Response"/>
+    </operation>
+    <operation name="ExecuteFile">
+      <input message="tns:ExecuteFile7Request"/>
+      <output message="tns:ExecuteFile7Response"/>
+    </operation>
+    <operation name="ExecuteText">
+      <input message="tns:ExecuteText8Request"/>
+      <output message="tns:ExecuteText8Response"/>
+    </operation>
+    <operation name="ExecuteScriptEx">
+      <input message="tns:ExecuteScriptEx9Request"/>
+      <output message="tns:ExecuteScriptEx9Response"/>
+    </operation>
+    <operation name="ExecuteFileEx">
+      <input message="tns:ExecuteFileEx10Request"/>
+      <output message="tns:ExecuteFileEx10Response"/>
+    </operation>
+    <operation name="ExecuteTextEx">
+      <input message="tns:ExecuteTextEx11Request"/>
+      <output message="tns:ExecuteTextEx11Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSScriptEnginebinding" type="tns:IIPSScriptEngine">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetFunctionList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptEngine#GetFunctionList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </output>
+    </operation>
+    <operation name="ScriptThreadExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptEngine#ScriptThreadExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </output>
+    </operation>
+    <operation name="CheckScriptThread">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptEngine#CheckScriptThread" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </output>
+    </operation>
+    <operation name="GetScriptThread">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptEngine#GetScriptThread" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </output>
+    </operation>
+    <operation name="GetScriptThreads">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptEngine#GetScriptThreads" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </output>
+    </operation>
+    <operation name="GetScriptThreadList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptEngine#GetScriptThreadList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </output>
+    </operation>
+    <operation name="ExecuteScript">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptEngine#ExecuteScript" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </output>
+    </operation>
+    <operation name="ExecuteFile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptEngine#ExecuteFile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </output>
+    </operation>
+    <operation name="ExecuteText">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptEngine#ExecuteText" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </output>
+    </operation>
+    <operation name="ExecuteScriptEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptEngine#ExecuteScriptEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </output>
+    </operation>
+    <operation name="ExecuteFileEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptEngine#ExecuteFileEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </output>
+    </operation>
+    <operation name="ExecuteTextEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptEngine#ExecuteTextEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptEngine"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSScriptEngineservice">
+    <port name="IIPSScriptEnginePort" binding="tns:IIPSScriptEnginebinding">
+      <soap:address location="http://localhost:3773/soap/IIPSScriptEngine"/>
+    </port>
+  </service>
+</definitions>
+

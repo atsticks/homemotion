@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSMediaPlayerservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes" xmlns:ns2="urn:UIPSModuleTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TStringArray">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:string[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="Play0Request"/>
+  <message name="Play0Response"/>
+  <message name="Play0headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="Play0headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="Stop1Request"/>
+  <message name="Stop1Response"/>
+  <message name="Stop1headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="Stop1headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="Pause2Request"/>
+  <message name="Pause2Response"/>
+  <message name="Pause2headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="Pause2headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="Prev3Request"/>
+  <message name="Prev3Response"/>
+  <message name="Prev3headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="Prev3headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="Next4Request"/>
+  <message name="Next4Response"/>
+  <message name="Next4headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="Next4headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetVolume5Request">
+    <part name="Volume" type="xs:int"/>
+  </message>
+  <message name="SetVolume5Response"/>
+  <message name="SetVolume5headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetVolume5headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetShuffle6Request">
+    <part name="DoShuffle" type="xs:boolean"/>
+  </message>
+  <message name="SetShuffle6Response"/>
+  <message name="SetShuffle6headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetShuffle6headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetRepeat7Request">
+    <part name="DoRepeat" type="xs:boolean"/>
+  </message>
+  <message name="SetRepeat7Response"/>
+  <message name="SetRepeat7headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetRepeat7headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="AddFile8Request">
+    <part name="Filename" type="xs:string"/>
+  </message>
+  <message name="AddFile8Response"/>
+  <message name="AddFile8headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="AddFile8headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="ClearPlaylist9Request"/>
+  <message name="ClearPlaylist9Response"/>
+  <message name="ClearPlaylist9headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="ClearPlaylist9headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetPlaylistLength10Request"/>
+  <message name="GetPlaylistLength10Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetPlaylistLength10headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetPlaylistLength10headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetPlaylistPosition11Request"/>
+  <message name="GetPlaylistPosition11Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetPlaylistPosition11headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetPlaylistPosition11headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetPlaylistPosition12Request">
+    <part name="Position" type="xs:int"/>
+  </message>
+  <message name="SetPlaylistPosition12Response"/>
+  <message name="SetPlaylistPosition12headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetPlaylistPosition12headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetPlaylistFile13Request">
+    <part name="Position" type="xs:int"/>
+  </message>
+  <message name="GetPlaylistFile13Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetPlaylistFile13headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetPlaylistFile13headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetPlaylistTitle14Request">
+    <part name="Position" type="xs:int"/>
+  </message>
+  <message name="GetPlaylistTitle14Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetPlaylistTitle14headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetPlaylistTitle14headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetDeviceID15Request">
+    <part name="DeviceID" type="xs:int"/>
+  </message>
+  <message name="SetDeviceID15Response"/>
+  <message name="SetDeviceID15headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetDeviceID15headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetDeviceID16Request"/>
+  <message name="GetDeviceID16Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetDeviceID16headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetDeviceID16headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetDevices17Request"/>
+  <message name="GetDevices17Response">
+    <part name="return" type="ns1:TStringArray"/>
+  </message>
+  <message name="GetDevices17headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetDevices17headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetUpdateInterval18Request">
+    <part name="Seconds" type="xs:int"/>
+  </message>
+  <message name="SetUpdateInterval18Response"/>
+  <message name="SetUpdateInterval18headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetUpdateInterval18headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetUpdateInterval19Request"/>
+  <message name="GetUpdateInterval19Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetUpdateInterval19headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetUpdateInterval19headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="PlayFile20Request">
+    <part name="Filename" type="xs:string"/>
+  </message>
+  <message name="PlayFile20Response"/>
+  <message name="PlayFile20headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="PlayFile20headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <portType name="IIPSMediaPlayer">
+    <operation name="Play">
+      <input message="tns:Play0Request"/>
+      <output message="tns:Play0Response"/>
+    </operation>
+    <operation name="Stop">
+      <input message="tns:Stop1Request"/>
+      <output message="tns:Stop1Response"/>
+    </operation>
+    <operation name="Pause">
+      <input message="tns:Pause2Request"/>
+      <output message="tns:Pause2Response"/>
+    </operation>
+    <operation name="Prev">
+      <input message="tns:Prev3Request"/>
+      <output message="tns:Prev3Response"/>
+    </operation>
+    <operation name="Next">
+      <input message="tns:Next4Request"/>
+      <output message="tns:Next4Response"/>
+    </operation>
+    <operation name="SetVolume">
+      <input message="tns:SetVolume5Request"/>
+      <output message="tns:SetVolume5Response"/>
+    </operation>
+    <operation name="SetShuffle">
+      <input message="tns:SetShuffle6Request"/>
+      <output message="tns:SetShuffle6Response"/>
+    </operation>
+    <operation name="SetRepeat">
+      <input message="tns:SetRepeat7Request"/>
+      <output message="tns:SetRepeat7Response"/>
+    </operation>
+    <operation name="AddFile">
+      <input message="tns:AddFile8Request"/>
+      <output message="tns:AddFile8Response"/>
+    </operation>
+    <operation name="ClearPlaylist">
+      <input message="tns:ClearPlaylist9Request"/>
+      <output message="tns:ClearPlaylist9Response"/>
+    </operation>
+    <operation name="GetPlaylistLength">
+      <input message="tns:GetPlaylistLength10Request"/>
+      <output message="tns:GetPlaylistLength10Response"/>
+    </operation>
+    <operation name="GetPlaylistPosition">
+      <input message="tns:GetPlaylistPosition11Request"/>
+      <output message="tns:GetPlaylistPosition11Response"/>
+    </operation>
+    <operation name="SetPlaylistPosition">
+      <input message="tns:SetPlaylistPosition12Request"/>
+      <output message="tns:SetPlaylistPosition12Response"/>
+    </operation>
+    <operation name="GetPlaylistFile">
+      <input message="tns:GetPlaylistFile13Request"/>
+      <output message="tns:GetPlaylistFile13Response"/>
+    </operation>
+    <operation name="GetPlaylistTitle">
+      <input message="tns:GetPlaylistTitle14Request"/>
+      <output message="tns:GetPlaylistTitle14Response"/>
+    </operation>
+    <operation name="SetDeviceID">
+      <input message="tns:SetDeviceID15Request"/>
+      <output message="tns:SetDeviceID15Response"/>
+    </operation>
+    <operation name="GetDeviceID">
+      <input message="tns:GetDeviceID16Request"/>
+      <output message="tns:GetDeviceID16Response"/>
+    </operation>
+    <operation name="GetDevices">
+      <input message="tns:GetDevices17Request"/>
+      <output message="tns:GetDevices17Response"/>
+    </operation>
+    <operation name="SetUpdateInterval">
+      <input message="tns:SetUpdateInterval18Request"/>
+      <output message="tns:SetUpdateInterval18Response"/>
+    </operation>
+    <operation name="GetUpdateInterval">
+      <input message="tns:GetUpdateInterval19Request"/>
+      <output message="tns:GetUpdateInterval19Response"/>
+    </operation>
+    <operation name="PlayFile">
+      <input message="tns:PlayFile20Request"/>
+      <output message="tns:PlayFile20Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSMediaPlayerbinding" type="tns:IIPSMediaPlayer">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="Play">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#Play" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:Play0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:Play0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="Stop">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#Stop" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:Stop1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:Stop1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="Pause">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#Pause" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:Pause2headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:Pause2headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="Prev">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#Prev" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:Prev3headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:Prev3headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="Next">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#Next" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:Next4headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:Next4headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetVolume">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#SetVolume" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:SetVolume5headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:SetVolume5headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetShuffle">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#SetShuffle" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:SetShuffle6headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:SetShuffle6headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetRepeat">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#SetRepeat" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:SetRepeat7headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:SetRepeat7headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="AddFile">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#AddFile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:AddFile8headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:AddFile8headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="ClearPlaylist">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#ClearPlaylist" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:ClearPlaylist9headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:ClearPlaylist9headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetPlaylistLength">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#GetPlaylistLength" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetPlaylistLength10headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetPlaylistLength10headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetPlaylistPosition">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#GetPlaylistPosition" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetPlaylistPosition11headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetPlaylistPosition11headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetPlaylistPosition">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#SetPlaylistPosition" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:SetPlaylistPosition12headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:SetPlaylistPosition12headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetPlaylistFile">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#GetPlaylistFile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetPlaylistFile13headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetPlaylistFile13headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetPlaylistTitle">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#GetPlaylistTitle" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetPlaylistTitle14headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetPlaylistTitle14headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetDeviceID">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#SetDeviceID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:SetDeviceID15headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:SetDeviceID15headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetDeviceID">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#GetDeviceID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetDeviceID16headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetDeviceID16headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetDevices">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#GetDevices" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetDevices17headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetDevices17headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetUpdateInterval">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#SetUpdateInterval" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:SetUpdateInterval18headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:SetUpdateInterval18headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetUpdateInterval">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#GetUpdateInterval" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetUpdateInterval19headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:GetUpdateInterval19headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="PlayFile">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSMediaPlayer#PlayFile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:PlayFile20headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSMediaPlayer"/>
+        <soap:header use="encoded" message="tns:PlayFile20headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSMediaPlayerservice">
+    <port name="IIPSMediaPlayerPort" binding="tns:IIPSMediaPlayerbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSMediaPlayer"/>
+    </port>
+  </service>
+</definitions>
+

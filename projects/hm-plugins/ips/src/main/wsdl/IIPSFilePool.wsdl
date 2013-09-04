@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSFilePoolservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:complexType name="TStringArray">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:string[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TSOAPAttachments">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:base64Binary[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="FileExists0Request">
+    <part name="Filename" type="xs:string"/>
+  </message>
+  <message name="FileExists0Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="DownloadFile1Request">
+    <part name="Filename" type="xs:string"/>
+    <part name="Data" type="xs:base64Binary"/>
+  </message>
+  <message name="DownloadFile1Response">
+    <part name="Data" type="xs:base64Binary"/>
+  </message>
+  <message name="DownloadFiles2Request">
+    <part name="Filenames" type="ns1:TStringArray"/>
+    <part name="Data" type="ns1:TSOAPAttachments"/>
+  </message>
+  <message name="DownloadFiles2Response">
+    <part name="Data" type="ns1:TSOAPAttachments"/>
+  </message>
+  <message name="UploadFile3Request">
+    <part name="Filename" type="xs:string"/>
+    <part name="Data" type="xs:base64Binary"/>
+  </message>
+  <message name="UploadFile3Response"/>
+  <message name="RenameFile4Request">
+    <part name="Filename" type="xs:string"/>
+    <part name="NewFilename" type="xs:string"/>
+  </message>
+  <message name="RenameFile4Response"/>
+  <portType name="IIPSFilePool">
+    <operation name="FileExists">
+      <input message="tns:FileExists0Request"/>
+      <output message="tns:FileExists0Response"/>
+    </operation>
+    <operation name="DownloadFile">
+      <input message="tns:DownloadFile1Request"/>
+      <output message="tns:DownloadFile1Response"/>
+    </operation>
+    <operation name="DownloadFiles">
+      <input message="tns:DownloadFiles2Request"/>
+      <output message="tns:DownloadFiles2Response"/>
+    </operation>
+    <operation name="UploadFile">
+      <input message="tns:UploadFile3Request"/>
+      <output message="tns:UploadFile3Response"/>
+    </operation>
+    <operation name="RenameFile">
+      <input message="tns:RenameFile4Request"/>
+      <output message="tns:RenameFile4Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSFilePoolbinding" type="tns:IIPSFilePool">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="FileExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSFilePool#FileExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSFilePool"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSFilePool"/>
+      </output>
+    </operation>
+    <operation name="DownloadFile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSFilePool#DownloadFile" style="rpc"/>
+      <input name="DownloadFile1Request">
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSFilePool"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="Data" type="application/binary"/>
+          </mime:part>
+        </mime:multipartRelated>
+      </input>
+      <output name="DownloadFile1Response">
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSFilePool"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="Data" type="application/binary"/>
+          </mime:part>
+        </mime:multipartRelated>
+      </output>
+    </operation>
+    <operation name="DownloadFiles">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSFilePool#DownloadFiles" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSFilePool"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSFilePool"/>
+      </output>
+    </operation>
+    <operation name="UploadFile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSFilePool#UploadFile" style="rpc"/>
+      <input name="UploadFile3Request">
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSFilePool"/>
+          </mime:part>
+          <mime:part>
+            <mime:content part="Data" type="application/binary"/>
+          </mime:part>
+        </mime:multipartRelated>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSFilePool"/>
+      </output>
+    </operation>
+    <operation name="RenameFile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSFilePool#RenameFile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSFilePool"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSFilePool"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSFilePoolservice">
+    <port name="IIPSFilePoolPort" binding="tns:IIPSFilePoolbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSFilePool"/>
+    </port>
+  </service>
+</definitions>
+

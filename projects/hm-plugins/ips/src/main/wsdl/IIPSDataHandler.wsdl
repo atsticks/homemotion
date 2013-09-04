@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSDataHandlerservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TInstanceIDs">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:unsignedShort[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="ConnectInstance0Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+    <part name="ParentID" type="xs:unsignedShort"/>
+  </message>
+  <message name="ConnectInstance0Response"/>
+  <message name="DisconnectInstance1Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="DisconnectInstance1Response"/>
+  <message name="HasInstanceParent2Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="HasInstanceParent2Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetInstanceParentID3Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetInstanceParentID3Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetInstanceParentIDs4Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetInstanceParentIDs4Response">
+    <part name="return" type="ns1:TInstanceIDs"/>
+  </message>
+  <message name="HasInstanceChildren5Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="HasInstanceChildren5Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetInstanceChildrenIDs6Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetInstanceChildrenIDs6Response">
+    <part name="return" type="ns1:TInstanceIDs"/>
+  </message>
+  <portType name="IIPSDataHandler">
+    <operation name="ConnectInstance">
+      <input message="tns:ConnectInstance0Request"/>
+      <output message="tns:ConnectInstance0Response"/>
+    </operation>
+    <operation name="DisconnectInstance">
+      <input message="tns:DisconnectInstance1Request"/>
+      <output message="tns:DisconnectInstance1Response"/>
+    </operation>
+    <operation name="HasInstanceParent">
+      <input message="tns:HasInstanceParent2Request"/>
+      <output message="tns:HasInstanceParent2Response"/>
+    </operation>
+    <operation name="GetInstanceParentID">
+      <input message="tns:GetInstanceParentID3Request"/>
+      <output message="tns:GetInstanceParentID3Response"/>
+    </operation>
+    <operation name="GetInstanceParentIDs">
+      <input message="tns:GetInstanceParentIDs4Request"/>
+      <output message="tns:GetInstanceParentIDs4Response"/>
+    </operation>
+    <operation name="HasInstanceChildren">
+      <input message="tns:HasInstanceChildren5Request"/>
+      <output message="tns:HasInstanceChildren5Response"/>
+    </operation>
+    <operation name="GetInstanceChildrenIDs">
+      <input message="tns:GetInstanceChildrenIDs6Request"/>
+      <output message="tns:GetInstanceChildrenIDs6Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSDataHandlerbinding" type="tns:IIPSDataHandler">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="ConnectInstance">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDataHandler#ConnectInstance" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </output>
+    </operation>
+    <operation name="DisconnectInstance">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDataHandler#DisconnectInstance" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </output>
+    </operation>
+    <operation name="HasInstanceParent">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDataHandler#HasInstanceParent" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </output>
+    </operation>
+    <operation name="GetInstanceParentID">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDataHandler#GetInstanceParentID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </output>
+    </operation>
+    <operation name="GetInstanceParentIDs">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDataHandler#GetInstanceParentIDs" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </output>
+    </operation>
+    <operation name="HasInstanceChildren">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDataHandler#HasInstanceChildren" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </output>
+    </operation>
+    <operation name="GetInstanceChildrenIDs">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDataHandler#GetInstanceChildrenIDs" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDataHandler"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSDataHandlerservice">
+    <port name="IIPSDataHandlerPort" binding="tns:IIPSDataHandlerbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSDataHandler"/>
+    </port>
+  </service>
+</definitions>
+

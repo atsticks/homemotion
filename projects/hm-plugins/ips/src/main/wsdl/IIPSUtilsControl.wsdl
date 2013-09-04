@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSUtilsControlservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes" xmlns:ns2="urn:UIPSModuleTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TScriptIDs">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:unsignedShort[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:complexType name="TIPSSearchResults">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns2:TIPSSearchResult[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSSearchResult">
+        <xs:sequence>
+          <xs:element name="ScriptID" type="xs:unsignedShort"/>
+          <xs:element name="LineNumber" type="xs:int"/>
+          <xs:element name="LineContent" type="xs:string"/>
+          <xs:element name="LinePosition" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="FindInFiles0Request">
+    <part name="Files" type="ns1:TScriptIDs"/>
+    <part name="SearchStr" type="xs:string"/>
+  </message>
+  <message name="FindInFiles0Response">
+    <part name="return" type="ns2:TIPSSearchResults"/>
+  </message>
+  <message name="FindInFiles0headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="FindInFiles0headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="ReplaceInFiles1Request">
+    <part name="Files" type="ns1:TScriptIDs"/>
+    <part name="SearchStr" type="xs:string"/>
+    <part name="ReplaceStr" type="xs:string"/>
+  </message>
+  <message name="ReplaceInFiles1Response">
+    <part name="return" type="ns2:TIPSSearchResults"/>
+  </message>
+  <message name="ReplaceInFiles1headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="ReplaceInFiles1headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <portType name="IIPSUtilsControl">
+    <operation name="FindInFiles">
+      <input message="tns:FindInFiles0Request"/>
+      <output message="tns:FindInFiles0Response"/>
+    </operation>
+    <operation name="ReplaceInFiles">
+      <input message="tns:ReplaceInFiles1Request"/>
+      <output message="tns:ReplaceInFiles1Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSUtilsControlbinding" type="tns:IIPSUtilsControl">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="FindInFiles">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUtilsControl#FindInFiles" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUtilsControl"/>
+        <soap:header use="encoded" message="tns:FindInFiles0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUtilsControl"/>
+        <soap:header use="encoded" message="tns:FindInFiles0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="ReplaceInFiles">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUtilsControl#ReplaceInFiles" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUtilsControl"/>
+        <soap:header use="encoded" message="tns:ReplaceInFiles1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUtilsControl"/>
+        <soap:header use="encoded" message="tns:ReplaceInFiles1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSUtilsControlservice">
+    <port name="IIPSUtilsControlPort" binding="tns:IIPSUtilsControlbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSUtilsControl"/>
+    </port>
+  </service>
+</definitions>
+

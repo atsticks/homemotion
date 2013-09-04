@@ -1,0 +1,35 @@
+[annual]
+@id			@config				@base  @description	
+#-------------------------------------------------------------------
+#myid		1.3.,2.4.2013		otherCalId		an example.
+
+[daily]
+@id			@config				@base  @description	
+#-------------------------------------------------------------------
+#myid		10:22:13-11:00		otherCalId		an example.
+
+[annual]
+@id			@config				@base  @description	
+#-------------------------------------------------------------------
+#myid		1.2,1.3.2013		otherCalId		an example.
+
+[holiday]
+@id			@config				@base  @description	
+#-------------------------------------------------------------------
+#myid		1.2,1.3.2013		otherCalId		an example.
+
+[monthly]
+@id			@config				@base  			@description	
+#-------------------------------------------------------------------
+#myid		1,2,5;timeZone=MET	otherCalId		an example.
+
+[weekly]
+@id			@config				@base  			@description	
+#-------------------------------------------------------------------
+#myid		Mo,We,Sa,Su			otherCalId		an example.
+
+[combined]
+@id			@config				@base  						@description	
+#---------------------------------------------------------------------------
+#myid		calendars=myid1,myId1;combinationType=additive
+

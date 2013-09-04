@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css"
+	href="lib/dijit/themes/soria/soria.css">
+<style type="text/css">
+body,html {
+	font-family: helvetica, arial, sans-serif;
+	font-size: 90%;
+}
+</style>
+<script type="text/javascript" src="lib/dojo/dojo.js"
+    djConfig="parseOnLoad: true, isDebug: true, debugAtAllCosts: true">
+</script>
+</head>
+
+<body class="soria" background="img/background.jpg">
+
+<span id="title456" dojoType="home.ui.MainTitle"></span>
+
+<table style="border: 0;">
+	<tr>
+		<td>
+		<table style="border: 0;">
+			<tr>
+				<td>
+					<div dojoType="home.ui.GeneralInfo"></div>
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+					<div dojoType="home.ui.Messages"></div>
+				</td>
+			</tr>
+		</table>
+		</td>
+		<td>
+		BUTTONS
+		</td>
+		<td>
+		<h2>Akt. Wetterlage</h2>
+		<object type="application/x-shockwave-flash"
+			style="width: 400px; height: 250px; border: 3px; border-color: grey;"
+			data="http://meteo.sf.tv/sfmeteo/media/embed/embed_big_nav.swf">
+			<param
+				value="http://meteo.sf.tv/sfmeteo/media/embed/embed_big_nav.swf"
+				name="movie" />
+			<param name="quality" value="high" />
+			<param name="allowFullScreen" value="false" />
+		</object><br />
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+	dojo.require("home.ui.MainTitle");
+	dojo.require("home.ui.GeneralInfo");
+	dojo.require("home.ui.Messages");
+</script>
+</html>

@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSModuleservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes" xmlns:ns2="urn:UIPSModuleTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TIPSStatusVariable">
+        <xs:sequence>
+          <xs:element name="VariableIdent" type="xs:string"/>
+          <xs:element name="VariableName" type="xs:string"/>
+          <xs:element name="VariableType" type="ns1:TIPSVarType"/>
+          <xs:element name="VariableProfile" type="xs:string"/>
+          <xs:element name="VariablePosition" type="xs:int"/>
+          <xs:element name="VariableID" type="xs:unsignedShort"/>
+          <xs:element name="VariableHasAction" type="xs:boolean"/>
+          <xs:element name="VariableUseAction" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TIPSVarType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="vtBoolean"/>
+          <xs:enumeration value="vtInteger"/>
+          <xs:enumeration value="vtFloat"/>
+          <xs:enumeration value="vtString"/>
+          <xs:enumeration value="vtVariant"/>
+          <xs:enumeration value="vtArray"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSStatusVariables">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSStatusVariable[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TStringArray">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:string[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="StatusVariableExists0Request">
+    <part name="VariableIdent" type="xs:string"/>
+  </message>
+  <message name="StatusVariableExists0Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="StatusVariableExists0headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="StatusVariableExists0headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetStatusVariable1Request">
+    <part name="VariableIdent" type="xs:string"/>
+  </message>
+  <message name="GetStatusVariable1Response">
+    <part name="return" type="ns1:TIPSStatusVariable"/>
+  </message>
+  <message name="GetStatusVariable1headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetStatusVariable1headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetStatusVariables2Request"/>
+  <message name="GetStatusVariables2Response">
+    <part name="return" type="ns1:TIPSStatusVariables"/>
+  </message>
+  <message name="GetStatusVariables2headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetStatusVariables2headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetStatusVariableIdents3Request"/>
+  <message name="GetStatusVariableIdents3Response">
+    <part name="return" type="ns1:TStringArray"/>
+  </message>
+  <message name="GetStatusVariableIdents3headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetStatusVariableIdents3headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetStatusVariableUseAction4Request">
+    <part name="VariableIdent" type="xs:string"/>
+    <part name="UseAction" type="xs:boolean"/>
+  </message>
+  <message name="SetStatusVariableUseAction4Response"/>
+  <message name="SetStatusVariableUseAction4headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetStatusVariableUseAction4headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetStatusVariableID5Request">
+    <part name="VariableIdent" type="xs:string"/>
+  </message>
+  <message name="GetStatusVariableID5Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetStatusVariableID5headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetStatusVariableID5headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetStatusVariableID6Request">
+    <part name="VariableIdent" type="xs:string"/>
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetStatusVariableID6Response"/>
+  <message name="SetStatusVariableID6headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetStatusVariableID6headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="RequestAction7Request">
+    <part name="VariableIdent" type="xs:string"/>
+    <part name="Value" type="xs:anyType"/>
+  </message>
+  <message name="RequestAction7Response"/>
+  <message name="RequestAction7headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="RequestAction7headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SupportsSearching8Request"/>
+  <message name="SupportsSearching8Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="SupportsSearching8headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SupportsSearching8headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="DoSearching9Request">
+    <part name="Enable" type="xs:boolean"/>
+  </message>
+  <message name="DoSearching9Response"/>
+  <message name="DoSearching9headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="DoSearching9headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SelectDevice10Request">
+    <part name="SearchID" type="xs:int"/>
+  </message>
+  <message name="SelectDevice10Response"/>
+  <message name="SelectDevice10headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SelectDevice10headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="IsSearching11Request"/>
+  <message name="IsSearching11Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="IsSearching11headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="IsSearching11headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="LoadSettings12Request"/>
+  <message name="LoadSettings12Response"/>
+  <message name="LoadSettings12headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="LoadSettings12headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SaveSettings13Request"/>
+  <message name="SaveSettings13Response"/>
+  <message name="SaveSettings13headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SaveSettings13headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="HasChanges14Request"/>
+  <message name="HasChanges14Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="HasChanges14headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="HasChanges14headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="ResetChanges15Request"/>
+  <message name="ResetChanges15Response"/>
+  <message name="ResetChanges15headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="ResetChanges15headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="ApplyChanges16Request"/>
+  <message name="ApplyChanges16Response"/>
+  <message name="ApplyChanges16headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="ApplyChanges16headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <portType name="IIPSModule">
+    <operation name="StatusVariableExists">
+      <input message="tns:StatusVariableExists0Request"/>
+      <output message="tns:StatusVariableExists0Response"/>
+    </operation>
+    <operation name="GetStatusVariable">
+      <input message="tns:GetStatusVariable1Request"/>
+      <output message="tns:GetStatusVariable1Response"/>
+    </operation>
+    <operation name="GetStatusVariables">
+      <input message="tns:GetStatusVariables2Request"/>
+      <output message="tns:GetStatusVariables2Response"/>
+    </operation>
+    <operation name="GetStatusVariableIdents">
+      <input message="tns:GetStatusVariableIdents3Request"/>
+      <output message="tns:GetStatusVariableIdents3Response"/>
+    </operation>
+    <operation name="SetStatusVariableUseAction">
+      <input message="tns:SetStatusVariableUseAction4Request"/>
+      <output message="tns:SetStatusVariableUseAction4Response"/>
+    </operation>
+    <operation name="GetStatusVariableID">
+      <input message="tns:GetStatusVariableID5Request"/>
+      <output message="tns:GetStatusVariableID5Response"/>
+    </operation>
+    <operation name="SetStatusVariableID">
+      <input message="tns:SetStatusVariableID6Request"/>
+      <output message="tns:SetStatusVariableID6Response"/>
+    </operation>
+    <operation name="RequestAction">
+      <input message="tns:RequestAction7Request"/>
+      <output message="tns:RequestAction7Response"/>
+    </operation>
+    <operation name="SupportsSearching">
+      <input message="tns:SupportsSearching8Request"/>
+      <output message="tns:SupportsSearching8Response"/>
+    </operation>
+    <operation name="DoSearching">
+      <input message="tns:DoSearching9Request"/>
+      <output message="tns:DoSearching9Response"/>
+    </operation>
+    <operation name="SelectDevice">
+      <input message="tns:SelectDevice10Request"/>
+      <output message="tns:SelectDevice10Response"/>
+    </operation>
+    <operation name="IsSearching">
+      <input message="tns:IsSearching11Request"/>
+      <output message="tns:IsSearching11Response"/>
+    </operation>
+    <operation name="LoadSettings">
+      <input message="tns:LoadSettings12Request"/>
+      <output message="tns:LoadSettings12Response"/>
+    </operation>
+    <operation name="SaveSettings">
+      <input message="tns:SaveSettings13Request"/>
+      <output message="tns:SaveSettings13Response"/>
+    </operation>
+    <operation name="HasChanges">
+      <input message="tns:HasChanges14Request"/>
+      <output message="tns:HasChanges14Response"/>
+    </operation>
+    <operation name="ResetChanges">
+      <input message="tns:ResetChanges15Request"/>
+      <output message="tns:ResetChanges15Response"/>
+    </operation>
+    <operation name="ApplyChanges">
+      <input message="tns:ApplyChanges16Request"/>
+      <output message="tns:ApplyChanges16Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSModulebinding" type="tns:IIPSModule">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="StatusVariableExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#StatusVariableExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:StatusVariableExists0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:StatusVariableExists0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetStatusVariable">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#GetStatusVariable" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:GetStatusVariable1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:GetStatusVariable1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetStatusVariables">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#GetStatusVariables" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:GetStatusVariables2headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:GetStatusVariables2headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetStatusVariableIdents">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#GetStatusVariableIdents" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:GetStatusVariableIdents3headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:GetStatusVariableIdents3headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetStatusVariableUseAction">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#SetStatusVariableUseAction" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:SetStatusVariableUseAction4headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:SetStatusVariableUseAction4headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetStatusVariableID">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#GetStatusVariableID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:GetStatusVariableID5headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:GetStatusVariableID5headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetStatusVariableID">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#SetStatusVariableID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:SetStatusVariableID6headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:SetStatusVariableID6headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="RequestAction">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#RequestAction" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:RequestAction7headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:RequestAction7headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SupportsSearching">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#SupportsSearching" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:SupportsSearching8headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:SupportsSearching8headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="DoSearching">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#DoSearching" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:DoSearching9headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:DoSearching9headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SelectDevice">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#SelectDevice" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:SelectDevice10headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:SelectDevice10headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="IsSearching">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#IsSearching" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:IsSearching11headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:IsSearching11headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="LoadSettings">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#LoadSettings" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:LoadSettings12headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:LoadSettings12headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SaveSettings">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#SaveSettings" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:SaveSettings13headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:SaveSettings13headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="HasChanges">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#HasChanges" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:HasChanges14headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:HasChanges14headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="ResetChanges">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#ResetChanges" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:ResetChanges15headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:ResetChanges15headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="ApplyChanges">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModule#ApplyChanges" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:ApplyChanges16headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModule"/>
+        <soap:header use="encoded" message="tns:ApplyChanges16headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSModuleservice">
+    <port name="IIPSModulePort" binding="tns:IIPSModulebinding">
+      <soap:address location="http://localhost:3773/soap/IIPSModule"/>
+    </port>
+  </service>
+</definitions>
+

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSSimpleKernelservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/">
+  <message name="GetKernelVersion0Request"/>
+  <message name="GetKernelVersion0Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="LogMessage1Request">
+    <part name="LType" type="xs:int"/>
+    <part name="LSenderID" type="xs:unsignedShort"/>
+    <part name="LSender" type="xs:string"/>
+    <part name="LMessage" type="xs:string"/>
+  </message>
+  <message name="LogMessage1Response"/>
+  <message name="GetKernelDir2Request"/>
+  <message name="GetKernelDir2Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetKernelRunlevel3Request"/>
+  <message name="GetKernelRunlevel3Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetKernelTicktime4Request"/>
+  <message name="GetKernelTicktime4Response">
+    <part name="return" type="xs:dateTime"/>
+  </message>
+  <message name="GetLicensee5Request"/>
+  <message name="GetLicensee5Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetLiveUpdateVersion6Request"/>
+  <message name="GetLiveUpdateVersion6Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <portType name="IIPSSimpleKernel">
+    <operation name="GetKernelVersion">
+      <input message="tns:GetKernelVersion0Request"/>
+      <output message="tns:GetKernelVersion0Response"/>
+    </operation>
+    <operation name="LogMessage">
+      <input message="tns:LogMessage1Request"/>
+      <output message="tns:LogMessage1Response"/>
+    </operation>
+    <operation name="GetKernelDir">
+      <input message="tns:GetKernelDir2Request"/>
+      <output message="tns:GetKernelDir2Response"/>
+    </operation>
+    <operation name="GetKernelRunlevel">
+      <input message="tns:GetKernelRunlevel3Request"/>
+      <output message="tns:GetKernelRunlevel3Response"/>
+    </operation>
+    <operation name="GetKernelTicktime">
+      <input message="tns:GetKernelTicktime4Request"/>
+      <output message="tns:GetKernelTicktime4Response"/>
+    </operation>
+    <operation name="GetLicensee">
+      <input message="tns:GetLicensee5Request"/>
+      <output message="tns:GetLicensee5Response"/>
+    </operation>
+    <operation name="GetLiveUpdateVersion">
+      <input message="tns:GetLiveUpdateVersion6Request"/>
+      <output message="tns:GetLiveUpdateVersion6Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSSimpleKernelbinding" type="tns:IIPSSimpleKernel">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetKernelVersion">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSimpleKernel#GetKernelVersion" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </output>
+    </operation>
+    <operation name="LogMessage">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSimpleKernel#LogMessage" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </output>
+    </operation>
+    <operation name="GetKernelDir">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSimpleKernel#GetKernelDir" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </output>
+    </operation>
+    <operation name="GetKernelRunlevel">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSimpleKernel#GetKernelRunlevel" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </output>
+    </operation>
+    <operation name="GetKernelTicktime">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSimpleKernel#GetKernelTicktime" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </output>
+    </operation>
+    <operation name="GetLicensee">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSimpleKernel#GetLicensee" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </output>
+    </operation>
+    <operation name="GetLiveUpdateVersion">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSimpleKernel#GetLiveUpdateVersion" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSimpleKernel"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSSimpleKernelservice">
+    <port name="IIPSSimpleKernelPort" binding="tns:IIPSSimpleKernelbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSSimpleKernel"/>
+    </port>
+  </service>
+</definitions>
+

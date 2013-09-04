@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSFHZservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSModuleTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TFHZQueueItems">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TFHZQueueItem[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TFHZQueueItem">
+        <xs:sequence>
+          <xs:element name="QueueTime" type="xs:dateTime"/>
+          <xs:element name="ExecTime" type="xs:dateTime"/>
+          <xs:element name="Status" type="ns1:TFHZQueueStatus"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TFHZQueueStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="qsQueued"/>
+          <xs:enumeration value="qsWaiting"/>
+          <xs:enumeration value="qsOk"/>
+          <xs:enumeration value="qsTimeout"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="GetFHTQueue0Request"/>
+  <message name="GetFHTQueue0Response">
+    <part name="return" type="ns1:TFHZQueueItems"/>
+  </message>
+  <message name="GetFHTQueue0headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetFHTQueue0headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDataQueue1Request"/>
+  <message name="GetDataQueue1Response">
+    <part name="return" type="ns1:TFHZQueueItems"/>
+  </message>
+  <message name="GetDataQueue1headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDataQueue1headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetFreeBuffer2Request"/>
+  <message name="GetFreeBuffer2Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetFreeBuffer2headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetFreeBuffer2headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <portType name="IIPSFHZ">
+    <operation name="GetFHTQueue">
+      <input message="tns:GetFHTQueue0Request"/>
+      <output message="tns:GetFHTQueue0Response"/>
+    </operation>
+    <operation name="GetDataQueue">
+      <input message="tns:GetDataQueue1Request"/>
+      <output message="tns:GetDataQueue1Response"/>
+    </operation>
+    <operation name="GetFreeBuffer">
+      <input message="tns:GetFreeBuffer2Request"/>
+      <output message="tns:GetFreeBuffer2Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSFHZbinding" type="tns:IIPSFHZ">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetFHTQueue">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHZ#GetFHTQueue" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHZ"/>
+        <soap:header use="encoded" message="tns:GetFHTQueue0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHZ"/>
+        <soap:header use="encoded" message="tns:GetFHTQueue0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetDataQueue">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHZ#GetDataQueue" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHZ"/>
+        <soap:header use="encoded" message="tns:GetDataQueue1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHZ"/>
+        <soap:header use="encoded" message="tns:GetDataQueue1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetFreeBuffer">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFHZ#GetFreeBuffer" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHZ"/>
+        <soap:header use="encoded" message="tns:GetFreeBuffer2headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFHZ"/>
+        <soap:header use="encoded" message="tns:GetFreeBuffer2headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSFHZservice">
+    <port name="IIPSFHZPort" binding="tns:IIPSFHZbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSFHZ"/>
+    </port>
+  </service>
+</definitions>
+

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSEventControlservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSModuleTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SetStartupScript0Request">
+    <part name="Script" type="xs:int"/>
+  </message>
+  <message name="SetStartupScript0Response"/>
+  <message name="SetStartupScript0headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetStartupScript0headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetStartupScript1Request"/>
+  <message name="GetStartupScript1Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetStartupScript1headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetStartupScript1headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetShutdownScript2Request">
+    <part name="Script" type="xs:int"/>
+  </message>
+  <message name="SetShutdownScript2Response"/>
+  <message name="SetShutdownScript2headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetShutdownScript2headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetShutdownScript3Request"/>
+  <message name="GetShutdownScript3Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetShutdownScript3headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetShutdownScript3headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <portType name="IIPSEventControl">
+    <operation name="SetStartupScript">
+      <input message="tns:SetStartupScript0Request"/>
+      <output message="tns:SetStartupScript0Response"/>
+    </operation>
+    <operation name="GetStartupScript">
+      <input message="tns:GetStartupScript1Request"/>
+      <output message="tns:GetStartupScript1Response"/>
+    </operation>
+    <operation name="SetShutdownScript">
+      <input message="tns:SetShutdownScript2Request"/>
+      <output message="tns:SetShutdownScript2Response"/>
+    </operation>
+    <operation name="GetShutdownScript">
+      <input message="tns:GetShutdownScript3Request"/>
+      <output message="tns:GetShutdownScript3Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSEventControlbinding" type="tns:IIPSEventControl">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SetStartupScript">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSEventControl#SetStartupScript" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSEventControl"/>
+        <soap:header use="encoded" message="tns:SetStartupScript0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSEventControl"/>
+        <soap:header use="encoded" message="tns:SetStartupScript0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetStartupScript">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSEventControl#GetStartupScript" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSEventControl"/>
+        <soap:header use="encoded" message="tns:GetStartupScript1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSEventControl"/>
+        <soap:header use="encoded" message="tns:GetStartupScript1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetShutdownScript">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSEventControl#SetShutdownScript" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSEventControl"/>
+        <soap:header use="encoded" message="tns:SetShutdownScript2headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSEventControl"/>
+        <soap:header use="encoded" message="tns:SetShutdownScript2headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetShutdownScript">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSEventControl#GetShutdownScript" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSEventControl"/>
+        <soap:header use="encoded" message="tns:GetShutdownScript3headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSEventControl"/>
+        <soap:header use="encoded" message="tns:GetShutdownScript3headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSEventControlservice">
+    <port name="IIPSEventControlPort" binding="tns:IIPSEventControlbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSEventControl"/>
+    </port>
+  </service>
+</definitions>
+

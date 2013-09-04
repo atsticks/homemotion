@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSScriptManagerservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:simpleType name="TIPSScriptType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="stPHPScript"/>
+          <xs:enumeration value="stMacroScript"/>
+          <xs:enumeration value="stBrickScript"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSScript">
+        <xs:sequence>
+          <xs:element name="ScriptID" type="xs:unsignedShort"/>
+          <xs:element name="ScriptType" type="ns1:TIPSScriptType"/>
+          <xs:element name="ScriptFile" type="xs:string"/>
+          <xs:element name="IsBroken" type="xs:boolean"/>
+          <xs:element name="LastExecute" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TScriptIDs">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:unsignedShort[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSScripts">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSScript[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="CreateScript0Request">
+    <part name="ScriptType" type="ns1:TIPSScriptType"/>
+  </message>
+  <message name="CreateScript0Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateScriptEx1Request">
+    <part name="ScriptType" type="ns1:TIPSScriptType"/>
+    <part name="ScriptID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateScriptEx1Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="DeleteScript2Request">
+    <part name="ScriptID" type="xs:unsignedShort"/>
+    <part name="DeleteFile" type="xs:boolean"/>
+  </message>
+  <message name="DeleteScript2Response"/>
+  <message name="SetScriptFile3Request">
+    <part name="ScriptID" type="xs:unsignedShort"/>
+    <part name="ScriptFile" type="xs:string"/>
+  </message>
+  <message name="SetScriptFile3Response"/>
+  <message name="GetScriptID4Request">
+    <part name="ScriptName" type="xs:string"/>
+  </message>
+  <message name="GetScriptID4Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="ScriptExists5Request">
+    <part name="ScriptID" type="xs:unsignedShort"/>
+  </message>
+  <message name="ScriptExists5Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="CheckScript6Request">
+    <part name="ScriptID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CheckScript6Response"/>
+  <message name="GetScript7Request">
+    <part name="ScriptID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetScript7Response">
+    <part name="return" type="ns1:TIPSScript"/>
+  </message>
+  <message name="GetScripts8Request">
+    <part name="ScriptIDs" type="ns1:TScriptIDs"/>
+  </message>
+  <message name="GetScripts8Response">
+    <part name="return" type="ns1:TIPSScripts"/>
+  </message>
+  <message name="GetScriptList9Request"/>
+  <message name="GetScriptList9Response">
+    <part name="return" type="ns1:TScriptIDs"/>
+  </message>
+  <message name="GetScriptIDByName10Request">
+    <part name="Name" type="xs:string"/>
+    <part name="ParentID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetScriptIDByName10Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetScriptIDByFile11Request">
+    <part name="Filepath" type="xs:string"/>
+  </message>
+  <message name="GetScriptIDByFile11Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <portType name="IIPSScriptManager">
+    <operation name="CreateScript">
+      <input message="tns:CreateScript0Request"/>
+      <output message="tns:CreateScript0Response"/>
+    </operation>
+    <operation name="CreateScriptEx">
+      <input message="tns:CreateScriptEx1Request"/>
+      <output message="tns:CreateScriptEx1Response"/>
+    </operation>
+    <operation name="DeleteScript">
+      <input message="tns:DeleteScript2Request"/>
+      <output message="tns:DeleteScript2Response"/>
+    </operation>
+    <operation name="SetScriptFile">
+      <input message="tns:SetScriptFile3Request"/>
+      <output message="tns:SetScriptFile3Response"/>
+    </operation>
+    <operation name="GetScriptID">
+      <input message="tns:GetScriptID4Request"/>
+      <output message="tns:GetScriptID4Response"/>
+    </operation>
+    <operation name="ScriptExists">
+      <input message="tns:ScriptExists5Request"/>
+      <output message="tns:ScriptExists5Response"/>
+    </operation>
+    <operation name="CheckScript">
+      <input message="tns:CheckScript6Request"/>
+      <output message="tns:CheckScript6Response"/>
+    </operation>
+    <operation name="GetScript">
+      <input message="tns:GetScript7Request"/>
+      <output message="tns:GetScript7Response"/>
+    </operation>
+    <operation name="GetScripts">
+      <input message="tns:GetScripts8Request"/>
+      <output message="tns:GetScripts8Response"/>
+    </operation>
+    <operation name="GetScriptList">
+      <input message="tns:GetScriptList9Request"/>
+      <output message="tns:GetScriptList9Response"/>
+    </operation>
+    <operation name="GetScriptIDByName">
+      <input message="tns:GetScriptIDByName10Request"/>
+      <output message="tns:GetScriptIDByName10Response"/>
+    </operation>
+    <operation name="GetScriptIDByFile">
+      <input message="tns:GetScriptIDByFile11Request"/>
+      <output message="tns:GetScriptIDByFile11Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSScriptManagerbinding" type="tns:IIPSScriptManager">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="CreateScript">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptManager#CreateScript" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </output>
+    </operation>
+    <operation name="CreateScriptEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptManager#CreateScriptEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </output>
+    </operation>
+    <operation name="DeleteScript">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptManager#DeleteScript" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </output>
+    </operation>
+    <operation name="SetScriptFile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptManager#SetScriptFile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </output>
+    </operation>
+    <operation name="GetScriptID">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptManager#GetScriptID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </output>
+    </operation>
+    <operation name="ScriptExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptManager#ScriptExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </output>
+    </operation>
+    <operation name="CheckScript">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptManager#CheckScript" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </output>
+    </operation>
+    <operation name="GetScript">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptManager#GetScript" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </output>
+    </operation>
+    <operation name="GetScripts">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptManager#GetScripts" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </output>
+    </operation>
+    <operation name="GetScriptList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptManager#GetScriptList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </output>
+    </operation>
+    <operation name="GetScriptIDByName">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptManager#GetScriptIDByName" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </output>
+    </operation>
+    <operation name="GetScriptIDByFile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSScriptManager#GetScriptIDByFile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSScriptManager"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSScriptManagerservice">
+    <port name="IIPSScriptManagerPort" binding="tns:IIPSScriptManagerbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSScriptManager"/>
+    </port>
+  </service>
+</definitions>
+

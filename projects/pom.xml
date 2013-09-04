@@ -1,0 +1,145 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>net.sf.homemotion</groupId>
+	<artifactId>homemotion</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- The Basics -->
+	<name>Homemotion</name>
+	<description>Homemotion Automation System</description>
+
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>GNU LESSER GENERAL PUBLIC LICENSE, Version 3</name>
+			<url>http://www.gnu.org/licenses/lgpl.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<modules>
+		<module>hm-core</module>
+		<module>hm-ui</module>
+		<!-- module>hm-plugins</module -->
+	</modules>
+
+
+
+	<!-- Environment Settings -->
+	<developers>
+		<developer>
+			<id>atr</id>
+			<name>Anatole Tresch</name>
+			<email>atr@sourceforge.net</email>
+			<timezone>MET</timezone>
+			<roles>
+				<role>Admin</role>
+				<role>Project Lead Engineer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!-- Build Settings -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.6</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- Environment Settings -->
+	<scm>
+		<connection>scm:svn:+ssh://atr@svn.code.sf.net/p/homemotion/code/trunk</connection>
+		<developerConnection>scm:svn:+ssh://atr@svn.code.sf.net/p/homemotion/code/trunk</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://svn.code.sf.net/p/homemotion/code/trunk</url>
+	</scm>
+
+	<distributionManagement>
+		<downloadUrl>https://sourceforge.net/projects/homemotion</downloadUrl>
+	</distributionManagement>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>java.net</id>
+			<url>http://download.java.net/maven/2</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>java.net.glassfish.m2</id>
+			<url>http://download.java.net/maven/glassfish</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>JBoss</id>
+			<url>http://repository.jboss.com/maven2/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>tomcat</id>
+			<name>Tomcat Repository</name>
+			<url>http://tomcat.apache.org/dev/dist/m2-repository/org/apache/tomcat/</url>
+		</pluginRepository>
+	</pluginRepositories>
+	<repositories>
+		<repository>
+			<id>java.net.m2</id>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+		<repository>
+			<id>java.net.glassfish.m2</id>
+			<url>http://download.java.net/maven/glassfish</url>
+		</repository>
+		<!-- repository> <id>prime-repo</id> <name>Prime Technology Maven Repository</name> 
+			<url>http://repository.prime.com.tr/</url> </repository> -->
+		<repository>
+			<id>repository.jboss.org</id>
+			<name>JBoss Repository for Maven</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+		</repository>
+		<repository>
+			<id>JBoss</id>
+			<url>http://repository.jboss.com/maven2/</url>
+		</repository>
+	</repositories>
+
+</project>

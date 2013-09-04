@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSKS300service" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSModuleTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <portType name="IIPSKS300"/>
+  <binding name="IIPSKS300binding" type="tns:IIPSKS300">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  </binding>
+  <service name="IIPSKS300service">
+    <port name="IIPSKS300Port" binding="tns:IIPSKS300binding">
+      <soap:address location="http://localhost:3773/soap/IIPSKS300"/>
+    </port>
+  </service>
+</definitions>
+

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSFS20service" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSModuleTypes">
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+  <types>
+      <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:complexType name="TFS20Device">
+        <xs:sequence>
+          <xs:element name="HomeCode" type="xs:string"/>
+          <xs:element name="Address" type="xs:string"/>
+          <xs:element name="SubAddress" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SetDeviceAddress0Request">
+    <part name="HomeCode" type="xs:string"/>
+    <part name="Address" type="xs:string"/>
+    <part name="SubAddress" type="xs:string"/>
+  </message>
+  <message name="SetDeviceAddress0Response"/>
+  <message name="SetDeviceAddress0headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetDeviceAddress0headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetEnableReceive1Request">
+    <part name="Enable" type="xs:boolean"/>
+  </message>
+  <message name="SetEnableReceive1Response"/>
+  <message name="SetEnableReceive1headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetEnableReceive1headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetEnableTimer2Request">
+    <part name="Enable" type="xs:boolean"/>
+  </message>
+  <message name="SetEnableTimer2Response"/>
+  <message name="SetEnableTimer2headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetEnableTimer2headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDeviceAddress3Request"/>
+  <message name="GetDeviceAddress3Response">
+    <part name="return" type="ns1:TFS20Device"/>
+  </message>
+  <message name="GetDeviceAddress3headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDeviceAddress3headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetEnableReceive4Request"/>
+  <message name="GetEnableReceive4Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetEnableReceive4headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetEnableReceive4headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetEnableTimer5Request"/>
+  <message name="GetEnableTimer5Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetEnableTimer5headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetEnableTimer5headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SwitchMode6Request">
+    <part name="DeviceOn" type="xs:boolean"/>
+  </message>
+  <message name="SwitchMode6Response"/>
+  <message name="SwitchMode6headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SwitchMode6headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SwitchDuration7Request">
+    <part name="DeviceOn" type="xs:boolean"/>
+    <part name="Duration" type="xs:int"/>
+  </message>
+  <message name="SwitchDuration7Response"/>
+  <message name="SwitchDuration7headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SwitchDuration7headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetIntensity8Request">
+    <part name="Intensity" type="xs:int"/>
+    <part name="Duration" type="xs:int"/>
+  </message>
+  <message name="SetIntensity8Response"/>
+  <message name="SetIntensity8headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetIntensity8headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="DimUp9Request"/>
+  <message name="DimUp9Response"/>
+  <message name="DimUp9headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="DimUp9headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="DimDown10Request"/>
+  <message name="DimDown10Response"/>
+  <message name="DimDown10headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="DimDown10headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <portType name="IIPSFS20">
+    <operation name="SetDeviceAddress">
+      <input message="tns:SetDeviceAddress0Request"/>
+      <output message="tns:SetDeviceAddress0Response"/>
+    </operation>
+    <operation name="SetEnableReceive">
+      <input message="tns:SetEnableReceive1Request"/>
+      <output message="tns:SetEnableReceive1Response"/>
+    </operation>
+    <operation name="SetEnableTimer">
+      <input message="tns:SetEnableTimer2Request"/>
+      <output message="tns:SetEnableTimer2Response"/>
+    </operation>
+    <operation name="GetDeviceAddress">
+      <input message="tns:GetDeviceAddress3Request"/>
+      <output message="tns:GetDeviceAddress3Response"/>
+    </operation>
+    <operation name="GetEnableReceive">
+      <input message="tns:GetEnableReceive4Request"/>
+      <output message="tns:GetEnableReceive4Response"/>
+    </operation>
+    <operation name="GetEnableTimer">
+      <input message="tns:GetEnableTimer5Request"/>
+      <output message="tns:GetEnableTimer5Response"/>
+    </operation>
+    <operation name="SwitchMode">
+      <input message="tns:SwitchMode6Request"/>
+      <output message="tns:SwitchMode6Response"/>
+    </operation>
+    <operation name="SwitchDuration">
+      <input message="tns:SwitchDuration7Request"/>
+      <output message="tns:SwitchDuration7Response"/>
+    </operation>
+    <operation name="SetIntensity">
+      <input message="tns:SetIntensity8Request"/>
+      <output message="tns:SetIntensity8Response"/>
+    </operation>
+    <operation name="DimUp">
+      <input message="tns:DimUp9Request"/>
+      <output message="tns:DimUp9Response"/>
+    </operation>
+    <operation name="DimDown">
+      <input message="tns:DimDown10Request"/>
+      <output message="tns:DimDown10Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSFS20binding" type="tns:IIPSFS20">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SetDeviceAddress">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20#SetDeviceAddress" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:SetDeviceAddress0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:SetDeviceAddress0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetEnableReceive">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20#SetEnableReceive" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:SetEnableReceive1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:SetEnableReceive1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetEnableTimer">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20#SetEnableTimer" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:SetEnableTimer2headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:SetEnableTimer2headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetDeviceAddress">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20#GetDeviceAddress" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:GetDeviceAddress3headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:GetDeviceAddress3headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetEnableReceive">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20#GetEnableReceive" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:GetEnableReceive4headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:GetEnableReceive4headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetEnableTimer">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20#GetEnableTimer" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:GetEnableTimer5headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:GetEnableTimer5headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SwitchMode">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20#SwitchMode" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:SwitchMode6headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:SwitchMode6headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SwitchDuration">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20#SwitchDuration" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:SwitchDuration7headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:SwitchDuration7headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetIntensity">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20#SetIntensity" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:SetIntensity8headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:SetIntensity8headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="DimUp">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20#DimUp" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:DimUp9headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:DimUp9headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="DimDown">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20#DimDown" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:DimDown10headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20"/>
+        <soap:header use="encoded" message="tns:DimDown10headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSFS20service">
+    <port name="IIPSFS20Port" binding="tns:IIPSFS20binding">
+      <soap:address location="http://localhost:3773/soap/IIPSFS20"/>
+    </port>
+  </service>
+</definitions>
+

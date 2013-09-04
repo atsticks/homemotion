@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSInstanceManagerservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TIPSInstance">
+        <xs:sequence>
+          <xs:element name="InstanceID" type="xs:unsignedShort"/>
+          <xs:element name="ParentID" type="xs:unsignedShort"/>
+          <xs:element name="NeedParent" type="xs:boolean"/>
+          <xs:element name="ChildrenIDs" type="ns1:TInstanceIDs"/>
+          <xs:element name="InstanceStatus" type="xs:int"/>
+          <xs:element name="LastChange" type="xs:dateTime"/>
+          <xs:element name="ModuleInfo" type="ns1:TIPSBasicModuleInformation"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TInstanceIDs">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:unsignedShort[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSBasicModuleInformation">
+        <xs:sequence>
+          <xs:element name="ModuleID" type="xs:string"/>
+          <xs:element name="ModuleName" type="xs:string"/>
+          <xs:element name="ModuleType" type="ns1:TIPSModuleType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TIPSModuleType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="mtCore"/>
+          <xs:enumeration value="mtIO"/>
+          <xs:enumeration value="mtSplitter"/>
+          <xs:enumeration value="mtDevice"/>
+          <xs:enumeration value="mtConfigurator"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSInstances">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSInstance[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="CreateInstance0Request">
+    <part name="ModuleID" type="xs:string"/>
+  </message>
+  <message name="CreateInstance0Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateInstanceEx1Request">
+    <part name="ModuleID" type="xs:string"/>
+    <part name="InstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateInstanceEx1Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="DeleteInstance2Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="DeleteInstance2Response"/>
+  <message name="ConnectModuleInstances3Request">
+    <part name="ModuleID" type="xs:string"/>
+  </message>
+  <message name="ConnectModuleInstances3Response"/>
+  <message name="DisconnectModuleInstances4Request">
+    <part name="ModuleID" type="xs:string"/>
+  </message>
+  <message name="DisconnectModuleInstances4Response"/>
+  <message name="InstanceExists5Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="InstanceExists5Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="CheckInstance6Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CheckInstance6Response"/>
+  <message name="GetInstance7Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetInstance7Response">
+    <part name="return" type="ns1:TIPSInstance"/>
+  </message>
+  <message name="GetInstances8Request">
+    <part name="InstanceIDs" type="ns1:TInstanceIDs"/>
+  </message>
+  <message name="GetInstances8Response">
+    <part name="return" type="ns1:TIPSInstances"/>
+  </message>
+  <message name="GetInstanceList9Request"/>
+  <message name="GetInstanceList9Response">
+    <part name="return" type="ns1:TInstanceIDs"/>
+  </message>
+  <message name="GetInstanceListByModuleType10Request">
+    <part name="ModuleType" type="ns1:TIPSModuleType"/>
+  </message>
+  <message name="GetInstanceListByModuleType10Response">
+    <part name="return" type="ns1:TInstanceIDs"/>
+  </message>
+  <message name="GetInstanceListByModuleID11Request">
+    <part name="ModuleID" type="xs:string"/>
+  </message>
+  <message name="GetInstanceListByModuleID11Response">
+    <part name="return" type="ns1:TInstanceIDs"/>
+  </message>
+  <message name="GetInstanceIDByName12Request">
+    <part name="Name" type="xs:string"/>
+    <part name="ParentID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetInstanceIDByName12Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="IsInstanceCompatible13Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+    <part name="ParentInstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="IsInstanceCompatible13Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetCompatibleInstances14Request">
+    <part name="InstanceID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetCompatibleInstances14Response">
+    <part name="return" type="ns1:TInstanceIDs"/>
+  </message>
+  <portType name="IIPSInstanceManager">
+    <operation name="CreateInstance">
+      <input message="tns:CreateInstance0Request"/>
+      <output message="tns:CreateInstance0Response"/>
+    </operation>
+    <operation name="CreateInstanceEx">
+      <input message="tns:CreateInstanceEx1Request"/>
+      <output message="tns:CreateInstanceEx1Response"/>
+    </operation>
+    <operation name="DeleteInstance">
+      <input message="tns:DeleteInstance2Request"/>
+      <output message="tns:DeleteInstance2Response"/>
+    </operation>
+    <operation name="ConnectModuleInstances">
+      <input message="tns:ConnectModuleInstances3Request"/>
+      <output message="tns:ConnectModuleInstances3Response"/>
+    </operation>
+    <operation name="DisconnectModuleInstances">
+      <input message="tns:DisconnectModuleInstances4Request"/>
+      <output message="tns:DisconnectModuleInstances4Response"/>
+    </operation>
+    <operation name="InstanceExists">
+      <input message="tns:InstanceExists5Request"/>
+      <output message="tns:InstanceExists5Response"/>
+    </operation>
+    <operation name="CheckInstance">
+      <input message="tns:CheckInstance6Request"/>
+      <output message="tns:CheckInstance6Response"/>
+    </operation>
+    <operation name="GetInstance">
+      <input message="tns:GetInstance7Request"/>
+      <output message="tns:GetInstance7Response"/>
+    </operation>
+    <operation name="GetInstances">
+      <input message="tns:GetInstances8Request"/>
+      <output message="tns:GetInstances8Response"/>
+    </operation>
+    <operation name="GetInstanceList">
+      <input message="tns:GetInstanceList9Request"/>
+      <output message="tns:GetInstanceList9Response"/>
+    </operation>
+    <operation name="GetInstanceListByModuleType">
+      <input message="tns:GetInstanceListByModuleType10Request"/>
+      <output message="tns:GetInstanceListByModuleType10Response"/>
+    </operation>
+    <operation name="GetInstanceListByModuleID">
+      <input message="tns:GetInstanceListByModuleID11Request"/>
+      <output message="tns:GetInstanceListByModuleID11Response"/>
+    </operation>
+    <operation name="GetInstanceIDByName">
+      <input message="tns:GetInstanceIDByName12Request"/>
+      <output message="tns:GetInstanceIDByName12Response"/>
+    </operation>
+    <operation name="IsInstanceCompatible">
+      <input message="tns:IsInstanceCompatible13Request"/>
+      <output message="tns:IsInstanceCompatible13Response"/>
+    </operation>
+    <operation name="GetCompatibleInstances">
+      <input message="tns:GetCompatibleInstances14Request"/>
+      <output message="tns:GetCompatibleInstances14Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSInstanceManagerbinding" type="tns:IIPSInstanceManager">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="CreateInstance">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#CreateInstance" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="CreateInstanceEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#CreateInstanceEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="DeleteInstance">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#DeleteInstance" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="ConnectModuleInstances">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#ConnectModuleInstances" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="DisconnectModuleInstances">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#DisconnectModuleInstances" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="InstanceExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#InstanceExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="CheckInstance">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#CheckInstance" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="GetInstance">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#GetInstance" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="GetInstances">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#GetInstances" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="GetInstanceList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#GetInstanceList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="GetInstanceListByModuleType">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#GetInstanceListByModuleType" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="GetInstanceListByModuleID">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#GetInstanceListByModuleID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="GetInstanceIDByName">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#GetInstanceIDByName" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="IsInstanceCompatible">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#IsInstanceCompatible" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+    <operation name="GetCompatibleInstances">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSInstanceManager#GetCompatibleInstances" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSInstanceManager"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSInstanceManagerservice">
+    <port name="IIPSInstanceManagerPort" binding="tns:IIPSInstanceManagerbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSInstanceManager"/>
+    </port>
+  </service>
+</definitions>
+

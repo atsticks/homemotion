@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSDebugServerservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TIPSDebugMessages">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSDebugMessage[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSDebugMessage">
+        <xs:sequence>
+          <xs:element name="TimeStamp" type="xs:dateTime"/>
+          <xs:element name="InstanceID" type="xs:unsignedShort"/>
+          <xs:element name="Message" type="xs:string"/>
+          <xs:element name="Data" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SendData0Request">
+    <part name="SenderID" type="xs:unsignedShort"/>
+    <part name="Message" type="xs:string"/>
+    <part name="Data" type="xs:string"/>
+  </message>
+  <message name="SendData0Response"/>
+  <message name="IsSessionValid1Request">
+    <part name="Session" type="xs:string"/>
+  </message>
+  <message name="IsSessionValid1Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetNewSessionID2Request"/>
+  <message name="GetNewSessionID2Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetMessages3Request">
+    <part name="SessionID" type="xs:string"/>
+  </message>
+  <message name="GetMessages3Response">
+    <part name="return" type="ns1:TIPSDebugMessages"/>
+  </message>
+  <message name="AddListener4Request">
+    <part name="SessionID" type="xs:string"/>
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="AddListener4Response"/>
+  <message name="RemoveListener5Request">
+    <part name="SessionID" type="xs:string"/>
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="RemoveListener5Response"/>
+  <portType name="IIPSDebugServer">
+    <operation name="SendData">
+      <input message="tns:SendData0Request"/>
+      <output message="tns:SendData0Response"/>
+    </operation>
+    <operation name="IsSessionValid">
+      <input message="tns:IsSessionValid1Request"/>
+      <output message="tns:IsSessionValid1Response"/>
+    </operation>
+    <operation name="GetNewSessionID">
+      <input message="tns:GetNewSessionID2Request"/>
+      <output message="tns:GetNewSessionID2Response"/>
+    </operation>
+    <operation name="GetMessages">
+      <input message="tns:GetMessages3Request"/>
+      <output message="tns:GetMessages3Response"/>
+    </operation>
+    <operation name="AddListener">
+      <input message="tns:AddListener4Request"/>
+      <output message="tns:AddListener4Response"/>
+    </operation>
+    <operation name="RemoveListener">
+      <input message="tns:RemoveListener5Request"/>
+      <output message="tns:RemoveListener5Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSDebugServerbinding" type="tns:IIPSDebugServer">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SendData">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDebugServer#SendData" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDebugServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDebugServer"/>
+      </output>
+    </operation>
+    <operation name="IsSessionValid">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDebugServer#IsSessionValid" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDebugServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDebugServer"/>
+      </output>
+    </operation>
+    <operation name="GetNewSessionID">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDebugServer#GetNewSessionID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDebugServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDebugServer"/>
+      </output>
+    </operation>
+    <operation name="GetMessages">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDebugServer#GetMessages" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDebugServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDebugServer"/>
+      </output>
+    </operation>
+    <operation name="AddListener">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDebugServer#AddListener" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDebugServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDebugServer"/>
+      </output>
+    </operation>
+    <operation name="RemoveListener">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSDebugServer#RemoveListener" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDebugServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSDebugServer"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSDebugServerservice">
+    <port name="IIPSDebugServerPort" binding="tns:IIPSDebugServerbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSDebugServer"/>
+    </port>
+  </service>
+</definitions>
+

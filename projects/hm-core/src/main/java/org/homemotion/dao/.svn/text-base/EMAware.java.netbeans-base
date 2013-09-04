@@ -1,9 +1,0 @@
-package org.homemotion.dao;
-
-import javax.persistence.EntityManager;
-
-public interface EMAware {
-
-	EntityManager getEntityManager();
-	
-}

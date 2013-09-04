@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>net.sf.homemotion</groupId>
+  	<artifactId>hm-all</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<relativePath>../hm-all</relativePath>
+  </parent>
+  <groupId>net.sf.homemotion.plugins</groupId>
+  <artifactId>hm-plugins</artifactId>
+  <packaging>pom</packaging>
+  
+  <!-- The Basics -->
+  <name>Homemotion Plugins</name>
+  <description>Homemotion Automation Hardware Plugins.</description>
+   
+  <dependencies>
+   <dependency>
+   	<groupId>net.sf.homemotion</groupId>
+   	<artifactId>hm-core</artifactId>
+   	<version>0.0.1-SNAPSHOT</version>
+   	<type>jar</type>
+   	<scope>compile</scope>
+   </dependency>
+  </dependencies>
+  
+  <modules></modules>
+
+  <!-- Build Settings -->
+  <build>
+    
+  </build>
+
+  <!-- More Project Information -->
+
+  <!-- Environment Settings -->
+  <scm>
+    <connection>scm:svn:https://homemotion.svn.sourceforge.net/svnroot/homemotion/hmplugins</connection>
+    <developerConnection>scm:svn:https://homemotion.svn.sourceforge.net/svnroot/homemotion/hmplugins</developerConnection>
+    <tag>HEAD</tag>
+    <url>http://homemotion.svn.sourceforge.net/viewvc/homemotion/hmplugins/</url>
+  </scm>
+
+</project>

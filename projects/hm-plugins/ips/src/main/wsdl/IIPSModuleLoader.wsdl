@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSModuleLoaderservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TIPSLibraryInformation">
+        <xs:sequence>
+          <xs:element name="LibraryID" type="xs:string"/>
+          <xs:element name="Author" type="xs:string"/>
+          <xs:element name="URL" type="xs:string"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="Version" type="xs:unsignedShort"/>
+          <xs:element name="Build" type="xs:unsignedShort"/>
+          <xs:element name="Date" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TStringArray">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:string[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSLibraryInformations">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSLibraryInformation[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSModuleInformation">
+        <xs:complexContent>
+          <xs:extension base="TIPSBasicModuleInformation">
+            <xs:sequence>
+              <xs:element name="ModuleID" type="xs:string"/>
+              <xs:element name="ModuleName" type="xs:string"/>
+              <xs:element name="ModuleType" type="ns1:TIPSModuleType"/>
+              <xs:element name="ParentRequirements" type="ns1:TStringArray"/>
+              <xs:element name="ChildRequirements" type="ns1:TStringArray"/>
+              <xs:element name="Implemented" type="ns1:TStringArray"/>
+              <xs:element name="Vendor" type="xs:string"/>
+              <xs:element name="Aliases" type="ns1:TStringArray"/>
+              <xs:element name="LibraryID" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:simpleType name="TIPSModuleType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="mtCore"/>
+          <xs:enumeration value="mtIO"/>
+          <xs:enumeration value="mtSplitter"/>
+          <xs:enumeration value="mtDevice"/>
+          <xs:enumeration value="mtConfigurator"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSModuleInformations">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSModuleInformation[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="LoadLibraries0Request"/>
+  <message name="LoadLibraries0Response"/>
+  <message name="UnloadLibraries1Request"/>
+  <message name="UnloadLibraries1Response"/>
+  <message name="LoadLibrary2Request">
+    <part name="Filename" type="xs:string"/>
+  </message>
+  <message name="LoadLibrary2Response"/>
+  <message name="UnloadLibrary3Request">
+    <part name="LibraryID" type="xs:string"/>
+  </message>
+  <message name="UnloadLibrary3Response"/>
+  <message name="LibraryExists4Request">
+    <part name="LibraryID" type="xs:string"/>
+  </message>
+  <message name="LibraryExists4Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetLibrary5Request">
+    <part name="LibraryID" type="xs:string"/>
+  </message>
+  <message name="GetLibrary5Response">
+    <part name="return" type="ns1:TIPSLibraryInformation"/>
+  </message>
+  <message name="GetLibraries6Request">
+    <part name="LibraryIDs" type="ns1:TStringArray"/>
+  </message>
+  <message name="GetLibraries6Response">
+    <part name="return" type="ns1:TIPSLibraryInformations"/>
+  </message>
+  <message name="GetLibraryList7Request"/>
+  <message name="GetLibraryList7Response">
+    <part name="return" type="ns1:TStringArray"/>
+  </message>
+  <message name="GetLibraryModules8Request">
+    <part name="LibraryID" type="xs:string"/>
+  </message>
+  <message name="GetLibraryModules8Response">
+    <part name="return" type="ns1:TStringArray"/>
+  </message>
+  <message name="ModuleExists9Request">
+    <part name="ModuleID" type="xs:string"/>
+  </message>
+  <message name="ModuleExists9Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetModule10Request">
+    <part name="ModuleID" type="xs:string"/>
+  </message>
+  <message name="GetModule10Response">
+    <part name="return" type="ns1:TIPSModuleInformation"/>
+  </message>
+  <message name="GetModules11Request">
+    <part name="ModuleIDs" type="ns1:TStringArray"/>
+  </message>
+  <message name="GetModules11Response">
+    <part name="return" type="ns1:TIPSModuleInformations"/>
+  </message>
+  <message name="GetModuleList12Request"/>
+  <message name="GetModuleList12Response">
+    <part name="return" type="ns1:TStringArray"/>
+  </message>
+  <message name="IsModuleCompatible13Request">
+    <part name="ModuleID" type="xs:string"/>
+    <part name="ParentModuleID" type="xs:string"/>
+  </message>
+  <message name="IsModuleCompatible13Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetCompatibleModules14Request">
+    <part name="ModuleID" type="xs:string"/>
+  </message>
+  <message name="GetCompatibleModules14Response">
+    <part name="return" type="ns1:TStringArray"/>
+  </message>
+  <portType name="IIPSModuleLoader">
+    <operation name="LoadLibraries">
+      <input message="tns:LoadLibraries0Request"/>
+      <output message="tns:LoadLibraries0Response"/>
+    </operation>
+    <operation name="UnloadLibraries">
+      <input message="tns:UnloadLibraries1Request"/>
+      <output message="tns:UnloadLibraries1Response"/>
+    </operation>
+    <operation name="LoadLibrary">
+      <input message="tns:LoadLibrary2Request"/>
+      <output message="tns:LoadLibrary2Response"/>
+    </operation>
+    <operation name="UnloadLibrary">
+      <input message="tns:UnloadLibrary3Request"/>
+      <output message="tns:UnloadLibrary3Response"/>
+    </operation>
+    <operation name="LibraryExists">
+      <input message="tns:LibraryExists4Request"/>
+      <output message="tns:LibraryExists4Response"/>
+    </operation>
+    <operation name="GetLibrary">
+      <input message="tns:GetLibrary5Request"/>
+      <output message="tns:GetLibrary5Response"/>
+    </operation>
+    <operation name="GetLibraries">
+      <input message="tns:GetLibraries6Request"/>
+      <output message="tns:GetLibraries6Response"/>
+    </operation>
+    <operation name="GetLibraryList">
+      <input message="tns:GetLibraryList7Request"/>
+      <output message="tns:GetLibraryList7Response"/>
+    </operation>
+    <operation name="GetLibraryModules">
+      <input message="tns:GetLibraryModules8Request"/>
+      <output message="tns:GetLibraryModules8Response"/>
+    </operation>
+    <operation name="ModuleExists">
+      <input message="tns:ModuleExists9Request"/>
+      <output message="tns:ModuleExists9Response"/>
+    </operation>
+    <operation name="GetModule">
+      <input message="tns:GetModule10Request"/>
+      <output message="tns:GetModule10Response"/>
+    </operation>
+    <operation name="GetModules">
+      <input message="tns:GetModules11Request"/>
+      <output message="tns:GetModules11Response"/>
+    </operation>
+    <operation name="GetModuleList">
+      <input message="tns:GetModuleList12Request"/>
+      <output message="tns:GetModuleList12Response"/>
+    </operation>
+    <operation name="IsModuleCompatible">
+      <input message="tns:IsModuleCompatible13Request"/>
+      <output message="tns:IsModuleCompatible13Response"/>
+    </operation>
+    <operation name="GetCompatibleModules">
+      <input message="tns:GetCompatibleModules14Request"/>
+      <output message="tns:GetCompatibleModules14Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSModuleLoaderbinding" type="tns:IIPSModuleLoader">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="LoadLibraries">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#LoadLibraries" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="UnloadLibraries">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#UnloadLibraries" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="LoadLibrary">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#LoadLibrary" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="UnloadLibrary">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#UnloadLibrary" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="LibraryExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#LibraryExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="GetLibrary">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#GetLibrary" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="GetLibraries">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#GetLibraries" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="GetLibraryList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#GetLibraryList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="GetLibraryModules">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#GetLibraryModules" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="ModuleExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#ModuleExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="GetModule">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#GetModule" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="GetModules">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#GetModules" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="GetModuleList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#GetModuleList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="IsModuleCompatible">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#IsModuleCompatible" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+    <operation name="GetCompatibleModules">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSModuleLoader#GetCompatibleModules" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSModuleLoader"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSModuleLoaderservice">
+    <port name="IIPSModuleLoaderPort" binding="tns:IIPSModuleLoaderbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSModuleLoader"/>
+    </port>
+  </service>
+</definitions>
+

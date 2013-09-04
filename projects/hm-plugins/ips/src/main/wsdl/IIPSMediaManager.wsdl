@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSMediaManagerservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:simpleType name="TIPSMediaType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="mtForm"/>
+          <xs:enumeration value="mtImage"/>
+          <xs:enumeration value="mtSound"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSMedia">
+        <xs:sequence>
+          <xs:element name="MediaID" type="xs:unsignedShort"/>
+          <xs:element name="MediaType" type="ns1:TIPSMediaType"/>
+          <xs:element name="MediaFile" type="xs:string"/>
+          <xs:element name="MediaCRC" type="xs:string"/>
+          <xs:element name="MediaSize" type="xs:int"/>
+          <xs:element name="IsAvailable" type="xs:boolean"/>
+          <xs:element name="SendEvent" type="xs:boolean"/>
+          <xs:element name="LastUpdate" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TMediaIDs">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:unsignedShort[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSMedias">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSMedia[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="CreateMedia0Request">
+    <part name="MediaType" type="ns1:TIPSMediaType"/>
+  </message>
+  <message name="CreateMedia0Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateMediaEx1Request">
+    <part name="MediaType" type="ns1:TIPSMediaType"/>
+    <part name="MediaID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateMediaEx1Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="DeleteMedia2Request">
+    <part name="MediaID" type="xs:unsignedShort"/>
+    <part name="DeleteFile" type="xs:boolean"/>
+  </message>
+  <message name="DeleteMedia2Response"/>
+  <message name="SetMediaFile3Request">
+    <part name="MediaID" type="xs:unsignedShort"/>
+    <part name="MediaFile" type="xs:string"/>
+    <part name="FileMustExist" type="xs:boolean"/>
+  </message>
+  <message name="SetMediaFile3Response"/>
+  <message name="GetMediaID4Request">
+    <part name="MediaName" type="xs:string"/>
+  </message>
+  <message name="GetMediaID4Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="MediaExists5Request">
+    <part name="MediaID" type="xs:unsignedShort"/>
+  </message>
+  <message name="MediaExists5Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="CheckMedia6Request">
+    <part name="MediaID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CheckMedia6Response"/>
+  <message name="GetMedia7Request">
+    <part name="MediaID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetMedia7Response">
+    <part name="return" type="ns1:TIPSMedia"/>
+  </message>
+  <message name="GetMedias8Request">
+    <part name="MediaIDs" type="ns1:TMediaIDs"/>
+  </message>
+  <message name="GetMedias8Response">
+    <part name="return" type="ns1:TIPSMedias"/>
+  </message>
+  <message name="GetMediaList9Request"/>
+  <message name="GetMediaList9Response">
+    <part name="return" type="ns1:TMediaIDs"/>
+  </message>
+  <message name="GetMediaListByType10Request">
+    <part name="MediaType" type="ns1:TIPSMediaType"/>
+  </message>
+  <message name="GetMediaListByType10Response">
+    <part name="return" type="ns1:TMediaIDs"/>
+  </message>
+  <message name="GetMediaIDByName11Request">
+    <part name="Name" type="xs:string"/>
+    <part name="ParentID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetMediaIDByName11Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetMediaIDByFile12Request">
+    <part name="Filepath" type="xs:string"/>
+  </message>
+  <message name="GetMediaIDByFile12Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="SendMediaEvent13Request">
+    <part name="MediaID" type="xs:unsignedShort"/>
+  </message>
+  <message name="SendMediaEvent13Response"/>
+  <message name="SendMediaEventEx14Request">
+    <part name="MediaID" type="xs:unsignedShort"/>
+    <part name="Action" type="xs:string"/>
+  </message>
+  <message name="SendMediaEventEx14Response"/>
+  <portType name="IIPSMediaManager">
+    <operation name="CreateMedia">
+      <input message="tns:CreateMedia0Request"/>
+      <output message="tns:CreateMedia0Response"/>
+    </operation>
+    <operation name="CreateMediaEx">
+      <input message="tns:CreateMediaEx1Request"/>
+      <output message="tns:CreateMediaEx1Response"/>
+    </operation>
+    <operation name="DeleteMedia">
+      <input message="tns:DeleteMedia2Request"/>
+      <output message="tns:DeleteMedia2Response"/>
+    </operation>
+    <operation name="SetMediaFile">
+      <input message="tns:SetMediaFile3Request"/>
+      <output message="tns:SetMediaFile3Response"/>
+    </operation>
+    <operation name="GetMediaID">
+      <input message="tns:GetMediaID4Request"/>
+      <output message="tns:GetMediaID4Response"/>
+    </operation>
+    <operation name="MediaExists">
+      <input message="tns:MediaExists5Request"/>
+      <output message="tns:MediaExists5Response"/>
+    </operation>
+    <operation name="CheckMedia">
+      <input message="tns:CheckMedia6Request"/>
+      <output message="tns:CheckMedia6Response"/>
+    </operation>
+    <operation name="GetMedia">
+      <input message="tns:GetMedia7Request"/>
+      <output message="tns:GetMedia7Response"/>
+    </operation>
+    <operation name="GetMedias">
+      <input message="tns:GetMedias8Request"/>
+      <output message="tns:GetMedias8Response"/>
+    </operation>
+    <operation name="GetMediaList">
+      <input message="tns:GetMediaList9Request"/>
+      <output message="tns:GetMediaList9Response"/>
+    </operation>
+    <operation name="GetMediaListByType">
+      <input message="tns:GetMediaListByType10Request"/>
+      <output message="tns:GetMediaListByType10Response"/>
+    </operation>
+    <operation name="GetMediaIDByName">
+      <input message="tns:GetMediaIDByName11Request"/>
+      <output message="tns:GetMediaIDByName11Response"/>
+    </operation>
+    <operation name="GetMediaIDByFile">
+      <input message="tns:GetMediaIDByFile12Request"/>
+      <output message="tns:GetMediaIDByFile12Response"/>
+    </operation>
+    <operation name="SendMediaEvent">
+      <input message="tns:SendMediaEvent13Request"/>
+      <output message="tns:SendMediaEvent13Response"/>
+    </operation>
+    <operation name="SendMediaEventEx">
+      <input message="tns:SendMediaEventEx14Request"/>
+      <output message="tns:SendMediaEventEx14Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSMediaManagerbinding" type="tns:IIPSMediaManager">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="CreateMedia">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#CreateMedia" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="CreateMediaEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#CreateMediaEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="DeleteMedia">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#DeleteMedia" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="SetMediaFile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#SetMediaFile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="GetMediaID">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#GetMediaID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="MediaExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#MediaExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="CheckMedia">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#CheckMedia" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="GetMedia">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#GetMedia" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="GetMedias">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#GetMedias" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="GetMediaList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#GetMediaList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="GetMediaListByType">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#GetMediaListByType" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="GetMediaIDByName">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#GetMediaIDByName" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="GetMediaIDByFile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#GetMediaIDByFile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="SendMediaEvent">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#SendMediaEvent" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+    <operation name="SendMediaEventEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSMediaManager#SendMediaEventEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSMediaManager"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSMediaManagerservice">
+    <port name="IIPSMediaManagerPort" binding="tns:IIPSMediaManagerbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSMediaManager"/>
+    </port>
+  </service>
+</definitions>
+

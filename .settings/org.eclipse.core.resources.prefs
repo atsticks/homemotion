@@ -1,6 +1,13 @@
 eclipse.preferences.version=1
+encoding//projects/hm-core-modules/src/main/java=UTF-8
+encoding//projects/hm-core-modules/src/main/resources=UTF-8
+encoding//projects/hm-core-modules/src/test/java=UTF-8
+encoding//projects/hm-core-modules/src/test/resources=UTF-8
 encoding//projects/hm-core/src/main/java=UTF-8
 encoding//projects/hm-core/src/main/resources=UTF-8
 encoding//projects/hm-core/src/test/java=UTF-8
 encoding//projects/hm-core/src/test/resources=UTF-8
+encoding//projects/hm-ui/src/main/java=UTF-8
+encoding//projects/hm-ui/src/main/resources=UTF-8
+encoding//projects/hm-ui/src/test/java=UTF-8
 encoding/<project>=UTF-8

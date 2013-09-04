@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSSOAPServerservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:simpleType name="TIPSFilterType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ftIncludeFilter"/>
+          <xs:enumeration value="ftExcludeFilter"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSMessageFilters">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSMessageFilter[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSMessageFilter">
+        <xs:sequence>
+          <xs:element name="SenderID" type="xs:int"/>
+          <xs:element name="Message" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIPSMessages">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSMessage[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSMessage">
+        <xs:sequence>
+          <xs:element name="TimeStamp" type="xs:dateTime"/>
+          <xs:element name="SenderID" type="xs:unsignedShort"/>
+          <xs:element name="Message" type="xs:int"/>
+          <xs:element name="Data" type="xs:anyType"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="IsSessionValid0Request">
+    <part name="SessionID" type="xs:string"/>
+  </message>
+  <message name="IsSessionValid0Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="StartSession1Request">
+    <part name="FilterType" type="ns1:TIPSFilterType"/>
+  </message>
+  <message name="StartSession1Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="AddSessionFilter2Request">
+    <part name="SessionID" type="xs:string"/>
+    <part name="SenderID" type="xs:int"/>
+    <part name="Message" type="xs:int"/>
+  </message>
+  <message name="AddSessionFilter2Response"/>
+  <message name="RemoveSessionFilter3Request">
+    <part name="SessionID" type="xs:string"/>
+    <part name="SenderID" type="xs:int"/>
+    <part name="Message" type="xs:int"/>
+  </message>
+  <message name="RemoveSessionFilter3Response"/>
+  <message name="ClearSessionFilter4Request">
+    <part name="SessionID" type="xs:string"/>
+  </message>
+  <message name="ClearSessionFilter4Response"/>
+  <message name="GetSessionFilter5Request">
+    <part name="SessionID" type="xs:string"/>
+  </message>
+  <message name="GetSessionFilter5Response">
+    <part name="return" type="ns1:TIPSMessageFilters"/>
+  </message>
+  <message name="GetSessionMessages6Request">
+    <part name="SessionID" type="xs:string"/>
+  </message>
+  <message name="GetSessionMessages6Response">
+    <part name="return" type="ns1:TIPSMessages"/>
+  </message>
+  <portType name="IIPSSOAPServer">
+    <operation name="IsSessionValid">
+      <input message="tns:IsSessionValid0Request"/>
+      <output message="tns:IsSessionValid0Response"/>
+    </operation>
+    <operation name="StartSession">
+      <input message="tns:StartSession1Request"/>
+      <output message="tns:StartSession1Response"/>
+    </operation>
+    <operation name="AddSessionFilter">
+      <input message="tns:AddSessionFilter2Request"/>
+      <output message="tns:AddSessionFilter2Response"/>
+    </operation>
+    <operation name="RemoveSessionFilter">
+      <input message="tns:RemoveSessionFilter3Request"/>
+      <output message="tns:RemoveSessionFilter3Response"/>
+    </operation>
+    <operation name="ClearSessionFilter">
+      <input message="tns:ClearSessionFilter4Request"/>
+      <output message="tns:ClearSessionFilter4Response"/>
+    </operation>
+    <operation name="GetSessionFilter">
+      <input message="tns:GetSessionFilter5Request"/>
+      <output message="tns:GetSessionFilter5Response"/>
+    </operation>
+    <operation name="GetSessionMessages">
+      <input message="tns:GetSessionMessages6Request"/>
+      <output message="tns:GetSessionMessages6Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSSOAPServerbinding" type="tns:IIPSSOAPServer">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="IsSessionValid">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSOAPServer#IsSessionValid" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </output>
+    </operation>
+    <operation name="StartSession">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSOAPServer#StartSession" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </output>
+    </operation>
+    <operation name="AddSessionFilter">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSOAPServer#AddSessionFilter" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </output>
+    </operation>
+    <operation name="RemoveSessionFilter">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSOAPServer#RemoveSessionFilter" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </output>
+    </operation>
+    <operation name="ClearSessionFilter">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSOAPServer#ClearSessionFilter" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </output>
+    </operation>
+    <operation name="GetSessionFilter">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSOAPServer#GetSessionFilter" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </output>
+    </operation>
+    <operation name="GetSessionMessages">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSSOAPServer#GetSessionMessages" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSSOAPServer"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSSOAPServerservice">
+    <port name="IIPSSOAPServerPort" binding="tns:IIPSSOAPServerbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSSOAPServer"/>
+    </port>
+  </service>
+</definitions>
+

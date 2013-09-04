@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>net.sf.homemotion</groupId>
+		<artifactId>hm-buildsettings</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>hm-ui</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>Homemotion UI</name>
+	<description>Homemotion User Interface Common Classes.</description>
+
+
+	<properties>
+		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>GNU LESSER GENERAL PUBLIC LICENSE, Version 3</name>
+			<url>http://www.gnu.org/licenses/lgpl.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<build>
+		<defaultGoal>package</defaultGoal>
+		<finalName>homemotion</finalName>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>1.0</version>
+			</extension>
+		</extensions>
+	</build>
+
+	<dependencies>
+		<!-- Business modules -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>hm-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Commons -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<!-- JRebirth -->
+		<dependency>
+			<groupId>org.jrebirth</groupId>
+			<artifactId>core</artifactId>
+			<version>0.7.3</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>releases</id>
+			<name>libs-release</name>
+			<url>http://repo.jrebirth.org/libs-release</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>snapshots</id>
+			<name>libs-snapshot</name>
+			<url>http://repo.jrebirth.org/libs-snapshot</url>
+		</repository>
+	</repositories>
+
+	<!-- Environment Settings -->
+	<developers>
+		<developer>
+			<id>atr</id>
+			<name>Anatole Tresch</name>
+			<email>atr@sourceforge.net</email>
+			<timezone>MET</timezone>
+			<roles>
+				<role>Admin</role>
+				<role>Project Lead Engineer</role>
+			</roles>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:svn:https://homemotion.svn.sourceforge.net/svnroot/homemotion/hm-ui
+			</connection>
+		<developerConnection>scm:svn:https://homemotion.svn.sourceforge.net/svnroot/homemotion/hm-ui
+			</developerConnection>
+		<tag>HEAD</tag>
+		<url>http://homemotion.svn.sourceforge.net/viewvc/homemotion/hm-ui/
+			</url>
+	</scm>
+
+</project>

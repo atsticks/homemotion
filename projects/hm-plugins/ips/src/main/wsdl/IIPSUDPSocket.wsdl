@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSUDPSocketservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes" xmlns:ns2="urn:UIPSModuleTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TStringArray">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:string[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SetOpen0Request">
+    <part name="Open" type="xs:boolean"/>
+  </message>
+  <message name="SetOpen0Response"/>
+  <message name="SetOpen0headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetOpen0headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetBindIPAddress1Request">
+    <part name="Address" type="xs:string"/>
+  </message>
+  <message name="SetBindIPAddress1Response"/>
+  <message name="SetBindIPAddress1headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetBindIPAddress1headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetBindPort2Request">
+    <part name="Port" type="xs:int"/>
+  </message>
+  <message name="SetBindPort2Response"/>
+  <message name="SetBindPort2headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetBindPort2headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetHost3Request">
+    <part name="Host" type="xs:string"/>
+  </message>
+  <message name="SetHost3Response"/>
+  <message name="SetHost3headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetHost3headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetPort4Request">
+    <part name="Port" type="xs:int"/>
+  </message>
+  <message name="SetPort4Response"/>
+  <message name="SetPort4headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SetPort4headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetOpen5Request"/>
+  <message name="GetOpen5Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetOpen5headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetOpen5headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetBindIPAddress6Request"/>
+  <message name="GetBindIPAddress6Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetBindIPAddress6headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetBindIPAddress6headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetBindPort7Request"/>
+  <message name="GetBindPort7Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetBindPort7headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetBindPort7headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetHost8Request"/>
+  <message name="GetHost8Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetHost8headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetHost8headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetPort9Request"/>
+  <message name="GetPort9Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetPort9headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetPort9headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetIPs10Request"/>
+  <message name="GetIPs10Response">
+    <part name="return" type="ns1:TStringArray"/>
+  </message>
+  <message name="GetIPs10headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="GetIPs10headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SendText11Request">
+    <part name="Text" type="xs:string"/>
+  </message>
+  <message name="SendText11Response"/>
+  <message name="SendText11headerRequest">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <message name="SendText11headerResponse">
+    <part name="TIDHeader" type="ns2:TIDHeader"/>
+  </message>
+  <portType name="IIPSUDPSocket">
+    <operation name="SetOpen">
+      <input message="tns:SetOpen0Request"/>
+      <output message="tns:SetOpen0Response"/>
+    </operation>
+    <operation name="SetBindIPAddress">
+      <input message="tns:SetBindIPAddress1Request"/>
+      <output message="tns:SetBindIPAddress1Response"/>
+    </operation>
+    <operation name="SetBindPort">
+      <input message="tns:SetBindPort2Request"/>
+      <output message="tns:SetBindPort2Response"/>
+    </operation>
+    <operation name="SetHost">
+      <input message="tns:SetHost3Request"/>
+      <output message="tns:SetHost3Response"/>
+    </operation>
+    <operation name="SetPort">
+      <input message="tns:SetPort4Request"/>
+      <output message="tns:SetPort4Response"/>
+    </operation>
+    <operation name="GetOpen">
+      <input message="tns:GetOpen5Request"/>
+      <output message="tns:GetOpen5Response"/>
+    </operation>
+    <operation name="GetBindIPAddress">
+      <input message="tns:GetBindIPAddress6Request"/>
+      <output message="tns:GetBindIPAddress6Response"/>
+    </operation>
+    <operation name="GetBindPort">
+      <input message="tns:GetBindPort7Request"/>
+      <output message="tns:GetBindPort7Response"/>
+    </operation>
+    <operation name="GetHost">
+      <input message="tns:GetHost8Request"/>
+      <output message="tns:GetHost8Response"/>
+    </operation>
+    <operation name="GetPort">
+      <input message="tns:GetPort9Request"/>
+      <output message="tns:GetPort9Response"/>
+    </operation>
+    <operation name="GetIPs">
+      <input message="tns:GetIPs10Request"/>
+      <output message="tns:GetIPs10Response"/>
+    </operation>
+    <operation name="SendText">
+      <input message="tns:SendText11Request"/>
+      <output message="tns:SendText11Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSUDPSocketbinding" type="tns:IIPSUDPSocket">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SetOpen">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUDPSocket#SetOpen" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:SetOpen0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:SetOpen0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetBindIPAddress">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUDPSocket#SetBindIPAddress" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:SetBindIPAddress1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:SetBindIPAddress1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetBindPort">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUDPSocket#SetBindPort" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:SetBindPort2headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:SetBindPort2headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetHost">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUDPSocket#SetHost" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:SetHost3headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:SetHost3headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetPort">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUDPSocket#SetPort" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:SetPort4headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:SetPort4headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetOpen">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUDPSocket#GetOpen" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:GetOpen5headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:GetOpen5headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetBindIPAddress">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUDPSocket#GetBindIPAddress" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:GetBindIPAddress6headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:GetBindIPAddress6headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetBindPort">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUDPSocket#GetBindPort" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:GetBindPort7headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:GetBindPort7headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetHost">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUDPSocket#GetHost" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:GetHost8headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:GetHost8headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetPort">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUDPSocket#GetPort" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:GetPort9headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:GetPort9headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetIPs">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUDPSocket#GetIPs" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:GetIPs10headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:GetIPs10headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SendText">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSUDPSocket#SendText" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:SendText11headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSUDPSocket"/>
+        <soap:header use="encoded" message="tns:SendText11headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSUDPSocketservice">
+    <port name="IIPSUDPSocketPort" binding="tns:IIPSUDPSocketbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSUDPSocket"/>
+    </port>
+  </service>
+</definitions>
+

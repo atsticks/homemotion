@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSVariableManagerservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:simpleType name="TIPSVarType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="vtBoolean"/>
+          <xs:enumeration value="vtInteger"/>
+          <xs:enumeration value="vtFloat"/>
+          <xs:enumeration value="vtString"/>
+          <xs:enumeration value="vtVariant"/>
+          <xs:enumeration value="vtArray"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSVariable">
+        <xs:sequence>
+          <xs:element name="VariableID" type="xs:unsignedShort"/>
+          <xs:element name="VariableProfile" type="xs:string"/>
+          <xs:element name="VariableCustomProfile" type="xs:string"/>
+          <xs:element name="VariableCustomAction" type="xs:unsignedShort"/>
+          <xs:element name="VariableUpdated" type="xs:dateTime"/>
+          <xs:element name="VariableChanged" type="xs:dateTime"/>
+          <xs:element name="VariableValue" type="ns1:TIPSVarValue"/>
+          <xs:element name="VariableIsBinary" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIPSVarValue">
+        <xs:sequence>
+          <xs:element name="ValueIndex" type="ns1:TIPSVarIndex"/>
+          <xs:element name="ValueType" type="ns1:TIPSVarType"/>
+          <xs:element name="ValueBoolean" type="xs:boolean"/>
+          <xs:element name="ValueInteger" type="xs:int"/>
+          <xs:element name="ValueFloat" type="xs:double"/>
+          <xs:element name="ValueString" type="xs:string"/>
+          <xs:element name="ValueVariant" type="xs:anyType"/>
+          <xs:element name="ValueArray" type="ns1:TIPSVarValues"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIPSVarIndex">
+        <xs:sequence>
+          <xs:element name="IndexType" type="ns1:TIPSVarIndexType"/>
+          <xs:element name="IndexInt" type="xs:int"/>
+          <xs:element name="IndexStr" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TIPSVarIndexType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="itInt"/>
+          <xs:enumeration value="itStr"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSVarValues">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSVarValue[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TVariableIDs">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:unsignedShort[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSVariables">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSVariable[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSValueAssociations">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSValueAssociation[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSValueAssociation">
+        <xs:sequence>
+          <xs:element name="Value" type="xs:double"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="Icon" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIPSVarProfile">
+        <xs:sequence>
+          <xs:element name="ProfileName" type="xs:string"/>
+          <xs:element name="ProfileType" type="ns1:TIPSVarType"/>
+          <xs:element name="Icon" type="xs:string"/>
+          <xs:element name="Prefix" type="xs:string"/>
+          <xs:element name="Suffix" type="xs:string"/>
+          <xs:element name="MinValue" type="xs:double"/>
+          <xs:element name="MaxValue" type="xs:double"/>
+          <xs:element name="StepSize" type="xs:double"/>
+          <xs:element name="Digits" type="xs:int"/>
+          <xs:element name="Associations" type="ns1:TIPSValueAssociations"/>
+          <xs:element name="IsReadOnly" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TStringArray">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:string[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSVarProfiles">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSVarProfile[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="CreateVariable0Request">
+    <part name="VarType" type="ns1:TIPSVarType"/>
+  </message>
+  <message name="CreateVariable0Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateVariableEx1Request">
+    <part name="VarType" type="ns1:TIPSVarType"/>
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateVariableEx1Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="DeleteVariable2Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="DeleteVariable2Response"/>
+  <message name="ReadVariableBoolean3Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="ReadVariableBoolean3Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="WriteVariableBoolean4Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+    <part name="VarValue" type="xs:boolean"/>
+  </message>
+  <message name="WriteVariableBoolean4Response"/>
+  <message name="ReadVariableInteger5Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="ReadVariableInteger5Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="WriteVariableInteger6Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+    <part name="VarValue" type="xs:int"/>
+  </message>
+  <message name="WriteVariableInteger6Response"/>
+  <message name="ReadVariableFloat7Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="ReadVariableFloat7Response">
+    <part name="return" type="xs:double"/>
+  </message>
+  <message name="WriteVariableFloat8Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+    <part name="VarValue" type="xs:double"/>
+  </message>
+  <message name="WriteVariableFloat8Response"/>
+  <message name="ReadVariableString9Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="ReadVariableString9Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="WriteVariableString10Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+    <part name="VarValue" type="xs:string"/>
+  </message>
+  <message name="WriteVariableString10Response"/>
+  <message name="ReadVariableStringEx11Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+    <part name="Base64Encoded" type="xs:boolean"/>
+  </message>
+  <message name="ReadVariableStringEx11Response">
+    <part name="Base64Encoded" type="xs:boolean"/>
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="WriteVariableStringEx12Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+    <part name="VarValue" type="xs:string"/>
+    <part name="Base64Encoded" type="xs:boolean"/>
+  </message>
+  <message name="WriteVariableStringEx12Response"/>
+  <message name="GetVariableID13Request">
+    <part name="VarName" type="xs:string"/>
+  </message>
+  <message name="GetVariableID13Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="VariableExists14Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="VariableExists14Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="CheckVariable15Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CheckVariable15Response"/>
+  <message name="GetVariable16Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetVariable16Response">
+    <part name="return" type="ns1:TIPSVariable"/>
+  </message>
+  <message name="GetVariables17Request">
+    <part name="VariableIDs" type="ns1:TVariableIDs"/>
+  </message>
+  <message name="GetVariables17Response">
+    <part name="return" type="ns1:TIPSVariables"/>
+  </message>
+  <message name="GetVariableList18Request"/>
+  <message name="GetVariableList18Response">
+    <part name="return" type="ns1:TVariableIDs"/>
+  </message>
+  <message name="GetVariableIDByName19Request">
+    <part name="Name" type="xs:string"/>
+    <part name="ParentID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetVariableIDByName19Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetVariableCustomProfile20Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+    <part name="VarProfileName" type="xs:string"/>
+  </message>
+  <message name="SetVariableCustomProfile20Response"/>
+  <message name="SetVariableCustomAction21Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+    <part name="ScriptID" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetVariableCustomAction21Response"/>
+  <message name="CreateVariableProfile22Request">
+    <part name="VarProfileName" type="xs:string"/>
+    <part name="VarProfileType" type="ns1:TIPSVarType"/>
+  </message>
+  <message name="CreateVariableProfile22Response"/>
+  <message name="DeleteVariableProfile23Request">
+    <part name="VarProfileName" type="xs:string"/>
+  </message>
+  <message name="DeleteVariableProfile23Response"/>
+  <message name="SetVariableProfileText24Request">
+    <part name="VarProfileName" type="xs:string"/>
+    <part name="Prefix" type="xs:string"/>
+    <part name="Suffix" type="xs:string"/>
+  </message>
+  <message name="SetVariableProfileText24Response"/>
+  <message name="SetVariableProfileValues25Request">
+    <part name="VarProfileName" type="xs:string"/>
+    <part name="MinValue" type="xs:double"/>
+    <part name="MaxValue" type="xs:double"/>
+    <part name="StepSize" type="xs:double"/>
+  </message>
+  <message name="SetVariableProfileValues25Response"/>
+  <message name="SetVariableProfileDigits26Request">
+    <part name="VarProfileName" type="xs:string"/>
+    <part name="Digits" type="xs:int"/>
+  </message>
+  <message name="SetVariableProfileDigits26Response"/>
+  <message name="SetVariableProfileAssociation27Request">
+    <part name="VarProfileName" type="xs:string"/>
+    <part name="AssociationValue" type="xs:double"/>
+    <part name="AssociationName" type="xs:string"/>
+    <part name="AssociationIcon" type="xs:string"/>
+  </message>
+  <message name="SetVariableProfileAssociation27Response"/>
+  <message name="SetVariableProfileAssociations28Request">
+    <part name="VarProfileName" type="xs:string"/>
+    <part name="Associations" type="ns1:TIPSValueAssociations"/>
+  </message>
+  <message name="SetVariableProfileAssociations28Response"/>
+  <message name="SetVariableProfileIcon29Request">
+    <part name="VarProfileName" type="xs:string"/>
+    <part name="Icon" type="xs:string"/>
+  </message>
+  <message name="SetVariableProfileIcon29Response"/>
+  <message name="VariableProfileExists30Request">
+    <part name="VarProfileName" type="xs:string"/>
+  </message>
+  <message name="VariableProfileExists30Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="CheckVariableProfile31Request">
+    <part name="VarProfileName" type="xs:string"/>
+  </message>
+  <message name="CheckVariableProfile31Response"/>
+  <message name="GetVariableProfile32Request">
+    <part name="VarProfileName" type="xs:string"/>
+  </message>
+  <message name="GetVariableProfile32Response">
+    <part name="return" type="ns1:TIPSVarProfile"/>
+  </message>
+  <message name="GetVariableProfiles33Request">
+    <part name="VarProfileNames" type="ns1:TStringArray"/>
+  </message>
+  <message name="GetVariableProfiles33Response">
+    <part name="return" type="ns1:TIPSVarProfiles"/>
+  </message>
+  <message name="GetVariableProfileList34Request"/>
+  <message name="GetVariableProfileList34Response">
+    <part name="return" type="ns1:TStringArray"/>
+  </message>
+  <message name="GetVariableProfileListByType35Request">
+    <part name="VarProfileType" type="ns1:TIPSVarType"/>
+  </message>
+  <message name="GetVariableProfileListByType35Response">
+    <part name="return" type="ns1:TStringArray"/>
+  </message>
+  <portType name="IIPSVariableManager">
+    <operation name="CreateVariable">
+      <input message="tns:CreateVariable0Request"/>
+      <output message="tns:CreateVariable0Response"/>
+    </operation>
+    <operation name="CreateVariableEx">
+      <input message="tns:CreateVariableEx1Request"/>
+      <output message="tns:CreateVariableEx1Response"/>
+    </operation>
+    <operation name="DeleteVariable">
+      <input message="tns:DeleteVariable2Request"/>
+      <output message="tns:DeleteVariable2Response"/>
+    </operation>
+    <operation name="ReadVariableBoolean">
+      <input message="tns:ReadVariableBoolean3Request"/>
+      <output message="tns:ReadVariableBoolean3Response"/>
+    </operation>
+    <operation name="WriteVariableBoolean">
+      <input message="tns:WriteVariableBoolean4Request"/>
+      <output message="tns:WriteVariableBoolean4Response"/>
+    </operation>
+    <operation name="ReadVariableInteger">
+      <input message="tns:ReadVariableInteger5Request"/>
+      <output message="tns:ReadVariableInteger5Response"/>
+    </operation>
+    <operation name="WriteVariableInteger">
+      <input message="tns:WriteVariableInteger6Request"/>
+      <output message="tns:WriteVariableInteger6Response"/>
+    </operation>
+    <operation name="ReadVariableFloat">
+      <input message="tns:ReadVariableFloat7Request"/>
+      <output message="tns:ReadVariableFloat7Response"/>
+    </operation>
+    <operation name="WriteVariableFloat">
+      <input message="tns:WriteVariableFloat8Request"/>
+      <output message="tns:WriteVariableFloat8Response"/>
+    </operation>
+    <operation name="ReadVariableString">
+      <input message="tns:ReadVariableString9Request"/>
+      <output message="tns:ReadVariableString9Response"/>
+    </operation>
+    <operation name="WriteVariableString">
+      <input message="tns:WriteVariableString10Request"/>
+      <output message="tns:WriteVariableString10Response"/>
+    </operation>
+    <operation name="ReadVariableStringEx">
+      <input message="tns:ReadVariableStringEx11Request"/>
+      <output message="tns:ReadVariableStringEx11Response"/>
+    </operation>
+    <operation name="WriteVariableStringEx">
+      <input message="tns:WriteVariableStringEx12Request"/>
+      <output message="tns:WriteVariableStringEx12Response"/>
+    </operation>
+    <operation name="GetVariableID">
+      <input message="tns:GetVariableID13Request"/>
+      <output message="tns:GetVariableID13Response"/>
+    </operation>
+    <operation name="VariableExists">
+      <input message="tns:VariableExists14Request"/>
+      <output message="tns:VariableExists14Response"/>
+    </operation>
+    <operation name="CheckVariable">
+      <input message="tns:CheckVariable15Request"/>
+      <output message="tns:CheckVariable15Response"/>
+    </operation>
+    <operation name="GetVariable">
+      <input message="tns:GetVariable16Request"/>
+      <output message="tns:GetVariable16Response"/>
+    </operation>
+    <operation name="GetVariables">
+      <input message="tns:GetVariables17Request"/>
+      <output message="tns:GetVariables17Response"/>
+    </operation>
+    <operation name="GetVariableList">
+      <input message="tns:GetVariableList18Request"/>
+      <output message="tns:GetVariableList18Response"/>
+    </operation>
+    <operation name="GetVariableIDByName">
+      <input message="tns:GetVariableIDByName19Request"/>
+      <output message="tns:GetVariableIDByName19Response"/>
+    </operation>
+    <operation name="SetVariableCustomProfile">
+      <input message="tns:SetVariableCustomProfile20Request"/>
+      <output message="tns:SetVariableCustomProfile20Response"/>
+    </operation>
+    <operation name="SetVariableCustomAction">
+      <input message="tns:SetVariableCustomAction21Request"/>
+      <output message="tns:SetVariableCustomAction21Response"/>
+    </operation>
+    <operation name="CreateVariableProfile">
+      <input message="tns:CreateVariableProfile22Request"/>
+      <output message="tns:CreateVariableProfile22Response"/>
+    </operation>
+    <operation name="DeleteVariableProfile">
+      <input message="tns:DeleteVariableProfile23Request"/>
+      <output message="tns:DeleteVariableProfile23Response"/>
+    </operation>
+    <operation name="SetVariableProfileText">
+      <input message="tns:SetVariableProfileText24Request"/>
+      <output message="tns:SetVariableProfileText24Response"/>
+    </operation>
+    <operation name="SetVariableProfileValues">
+      <input message="tns:SetVariableProfileValues25Request"/>
+      <output message="tns:SetVariableProfileValues25Response"/>
+    </operation>
+    <operation name="SetVariableProfileDigits">
+      <input message="tns:SetVariableProfileDigits26Request"/>
+      <output message="tns:SetVariableProfileDigits26Response"/>
+    </operation>
+    <operation name="SetVariableProfileAssociation">
+      <input message="tns:SetVariableProfileAssociation27Request"/>
+      <output message="tns:SetVariableProfileAssociation27Response"/>
+    </operation>
+    <operation name="SetVariableProfileAssociations">
+      <input message="tns:SetVariableProfileAssociations28Request"/>
+      <output message="tns:SetVariableProfileAssociations28Response"/>
+    </operation>
+    <operation name="SetVariableProfileIcon">
+      <input message="tns:SetVariableProfileIcon29Request"/>
+      <output message="tns:SetVariableProfileIcon29Response"/>
+    </operation>
+    <operation name="VariableProfileExists">
+      <input message="tns:VariableProfileExists30Request"/>
+      <output message="tns:VariableProfileExists30Response"/>
+    </operation>
+    <operation name="CheckVariableProfile">
+      <input message="tns:CheckVariableProfile31Request"/>
+      <output message="tns:CheckVariableProfile31Response"/>
+    </operation>
+    <operation name="GetVariableProfile">
+      <input message="tns:GetVariableProfile32Request"/>
+      <output message="tns:GetVariableProfile32Response"/>
+    </operation>
+    <operation name="GetVariableProfiles">
+      <input message="tns:GetVariableProfiles33Request"/>
+      <output message="tns:GetVariableProfiles33Response"/>
+    </operation>
+    <operation name="GetVariableProfileList">
+      <input message="tns:GetVariableProfileList34Request"/>
+      <output message="tns:GetVariableProfileList34Response"/>
+    </operation>
+    <operation name="GetVariableProfileListByType">
+      <input message="tns:GetVariableProfileListByType35Request"/>
+      <output message="tns:GetVariableProfileListByType35Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSVariableManagerbinding" type="tns:IIPSVariableManager">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="CreateVariable">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#CreateVariable" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="CreateVariableEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#CreateVariableEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="DeleteVariable">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#DeleteVariable" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="ReadVariableBoolean">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#ReadVariableBoolean" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="WriteVariableBoolean">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#WriteVariableBoolean" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="ReadVariableInteger">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#ReadVariableInteger" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="WriteVariableInteger">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#WriteVariableInteger" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="ReadVariableFloat">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#ReadVariableFloat" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="WriteVariableFloat">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#WriteVariableFloat" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="ReadVariableString">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#ReadVariableString" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="WriteVariableString">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#WriteVariableString" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="ReadVariableStringEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#ReadVariableStringEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="WriteVariableStringEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#WriteVariableStringEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="GetVariableID">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#GetVariableID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="VariableExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#VariableExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="CheckVariable">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#CheckVariable" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="GetVariable">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#GetVariable" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="GetVariables">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#GetVariables" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="GetVariableList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#GetVariableList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="GetVariableIDByName">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#GetVariableIDByName" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="SetVariableCustomProfile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#SetVariableCustomProfile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="SetVariableCustomAction">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#SetVariableCustomAction" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="CreateVariableProfile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#CreateVariableProfile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="DeleteVariableProfile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#DeleteVariableProfile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="SetVariableProfileText">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#SetVariableProfileText" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="SetVariableProfileValues">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#SetVariableProfileValues" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="SetVariableProfileDigits">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#SetVariableProfileDigits" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="SetVariableProfileAssociation">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#SetVariableProfileAssociation" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="SetVariableProfileAssociations">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#SetVariableProfileAssociations" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="SetVariableProfileIcon">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#SetVariableProfileIcon" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="VariableProfileExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#VariableProfileExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="CheckVariableProfile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#CheckVariableProfile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="GetVariableProfile">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#GetVariableProfile" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="GetVariableProfiles">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#GetVariableProfiles" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="GetVariableProfileList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#GetVariableProfileList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+    <operation name="GetVariableProfileListByType">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSVariableManager#GetVariableProfileListByType" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSVariableManager"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSVariableManagerservice">
+    <port name="IIPSVariableManagerPort" binding="tns:IIPSVariableManagerbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSVariableManager"/>
+    </port>
+  </service>
+</definitions>
+

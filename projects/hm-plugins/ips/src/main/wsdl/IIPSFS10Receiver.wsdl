@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSFS10Receiverservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSModuleTypes">
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+   <types>
+      <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <portType name="IIPSFS10Receiver"/>
+  <binding name="IIPSFS10Receiverbinding" type="tns:IIPSFS10Receiver">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  </binding>
+  <service name="IIPSFS10Receiverservice">
+    <port name="IIPSFS10ReceiverPort" binding="tns:IIPSFS10Receiverbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSFS10Receiver"/>
+    </port>
+  </service>
+</definitions>
+

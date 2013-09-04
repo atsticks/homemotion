@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSFS10service" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSModuleTypes">
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+  <types>
+      <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:simpleType name="TIPSFS10DeviceType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="fdtUnknown"/>
+          <xs:enumeration value="fdtFunkfernbedienung"/>
+          <xs:enumeration value="fdtAussensensorT"/>
+          <xs:enumeration value="fdtAussensensorTF"/>
+          <xs:enumeration value="fdtRegensensor"/>
+          <xs:enumeration value="fdtWindsensor"/>
+          <xs:enumeration value="fdtInnensensor"/>
+          <xs:enumeration value="fdtHelligkeitssensor"/>
+          <xs:enumeration value="fdtPyranometer"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SetDeviceType0Request">
+    <part name="_Type" type="ns1:TIPSFS10DeviceType"/>
+  </message>
+  <message name="SetDeviceType0Response"/>
+  <message name="SetDeviceType0headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetDeviceType0headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDeviceType1Request"/>
+  <message name="GetDeviceType1Response">
+    <part name="return" type="ns1:TIPSFS10DeviceType"/>
+  </message>
+  <message name="GetDeviceType1headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDeviceType1headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetDeviceID2Request">
+    <part name="ID" type="xs:int"/>
+  </message>
+  <message name="SetDeviceID2Response"/>
+  <message name="SetDeviceID2headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetDeviceID2headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDeviceID3Request"/>
+  <message name="GetDeviceID3Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetDeviceID3headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDeviceID3headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <portType name="IIPSFS10">
+    <operation name="SetDeviceType">
+      <input message="tns:SetDeviceType0Request"/>
+      <output message="tns:SetDeviceType0Response"/>
+    </operation>
+    <operation name="GetDeviceType">
+      <input message="tns:GetDeviceType1Request"/>
+      <output message="tns:GetDeviceType1Response"/>
+    </operation>
+    <operation name="SetDeviceID">
+      <input message="tns:SetDeviceID2Request"/>
+      <output message="tns:SetDeviceID2Response"/>
+    </operation>
+    <operation name="GetDeviceID">
+      <input message="tns:GetDeviceID3Request"/>
+      <output message="tns:GetDeviceID3Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSFS10binding" type="tns:IIPSFS10">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SetDeviceType">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS10#SetDeviceType" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS10"/>
+        <soap:header use="encoded" message="tns:SetDeviceType0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS10"/>
+        <soap:header use="encoded" message="tns:SetDeviceType0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetDeviceType">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS10#GetDeviceType" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS10"/>
+        <soap:header use="encoded" message="tns:GetDeviceType1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS10"/>
+        <soap:header use="encoded" message="tns:GetDeviceType1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetDeviceID">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS10#SetDeviceID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS10"/>
+        <soap:header use="encoded" message="tns:SetDeviceID2headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS10"/>
+        <soap:header use="encoded" message="tns:SetDeviceID2headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetDeviceID">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS10#GetDeviceID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS10"/>
+        <soap:header use="encoded" message="tns:GetDeviceID3headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS10"/>
+        <soap:header use="encoded" message="tns:GetDeviceID3headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSFS10service">
+    <port name="IIPSFS10Port" binding="tns:IIPSFS10binding">
+      <soap:address location="http://localhost:3773/soap/IIPSFS10"/>
+    </port>
+  </service>
+</definitions>
+

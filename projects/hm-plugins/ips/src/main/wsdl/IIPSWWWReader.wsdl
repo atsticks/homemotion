@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSWWWReaderservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSModuleTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SetPage0Request">
+    <part name="URL" type="xs:string"/>
+  </message>
+  <message name="SetPage0Response"/>
+  <message name="SetPage0headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetPage0headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetUseTimer1Request">
+    <part name="Enabled" type="xs:boolean"/>
+  </message>
+  <message name="SetUseTimer1Response"/>
+  <message name="SetUseTimer1headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetUseTimer1headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetInterval2Request">
+    <part name="Seconds" type="xs:int"/>
+  </message>
+  <message name="SetInterval2Response"/>
+  <message name="SetInterval2headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetInterval2headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetUseProxy3Request">
+    <part name="Enabled" type="xs:boolean"/>
+  </message>
+  <message name="SetUseProxy3Response"/>
+  <message name="SetUseProxy3headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetUseProxy3headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetProxyHost4Request">
+    <part name="Host" type="xs:string"/>
+  </message>
+  <message name="SetProxyHost4Response"/>
+  <message name="SetProxyHost4headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetProxyHost4headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetProxyPort5Request">
+    <part name="Port" type="xs:int"/>
+  </message>
+  <message name="SetProxyPort5Response"/>
+  <message name="SetProxyPort5headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetProxyPort5headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetProxyUsername6Request">
+    <part name="Username" type="xs:string"/>
+  </message>
+  <message name="SetProxyUsername6Response"/>
+  <message name="SetProxyUsername6headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetProxyUsername6headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetProxyPassword7Request">
+    <part name="Password" type="xs:string"/>
+  </message>
+  <message name="SetProxyPassword7Response"/>
+  <message name="SetProxyPassword7headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetProxyPassword7headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetUseBasicAuth8Request">
+    <part name="Enabled" type="xs:boolean"/>
+  </message>
+  <message name="SetUseBasicAuth8Response"/>
+  <message name="SetUseBasicAuth8headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetUseBasicAuth8headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetAuthUsername9Request">
+    <part name="Username" type="xs:string"/>
+  </message>
+  <message name="SetAuthUsername9Response"/>
+  <message name="SetAuthUsername9headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetAuthUsername9headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetAuthPassword10Request">
+    <part name="Password" type="xs:string"/>
+  </message>
+  <message name="SetAuthPassword10Response"/>
+  <message name="SetAuthPassword10headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetAuthPassword10headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetPage11Request"/>
+  <message name="GetPage11Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetPage11headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetPage11headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetUseTimer12Request"/>
+  <message name="GetUseTimer12Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetUseTimer12headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetUseTimer12headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetInterval13Request"/>
+  <message name="GetInterval13Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetInterval13headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetInterval13headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetUseProxy14Request"/>
+  <message name="GetUseProxy14Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetUseProxy14headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetUseProxy14headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetProxyHost15Request"/>
+  <message name="GetProxyHost15Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetProxyHost15headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetProxyHost15headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetProxyPort16Request"/>
+  <message name="GetProxyPort16Response">
+    <part name="return" type="xs:int"/>
+  </message>
+  <message name="GetProxyPort16headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetProxyPort16headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetProxyUsername17Request"/>
+  <message name="GetProxyUsername17Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetProxyUsername17headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetProxyUsername17headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetProxyPassword18Request"/>
+  <message name="GetProxyPassword18Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetProxyPassword18headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetProxyPassword18headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetUseBasicAuth19Request"/>
+  <message name="GetUseBasicAuth19Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetUseBasicAuth19headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetUseBasicAuth19headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetAuthUsername20Request"/>
+  <message name="GetAuthUsername20Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetAuthUsername20headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetAuthUsername20headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetAuthPassword21Request"/>
+  <message name="GetAuthPassword21Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetAuthPassword21headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetAuthPassword21headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="UpdatePage22Request"/>
+  <message name="UpdatePage22Response"/>
+  <message name="UpdatePage22headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="UpdatePage22headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="RetrievePage23Request">
+    <part name="URL" type="xs:string"/>
+  </message>
+  <message name="RetrievePage23Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="RetrievePage23headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="RetrievePage23headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <portType name="IIPSWWWReader">
+    <operation name="SetPage">
+      <input message="tns:SetPage0Request"/>
+      <output message="tns:SetPage0Response"/>
+    </operation>
+    <operation name="SetUseTimer">
+      <input message="tns:SetUseTimer1Request"/>
+      <output message="tns:SetUseTimer1Response"/>
+    </operation>
+    <operation name="SetInterval">
+      <input message="tns:SetInterval2Request"/>
+      <output message="tns:SetInterval2Response"/>
+    </operation>
+    <operation name="SetUseProxy">
+      <input message="tns:SetUseProxy3Request"/>
+      <output message="tns:SetUseProxy3Response"/>
+    </operation>
+    <operation name="SetProxyHost">
+      <input message="tns:SetProxyHost4Request"/>
+      <output message="tns:SetProxyHost4Response"/>
+    </operation>
+    <operation name="SetProxyPort">
+      <input message="tns:SetProxyPort5Request"/>
+      <output message="tns:SetProxyPort5Response"/>
+    </operation>
+    <operation name="SetProxyUsername">
+      <input message="tns:SetProxyUsername6Request"/>
+      <output message="tns:SetProxyUsername6Response"/>
+    </operation>
+    <operation name="SetProxyPassword">
+      <input message="tns:SetProxyPassword7Request"/>
+      <output message="tns:SetProxyPassword7Response"/>
+    </operation>
+    <operation name="SetUseBasicAuth">
+      <input message="tns:SetUseBasicAuth8Request"/>
+      <output message="tns:SetUseBasicAuth8Response"/>
+    </operation>
+    <operation name="SetAuthUsername">
+      <input message="tns:SetAuthUsername9Request"/>
+      <output message="tns:SetAuthUsername9Response"/>
+    </operation>
+    <operation name="SetAuthPassword">
+      <input message="tns:SetAuthPassword10Request"/>
+      <output message="tns:SetAuthPassword10Response"/>
+    </operation>
+    <operation name="GetPage">
+      <input message="tns:GetPage11Request"/>
+      <output message="tns:GetPage11Response"/>
+    </operation>
+    <operation name="GetUseTimer">
+      <input message="tns:GetUseTimer12Request"/>
+      <output message="tns:GetUseTimer12Response"/>
+    </operation>
+    <operation name="GetInterval">
+      <input message="tns:GetInterval13Request"/>
+      <output message="tns:GetInterval13Response"/>
+    </operation>
+    <operation name="GetUseProxy">
+      <input message="tns:GetUseProxy14Request"/>
+      <output message="tns:GetUseProxy14Response"/>
+    </operation>
+    <operation name="GetProxyHost">
+      <input message="tns:GetProxyHost15Request"/>
+      <output message="tns:GetProxyHost15Response"/>
+    </operation>
+    <operation name="GetProxyPort">
+      <input message="tns:GetProxyPort16Request"/>
+      <output message="tns:GetProxyPort16Response"/>
+    </operation>
+    <operation name="GetProxyUsername">
+      <input message="tns:GetProxyUsername17Request"/>
+      <output message="tns:GetProxyUsername17Response"/>
+    </operation>
+    <operation name="GetProxyPassword">
+      <input message="tns:GetProxyPassword18Request"/>
+      <output message="tns:GetProxyPassword18Response"/>
+    </operation>
+    <operation name="GetUseBasicAuth">
+      <input message="tns:GetUseBasicAuth19Request"/>
+      <output message="tns:GetUseBasicAuth19Response"/>
+    </operation>
+    <operation name="GetAuthUsername">
+      <input message="tns:GetAuthUsername20Request"/>
+      <output message="tns:GetAuthUsername20Response"/>
+    </operation>
+    <operation name="GetAuthPassword">
+      <input message="tns:GetAuthPassword21Request"/>
+      <output message="tns:GetAuthPassword21Response"/>
+    </operation>
+    <operation name="UpdatePage">
+      <input message="tns:UpdatePage22Request"/>
+      <output message="tns:UpdatePage22Response"/>
+    </operation>
+    <operation name="RetrievePage">
+      <input message="tns:RetrievePage23Request"/>
+      <output message="tns:RetrievePage23Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSWWWReaderbinding" type="tns:IIPSWWWReader">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SetPage">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#SetPage" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetPage0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetPage0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetUseTimer">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#SetUseTimer" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetUseTimer1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetUseTimer1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetInterval">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#SetInterval" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetInterval2headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetInterval2headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetUseProxy">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#SetUseProxy" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetUseProxy3headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetUseProxy3headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetProxyHost">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#SetProxyHost" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetProxyHost4headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetProxyHost4headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetProxyPort">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#SetProxyPort" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetProxyPort5headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetProxyPort5headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetProxyUsername">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#SetProxyUsername" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetProxyUsername6headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetProxyUsername6headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetProxyPassword">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#SetProxyPassword" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetProxyPassword7headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetProxyPassword7headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetUseBasicAuth">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#SetUseBasicAuth" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetUseBasicAuth8headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetUseBasicAuth8headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetAuthUsername">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#SetAuthUsername" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetAuthUsername9headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetAuthUsername9headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetAuthPassword">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#SetAuthPassword" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetAuthPassword10headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:SetAuthPassword10headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetPage">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#GetPage" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetPage11headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetPage11headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetUseTimer">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#GetUseTimer" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetUseTimer12headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetUseTimer12headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetInterval">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#GetInterval" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetInterval13headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetInterval13headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetUseProxy">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#GetUseProxy" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetUseProxy14headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetUseProxy14headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetProxyHost">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#GetProxyHost" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetProxyHost15headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetProxyHost15headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetProxyPort">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#GetProxyPort" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetProxyPort16headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetProxyPort16headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetProxyUsername">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#GetProxyUsername" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetProxyUsername17headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetProxyUsername17headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetProxyPassword">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#GetProxyPassword" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetProxyPassword18headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetProxyPassword18headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetUseBasicAuth">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#GetUseBasicAuth" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetUseBasicAuth19headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetUseBasicAuth19headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetAuthUsername">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#GetAuthUsername" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetAuthUsername20headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetAuthUsername20headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetAuthPassword">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#GetAuthPassword" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetAuthPassword21headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:GetAuthPassword21headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="UpdatePage">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#UpdatePage" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:UpdatePage22headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:UpdatePage22headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="RetrievePage">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSWWWReader#RetrievePage" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:RetrievePage23headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSWWWReader"/>
+        <soap:header use="encoded" message="tns:RetrievePage23headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSWWWReaderservice">
+    <port name="IIPSWWWReaderPort" binding="tns:IIPSWWWReaderbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSWWWReader"/>
+    </port>
+  </service>
+</definitions>
+

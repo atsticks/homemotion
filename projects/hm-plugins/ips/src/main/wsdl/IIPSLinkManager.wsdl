@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSLinkManagerservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TIPSLink">
+        <xs:sequence>
+          <xs:element name="LinkID" type="xs:unsignedShort"/>
+          <xs:element name="LinkChildID" type="xs:unsignedShort"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TLinkIDs">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:unsignedShort[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSLinks">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSLink[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="CreateLink0Request"/>
+  <message name="CreateLink0Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateLinkEx1Request">
+    <part name="LinkID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateLinkEx1Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="DeleteLink2Request">
+    <part name="LinkID" type="xs:unsignedShort"/>
+  </message>
+  <message name="DeleteLink2Response"/>
+  <message name="SetLinkChildID3Request">
+    <part name="LinkID" type="xs:unsignedShort"/>
+    <part name="ChildID" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetLinkChildID3Response"/>
+  <message name="LinkExists4Request">
+    <part name="LinkID" type="xs:unsignedShort"/>
+  </message>
+  <message name="LinkExists4Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="CheckLink5Request">
+    <part name="LinkID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CheckLink5Response"/>
+  <message name="GetLink6Request">
+    <part name="LinkID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetLink6Response">
+    <part name="return" type="ns1:TIPSLink"/>
+  </message>
+  <message name="GetLinks7Request">
+    <part name="LinkIDs" type="ns1:TLinkIDs"/>
+  </message>
+  <message name="GetLinks7Response">
+    <part name="return" type="ns1:TIPSLinks"/>
+  </message>
+  <message name="GetLinkList8Request"/>
+  <message name="GetLinkList8Response">
+    <part name="return" type="ns1:TLinkIDs"/>
+  </message>
+  <message name="GetLinkIDByName9Request">
+    <part name="Name" type="xs:string"/>
+    <part name="ParentID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetLinkIDByName9Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <portType name="IIPSLinkManager">
+    <operation name="CreateLink">
+      <input message="tns:CreateLink0Request"/>
+      <output message="tns:CreateLink0Response"/>
+    </operation>
+    <operation name="CreateLinkEx">
+      <input message="tns:CreateLinkEx1Request"/>
+      <output message="tns:CreateLinkEx1Response"/>
+    </operation>
+    <operation name="DeleteLink">
+      <input message="tns:DeleteLink2Request"/>
+      <output message="tns:DeleteLink2Response"/>
+    </operation>
+    <operation name="SetLinkChildID">
+      <input message="tns:SetLinkChildID3Request"/>
+      <output message="tns:SetLinkChildID3Response"/>
+    </operation>
+    <operation name="LinkExists">
+      <input message="tns:LinkExists4Request"/>
+      <output message="tns:LinkExists4Response"/>
+    </operation>
+    <operation name="CheckLink">
+      <input message="tns:CheckLink5Request"/>
+      <output message="tns:CheckLink5Response"/>
+    </operation>
+    <operation name="GetLink">
+      <input message="tns:GetLink6Request"/>
+      <output message="tns:GetLink6Response"/>
+    </operation>
+    <operation name="GetLinks">
+      <input message="tns:GetLinks7Request"/>
+      <output message="tns:GetLinks7Response"/>
+    </operation>
+    <operation name="GetLinkList">
+      <input message="tns:GetLinkList8Request"/>
+      <output message="tns:GetLinkList8Response"/>
+    </operation>
+    <operation name="GetLinkIDByName">
+      <input message="tns:GetLinkIDByName9Request"/>
+      <output message="tns:GetLinkIDByName9Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSLinkManagerbinding" type="tns:IIPSLinkManager">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="CreateLink">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSLinkManager#CreateLink" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </output>
+    </operation>
+    <operation name="CreateLinkEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSLinkManager#CreateLinkEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </output>
+    </operation>
+    <operation name="DeleteLink">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSLinkManager#DeleteLink" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </output>
+    </operation>
+    <operation name="SetLinkChildID">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSLinkManager#SetLinkChildID" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </output>
+    </operation>
+    <operation name="LinkExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSLinkManager#LinkExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </output>
+    </operation>
+    <operation name="CheckLink">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSLinkManager#CheckLink" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </output>
+    </operation>
+    <operation name="GetLink">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSLinkManager#GetLink" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </output>
+    </operation>
+    <operation name="GetLinks">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSLinkManager#GetLinks" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </output>
+    </operation>
+    <operation name="GetLinkList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSLinkManager#GetLinkList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </output>
+    </operation>
+    <operation name="GetLinkIDByName">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSLinkManager#GetLinkIDByName" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSLinkManager"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSLinkManagerservice">
+    <port name="IIPSLinkManagerPort" binding="tns:IIPSLinkManagerbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSLinkManager"/>
+    </port>
+  </service>
+</definitions>
+

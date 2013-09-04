@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSVirtualIOservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSModuleTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SendText0Request">
+    <part name="Text" type="xs:string"/>
+  </message>
+  <message name="SendText0Response"/>
+  <message name="SendText0headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SendText0headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="PushText1Request">
+    <part name="Text" type="xs:string"/>
+  </message>
+  <message name="PushText1Response"/>
+  <message name="PushText1headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="PushText1headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <portType name="IIPSVirtualIO">
+    <operation name="SendText">
+      <input message="tns:SendText0Request"/>
+      <output message="tns:SendText0Response"/>
+    </operation>
+    <operation name="PushText">
+      <input message="tns:PushText1Request"/>
+      <output message="tns:PushText1Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSVirtualIObinding" type="tns:IIPSVirtualIO">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SendText">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSVirtualIO#SendText" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSVirtualIO"/>
+        <soap:header use="encoded" message="tns:SendText0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSVirtualIO"/>
+        <soap:header use="encoded" message="tns:SendText0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="PushText">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSVirtualIO#PushText" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSVirtualIO"/>
+        <soap:header use="encoded" message="tns:PushText1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSVirtualIO"/>
+        <soap:header use="encoded" message="tns:PushText1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSVirtualIOservice">
+    <port name="IIPSVirtualIOPort" binding="tns:IIPSVirtualIObinding">
+      <soap:address location="http://localhost:3773/soap/IIPSVirtualIO"/>
+    </port>
+  </service>
+</definitions>
+

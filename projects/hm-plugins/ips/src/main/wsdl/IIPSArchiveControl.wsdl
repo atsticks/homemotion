@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSArchiveControlservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSModuleTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:simpleType name="TIPSAggregationType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="asGauge"/>
+          <xs:enumeration value="asCounter"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSLoggedValues">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSLoggedValue[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSLoggedValue">
+        <xs:sequence>
+          <xs:element name="TimeStamp" type="xs:dateTime"/>
+          <xs:element name="LastTime" type="xs:dateTime"/>
+          <xs:element name="Duration" type="xs:int"/>
+          <xs:element name="Value" type="xs:anyType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TIPSAggregationSpan">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="agHour"/>
+          <xs:enumeration value="agDay"/>
+          <xs:enumeration value="agWeek"/>
+          <xs:enumeration value="agMonth"/>
+          <xs:enumeration value="agYear"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSAggregationValues">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSAggregationValue[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSAggregationValue">
+        <xs:sequence>
+          <xs:element name="TimeStamp" type="xs:dateTime"/>
+          <xs:element name="LastTime" type="xs:dateTime"/>
+          <xs:element name="Duration" type="xs:int"/>
+          <xs:element name="Min" type="xs:double"/>
+          <xs:element name="MinTime" type="xs:dateTime"/>
+          <xs:element name="Avg" type="xs:double"/>
+          <xs:element name="Max" type="xs:double"/>
+          <xs:element name="MaxTime" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TStartEndTimes">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TStartEndTime[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TStartEndTime">
+        <xs:sequence>
+          <xs:element name="StartTime" type="xs:unsignedInt"/>
+          <xs:element name="EndTime" type="xs:unsignedInt"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SetLoggingStatus0Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+    <part name="Active" type="xs:boolean"/>
+  </message>
+  <message name="SetLoggingStatus0Response"/>
+  <message name="SetLoggingStatus0headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetLoggingStatus0headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetLoggingStatus1Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetLoggingStatus1Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetLoggingStatus1headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetLoggingStatus1headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetAggregationType2Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+    <part name="AggregationType" type="ns1:TIPSAggregationType"/>
+  </message>
+  <message name="SetAggregationType2Response"/>
+  <message name="SetAggregationType2headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetAggregationType2headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetAggregationType3Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetAggregationType3Response">
+    <part name="return" type="ns1:TIPSAggregationType"/>
+  </message>
+  <message name="GetAggregationType3headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetAggregationType3headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="ReAggregateVariable4Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+  </message>
+  <message name="ReAggregateVariable4Response"/>
+  <message name="ReAggregateVariable4headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="ReAggregateVariable4headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetLoggedValues5Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+    <part name="StartTime" type="xs:dateTime"/>
+    <part name="EndTime" type="xs:dateTime"/>
+    <part name="Limit" type="xs:int"/>
+  </message>
+  <message name="GetLoggedValues5Response">
+    <part name="return" type="ns1:TIPSLoggedValues"/>
+  </message>
+  <message name="GetLoggedValues5headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetLoggedValues5headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetAggregatedValues6Request">
+    <part name="VariableID" type="xs:unsignedShort"/>
+    <part name="AggregationType" type="ns1:TIPSAggregationSpan"/>
+    <part name="StartTime" type="xs:dateTime"/>
+    <part name="EndTime" type="xs:dateTime"/>
+    <part name="Limit" type="xs:int"/>
+  </message>
+  <message name="GetAggregatedValues6Response">
+    <part name="return" type="ns1:TIPSAggregationValues"/>
+  </message>
+  <message name="GetAggregatedValues6headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetAggregatedValues6headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetHours7Request">
+    <part name="TS" type="xs:unsignedInt"/>
+    <part name="TS_Target" type="xs:unsignedInt"/>
+  </message>
+  <message name="GetHours7Response">
+    <part name="return" type="ns1:TStartEndTimes"/>
+  </message>
+  <message name="GetHours7headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetHours7headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDays8Request">
+    <part name="TS" type="xs:unsignedInt"/>
+    <part name="TS_Target" type="xs:unsignedInt"/>
+  </message>
+  <message name="GetDays8Response">
+    <part name="return" type="ns1:TStartEndTimes"/>
+  </message>
+  <message name="GetDays8headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDays8headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetWeeks9Request">
+    <part name="TS" type="xs:unsignedInt"/>
+    <part name="TS_Target" type="xs:unsignedInt"/>
+  </message>
+  <message name="GetWeeks9Response">
+    <part name="return" type="ns1:TStartEndTimes"/>
+  </message>
+  <message name="GetWeeks9headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetWeeks9headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetMonths10Request">
+    <part name="TS" type="xs:unsignedInt"/>
+    <part name="TS_Target" type="xs:unsignedInt"/>
+  </message>
+  <message name="GetMonths10Response">
+    <part name="return" type="ns1:TStartEndTimes"/>
+  </message>
+  <message name="GetMonths10headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetMonths10headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetYears11Request">
+    <part name="TS" type="xs:unsignedInt"/>
+    <part name="TS_Target" type="xs:unsignedInt"/>
+  </message>
+  <message name="GetYears11Response">
+    <part name="return" type="ns1:TStartEndTimes"/>
+  </message>
+  <message name="GetYears11headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetYears11headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <portType name="IIPSArchiveControl">
+    <operation name="SetLoggingStatus">
+      <input message="tns:SetLoggingStatus0Request"/>
+      <output message="tns:SetLoggingStatus0Response"/>
+    </operation>
+    <operation name="GetLoggingStatus">
+      <input message="tns:GetLoggingStatus1Request"/>
+      <output message="tns:GetLoggingStatus1Response"/>
+    </operation>
+    <operation name="SetAggregationType">
+      <input message="tns:SetAggregationType2Request"/>
+      <output message="tns:SetAggregationType2Response"/>
+    </operation>
+    <operation name="GetAggregationType">
+      <input message="tns:GetAggregationType3Request"/>
+      <output message="tns:GetAggregationType3Response"/>
+    </operation>
+    <operation name="ReAggregateVariable">
+      <input message="tns:ReAggregateVariable4Request"/>
+      <output message="tns:ReAggregateVariable4Response"/>
+    </operation>
+    <operation name="GetLoggedValues">
+      <input message="tns:GetLoggedValues5Request"/>
+      <output message="tns:GetLoggedValues5Response"/>
+    </operation>
+    <operation name="GetAggregatedValues">
+      <input message="tns:GetAggregatedValues6Request"/>
+      <output message="tns:GetAggregatedValues6Response"/>
+    </operation>
+    <operation name="GetHours">
+      <input message="tns:GetHours7Request"/>
+      <output message="tns:GetHours7Response"/>
+    </operation>
+    <operation name="GetDays">
+      <input message="tns:GetDays8Request"/>
+      <output message="tns:GetDays8Response"/>
+    </operation>
+    <operation name="GetWeeks">
+      <input message="tns:GetWeeks9Request"/>
+      <output message="tns:GetWeeks9Response"/>
+    </operation>
+    <operation name="GetMonths">
+      <input message="tns:GetMonths10Request"/>
+      <output message="tns:GetMonths10Response"/>
+    </operation>
+    <operation name="GetYears">
+      <input message="tns:GetYears11Request"/>
+      <output message="tns:GetYears11Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSArchiveControlbinding" type="tns:IIPSArchiveControl">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SetLoggingStatus">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSArchiveControl#SetLoggingStatus" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:SetLoggingStatus0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:SetLoggingStatus0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetLoggingStatus">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSArchiveControl#GetLoggingStatus" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetLoggingStatus1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetLoggingStatus1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="SetAggregationType">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSArchiveControl#SetAggregationType" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:SetAggregationType2headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:SetAggregationType2headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetAggregationType">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSArchiveControl#GetAggregationType" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetAggregationType3headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetAggregationType3headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="ReAggregateVariable">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSArchiveControl#ReAggregateVariable" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:ReAggregateVariable4headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:ReAggregateVariable4headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetLoggedValues">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSArchiveControl#GetLoggedValues" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetLoggedValues5headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetLoggedValues5headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetAggregatedValues">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSArchiveControl#GetAggregatedValues" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetAggregatedValues6headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetAggregatedValues6headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetHours">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSArchiveControl#GetHours" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetHours7headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetHours7headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetDays">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSArchiveControl#GetDays" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetDays8headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetDays8headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetWeeks">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSArchiveControl#GetWeeks" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetWeeks9headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetWeeks9headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetMonths">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSArchiveControl#GetMonths" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetMonths10headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetMonths10headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetYears">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSArchiveControl#GetYears" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetYears11headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSArchiveControl"/>
+        <soap:header use="encoded" message="tns:GetYears11headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSArchiveControlservice">
+    <port name="IIPSArchiveControlPort" binding="tns:IIPSArchiveControlbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSArchiveControl"/>
+    </port>
+  </service>
+</definitions>
+

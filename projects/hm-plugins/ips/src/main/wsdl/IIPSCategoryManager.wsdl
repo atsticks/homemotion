@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSCategoryManagerservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TCategoryIDs">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:unsignedShort[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="CreateCategory0Request"/>
+  <message name="CreateCategory0Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateCategoryEx1Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CreateCategoryEx1Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="DeleteCategory2Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="DeleteCategory2Response"/>
+  <message name="CategoryExists3Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CategoryExists3Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="CheckCategory4Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CheckCategory4Response"/>
+  <message name="GetCategoryList5Request"/>
+  <message name="GetCategoryList5Response">
+    <part name="return" type="ns1:TCategoryIDs"/>
+  </message>
+  <message name="GetCategoryIDByName6Request">
+    <part name="Name" type="xs:string"/>
+    <part name="ParentID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetCategoryIDByName6Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <portType name="IIPSCategoryManager">
+    <operation name="CreateCategory">
+      <input message="tns:CreateCategory0Request"/>
+      <output message="tns:CreateCategory0Response"/>
+    </operation>
+    <operation name="CreateCategoryEx">
+      <input message="tns:CreateCategoryEx1Request"/>
+      <output message="tns:CreateCategoryEx1Response"/>
+    </operation>
+    <operation name="DeleteCategory">
+      <input message="tns:DeleteCategory2Request"/>
+      <output message="tns:DeleteCategory2Response"/>
+    </operation>
+    <operation name="CategoryExists">
+      <input message="tns:CategoryExists3Request"/>
+      <output message="tns:CategoryExists3Response"/>
+    </operation>
+    <operation name="CheckCategory">
+      <input message="tns:CheckCategory4Request"/>
+      <output message="tns:CheckCategory4Response"/>
+    </operation>
+    <operation name="GetCategoryList">
+      <input message="tns:GetCategoryList5Request"/>
+      <output message="tns:GetCategoryList5Response"/>
+    </operation>
+    <operation name="GetCategoryIDByName">
+      <input message="tns:GetCategoryIDByName6Request"/>
+      <output message="tns:GetCategoryIDByName6Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSCategoryManagerbinding" type="tns:IIPSCategoryManager">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="CreateCategory">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSCategoryManager#CreateCategory" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </output>
+    </operation>
+    <operation name="CreateCategoryEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSCategoryManager#CreateCategoryEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </output>
+    </operation>
+    <operation name="DeleteCategory">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSCategoryManager#DeleteCategory" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </output>
+    </operation>
+    <operation name="CategoryExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSCategoryManager#CategoryExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </output>
+    </operation>
+    <operation name="CheckCategory">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSCategoryManager#CheckCategory" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </output>
+    </operation>
+    <operation name="GetCategoryList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSCategoryManager#GetCategoryList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </output>
+    </operation>
+    <operation name="GetCategoryIDByName">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSCategoryManager#GetCategoryIDByName" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSCategoryManager"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSCategoryManagerservice">
+    <port name="IIPSCategoryManagerPort" binding="tns:IIPSCategoryManagerbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSCategoryManager"/>
+    </port>
+  </service>
+</definitions>
+

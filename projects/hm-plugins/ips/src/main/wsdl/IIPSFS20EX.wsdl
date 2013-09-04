@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSFS20EXservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSModuleTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSModuleTypes" xmlns="urn:UIPSModuleTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TFS20Devices">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TFS20Device[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TFS20Device">
+        <xs:sequence>
+          <xs:element name="HomeCode" type="xs:string"/>
+          <xs:element name="Address" type="xs:string"/>
+          <xs:element name="SubAddress" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIDHeader">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SetHomeCode0Request">
+    <part name="HomeCode" type="xs:string"/>
+  </message>
+  <message name="SetHomeCode0Response"/>
+  <message name="SetHomeCode0headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="SetHomeCode0headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetHomeCode1Request"/>
+  <message name="GetHomeCode1Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetHomeCode1headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetHomeCode1headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDevices2Request"/>
+  <message name="GetDevices2Response">
+    <part name="return" type="ns1:TFS20Devices"/>
+  </message>
+  <message name="GetDevices2headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="GetDevices2headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="AddDevice3Request">
+    <part name="Address" type="xs:string"/>
+    <part name="SubAddress" type="xs:string"/>
+  </message>
+  <message name="AddDevice3Response"/>
+  <message name="AddDevice3headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="AddDevice3headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="DeleteDevice4Request">
+    <part name="Index" type="xs:int"/>
+  </message>
+  <message name="DeleteDevice4Response"/>
+  <message name="DeleteDevice4headerRequest">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <message name="DeleteDevice4headerResponse">
+    <part name="TIDHeader" type="ns1:TIDHeader"/>
+  </message>
+  <portType name="IIPSFS20EX">
+    <operation name="SetHomeCode">
+      <input message="tns:SetHomeCode0Request"/>
+      <output message="tns:SetHomeCode0Response"/>
+    </operation>
+    <operation name="GetHomeCode">
+      <input message="tns:GetHomeCode1Request"/>
+      <output message="tns:GetHomeCode1Response"/>
+    </operation>
+    <operation name="GetDevices">
+      <input message="tns:GetDevices2Request"/>
+      <output message="tns:GetDevices2Response"/>
+    </operation>
+    <operation name="AddDevice">
+      <input message="tns:AddDevice3Request"/>
+      <output message="tns:AddDevice3Response"/>
+    </operation>
+    <operation name="DeleteDevice">
+      <input message="tns:DeleteDevice4Request"/>
+      <output message="tns:DeleteDevice4Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSFS20EXbinding" type="tns:IIPSFS20EX">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SetHomeCode">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20EX#SetHomeCode" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20EX"/>
+        <soap:header use="encoded" message="tns:SetHomeCode0headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20EX"/>
+        <soap:header use="encoded" message="tns:SetHomeCode0headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetHomeCode">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20EX#GetHomeCode" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20EX"/>
+        <soap:header use="encoded" message="tns:GetHomeCode1headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20EX"/>
+        <soap:header use="encoded" message="tns:GetHomeCode1headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="GetDevices">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20EX#GetDevices" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20EX"/>
+        <soap:header use="encoded" message="tns:GetDevices2headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20EX"/>
+        <soap:header use="encoded" message="tns:GetDevices2headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="AddDevice">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20EX#AddDevice" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20EX"/>
+        <soap:header use="encoded" message="tns:AddDevice3headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20EX"/>
+        <soap:header use="encoded" message="tns:AddDevice3headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+    <operation name="DeleteDevice">
+      <soap:operation soapAction="urn:UIPSModuleTypes-IIPSFS20EX#DeleteDevice" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20EX"/>
+        <soap:header use="encoded" message="tns:DeleteDevice4headerRequest" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes-IIPSFS20EX"/>
+        <soap:header use="encoded" message="tns:DeleteDevice4headerResponse" part="TIDHeader" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSModuleTypes"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSFS20EXservice">
+    <port name="IIPSFS20EXPort" binding="tns:IIPSFS20EXbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSFS20EX"/>
+    </port>
+  </service>
+</definitions>
+

@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSObjectManagerservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:simpleType name="TIPSObjectType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="otCategory"/>
+          <xs:enumeration value="otInstance"/>
+          <xs:enumeration value="otVariable"/>
+          <xs:enumeration value="otScript"/>
+          <xs:enumeration value="otEvent"/>
+          <xs:enumeration value="otMedia"/>
+          <xs:enumeration value="otLink"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TIPSObject">
+        <xs:sequence>
+          <xs:element name="ParentID" type="xs:unsignedShort"/>
+          <xs:element name="ObjectID" type="xs:unsignedShort"/>
+          <xs:element name="ObjectType" type="ns1:TIPSObjectType"/>
+          <xs:element name="ObjectName" type="xs:string"/>
+          <xs:element name="ObjectInfo" type="xs:string"/>
+          <xs:element name="ObjectIcon" type="xs:string"/>
+          <xs:element name="ObjectSummary" type="xs:string"/>
+          <xs:element name="ObjectPosition" type="xs:int"/>
+          <xs:element name="ObjectIsReadOnly" type="xs:boolean"/>
+          <xs:element name="ObjectIsHidden" type="xs:boolean"/>
+          <xs:element name="IsPersistent" type="xs:boolean"/>
+          <xs:element name="HasChildren" type="xs:boolean"/>
+          <xs:element name="ChildrenIDs" type="ns1:TIPSIDs"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TIPSIDs">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:unsignedShort[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSObjects">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSObject[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TStringArray">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:string[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="RegisterNewObject0Request">
+    <part name="ObjectType" type="ns1:TIPSObjectType"/>
+    <part name="Persistent" type="xs:boolean"/>
+  </message>
+  <message name="RegisterNewObject0Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="RegisterObject1Request">
+    <part name="ObjectType" type="ns1:TIPSObjectType"/>
+  </message>
+  <message name="RegisterObject1Response"/>
+  <message name="RegisterObjectEx2Request">
+    <part name="ObjectType" type="ns1:TIPSObjectType"/>
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="RegisterObjectEx2Response"/>
+  <message name="UnregisterObject3Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="UnregisterObject3Response"/>
+  <message name="SetParent4Request">
+    <part name="ID" type="xs:unsignedShort"/>
+    <part name="ParentID" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetParent4Response"/>
+  <message name="SetName5Request">
+    <part name="ID" type="xs:unsignedShort"/>
+    <part name="Name" type="xs:string"/>
+  </message>
+  <message name="SetName5Response"/>
+  <message name="SetInfo6Request">
+    <part name="ID" type="xs:unsignedShort"/>
+    <part name="Info" type="xs:string"/>
+  </message>
+  <message name="SetInfo6Response"/>
+  <message name="SetIcon7Request">
+    <part name="ID" type="xs:unsignedShort"/>
+    <part name="Icon" type="xs:string"/>
+  </message>
+  <message name="SetIcon7Response"/>
+  <message name="SetSummary8Request">
+    <part name="ID" type="xs:unsignedShort"/>
+    <part name="Summary" type="xs:string"/>
+  </message>
+  <message name="SetSummary8Response"/>
+  <message name="SetPosition9Request">
+    <part name="ID" type="xs:unsignedShort"/>
+    <part name="Position" type="xs:int"/>
+  </message>
+  <message name="SetPosition9Response"/>
+  <message name="SetReadOnly10Request">
+    <part name="ID" type="xs:unsignedShort"/>
+    <part name="ReadOnly" type="xs:boolean"/>
+  </message>
+  <message name="SetReadOnly10Response"/>
+  <message name="SetHidden11Request">
+    <part name="ID" type="xs:unsignedShort"/>
+    <part name="Hidden" type="xs:boolean"/>
+  </message>
+  <message name="SetHidden11Response"/>
+  <message name="ObjectExists12Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="ObjectExists12Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="CheckObject13Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CheckObject13Response"/>
+  <message name="GetObject14Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetObject14Response">
+    <part name="return" type="ns1:TIPSObject"/>
+  </message>
+  <message name="GetObjects15Request">
+    <part name="IDs" type="ns1:TIPSIDs"/>
+  </message>
+  <message name="GetObjects15Response">
+    <part name="return" type="ns1:TIPSObjects"/>
+  </message>
+  <message name="GetObjectList16Request"/>
+  <message name="GetObjectList16Response">
+    <part name="return" type="ns1:TIPSIDs"/>
+  </message>
+  <message name="GetObjectIDByName17Request">
+    <part name="Name" type="xs:string"/>
+    <part name="ParentID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetObjectIDByName17Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetObjectIDByNameEx18Request">
+    <part name="Name" type="xs:string"/>
+    <part name="ParentID" type="xs:unsignedShort"/>
+    <part name="ObjectType" type="ns1:TIPSObjectType"/>
+  </message>
+  <message name="GetObjectIDByNameEx18Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="HasChildren19Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="HasChildren19Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="IsChild20Request">
+    <part name="ID" type="xs:unsignedShort"/>
+    <part name="Parent" type="xs:unsignedShort"/>
+    <part name="Recursive" type="xs:boolean"/>
+  </message>
+  <message name="IsChild20Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetChildrenIDs21Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetChildrenIDs21Response">
+    <part name="return" type="ns1:TIPSIDs"/>
+  </message>
+  <message name="IsPersistent22Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="IsPersistent22Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetName23Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetName23Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetLocation24Request">
+    <part name="ID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetLocation24Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="GetLocations25Request">
+    <part name="IDs" type="ns1:TIPSIDs"/>
+  </message>
+  <message name="GetLocations25Response">
+    <part name="return" type="ns1:TStringArray"/>
+  </message>
+  <portType name="IIPSObjectManager">
+    <operation name="RegisterNewObject">
+      <input message="tns:RegisterNewObject0Request"/>
+      <output message="tns:RegisterNewObject0Response"/>
+    </operation>
+    <operation name="RegisterObject">
+      <input message="tns:RegisterObject1Request"/>
+      <output message="tns:RegisterObject1Response"/>
+    </operation>
+    <operation name="RegisterObjectEx">
+      <input message="tns:RegisterObjectEx2Request"/>
+      <output message="tns:RegisterObjectEx2Response"/>
+    </operation>
+    <operation name="UnregisterObject">
+      <input message="tns:UnregisterObject3Request"/>
+      <output message="tns:UnregisterObject3Response"/>
+    </operation>
+    <operation name="SetParent">
+      <input message="tns:SetParent4Request"/>
+      <output message="tns:SetParent4Response"/>
+    </operation>
+    <operation name="SetName">
+      <input message="tns:SetName5Request"/>
+      <output message="tns:SetName5Response"/>
+    </operation>
+    <operation name="SetInfo">
+      <input message="tns:SetInfo6Request"/>
+      <output message="tns:SetInfo6Response"/>
+    </operation>
+    <operation name="SetIcon">
+      <input message="tns:SetIcon7Request"/>
+      <output message="tns:SetIcon7Response"/>
+    </operation>
+    <operation name="SetSummary">
+      <input message="tns:SetSummary8Request"/>
+      <output message="tns:SetSummary8Response"/>
+    </operation>
+    <operation name="SetPosition">
+      <input message="tns:SetPosition9Request"/>
+      <output message="tns:SetPosition9Response"/>
+    </operation>
+    <operation name="SetReadOnly">
+      <input message="tns:SetReadOnly10Request"/>
+      <output message="tns:SetReadOnly10Response"/>
+    </operation>
+    <operation name="SetHidden">
+      <input message="tns:SetHidden11Request"/>
+      <output message="tns:SetHidden11Response"/>
+    </operation>
+    <operation name="ObjectExists">
+      <input message="tns:ObjectExists12Request"/>
+      <output message="tns:ObjectExists12Response"/>
+    </operation>
+    <operation name="CheckObject">
+      <input message="tns:CheckObject13Request"/>
+      <output message="tns:CheckObject13Response"/>
+    </operation>
+    <operation name="GetObject">
+      <input message="tns:GetObject14Request"/>
+      <output message="tns:GetObject14Response"/>
+    </operation>
+    <operation name="GetObjects">
+      <input message="tns:GetObjects15Request"/>
+      <output message="tns:GetObjects15Response"/>
+    </operation>
+    <operation name="GetObjectList">
+      <input message="tns:GetObjectList16Request"/>
+      <output message="tns:GetObjectList16Response"/>
+    </operation>
+    <operation name="GetObjectIDByName">
+      <input message="tns:GetObjectIDByName17Request"/>
+      <output message="tns:GetObjectIDByName17Response"/>
+    </operation>
+    <operation name="GetObjectIDByNameEx">
+      <input message="tns:GetObjectIDByNameEx18Request"/>
+      <output message="tns:GetObjectIDByNameEx18Response"/>
+    </operation>
+    <operation name="HasChildren">
+      <input message="tns:HasChildren19Request"/>
+      <output message="tns:HasChildren19Response"/>
+    </operation>
+    <operation name="IsChild">
+      <input message="tns:IsChild20Request"/>
+      <output message="tns:IsChild20Response"/>
+    </operation>
+    <operation name="GetChildrenIDs">
+      <input message="tns:GetChildrenIDs21Request"/>
+      <output message="tns:GetChildrenIDs21Response"/>
+    </operation>
+    <operation name="IsPersistent">
+      <input message="tns:IsPersistent22Request"/>
+      <output message="tns:IsPersistent22Response"/>
+    </operation>
+    <operation name="GetName">
+      <input message="tns:GetName23Request"/>
+      <output message="tns:GetName23Response"/>
+    </operation>
+    <operation name="GetLocation">
+      <input message="tns:GetLocation24Request"/>
+      <output message="tns:GetLocation24Response"/>
+    </operation>
+    <operation name="GetLocations">
+      <input message="tns:GetLocations25Request"/>
+      <output message="tns:GetLocations25Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSObjectManagerbinding" type="tns:IIPSObjectManager">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="RegisterNewObject">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#RegisterNewObject" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="RegisterObject">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#RegisterObject" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="RegisterObjectEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#RegisterObjectEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="UnregisterObject">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#UnregisterObject" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="SetParent">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#SetParent" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="SetName">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#SetName" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="SetInfo">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#SetInfo" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="SetIcon">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#SetIcon" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="SetSummary">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#SetSummary" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="SetPosition">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#SetPosition" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="SetReadOnly">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#SetReadOnly" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="SetHidden">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#SetHidden" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="ObjectExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#ObjectExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="CheckObject">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#CheckObject" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="GetObject">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#GetObject" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="GetObjects">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#GetObjects" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="GetObjectList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#GetObjectList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="GetObjectIDByName">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#GetObjectIDByName" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="GetObjectIDByNameEx">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#GetObjectIDByNameEx" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="HasChildren">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#HasChildren" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="IsChild">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#IsChild" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="GetChildrenIDs">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#GetChildrenIDs" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="IsPersistent">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#IsPersistent" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="GetName">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#GetName" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="GetLocation">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#GetLocation" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+    <operation name="GetLocations">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSObjectManager#GetLocations" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSObjectManager"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSObjectManagerservice">
+    <port name="IIPSObjectManagerPort" binding="tns:IIPSObjectManagerbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSObjectManager"/>
+    </port>
+  </service>
+</definitions>
+

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="IIPSTimerPoolservice" targetNamespace="http://localhost/" xmlns:tns="http://localhost/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:UIPSTypes">
+  <types>
+    <xs:schema targetNamespace="urn:UIPSTypes" xmlns="urn:UIPSTypes">
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xs:import namespace="http://schemas.xmlsoap.org/soap/"/>
+      <xs:complexType name="TIPSTimer">
+        <xs:sequence>
+          <xs:element name="TimerID" type="xs:unsignedShort"/>
+          <xs:element name="InstanceID" type="xs:unsignedShort"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="Interval" type="xs:int"/>
+          <xs:element name="LastRun" type="xs:dateTime"/>
+          <xs:element name="NextRun" type="xs:dateTime"/>
+          <xs:element name="Running" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TTimerIDs">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="xs:unsignedShort[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TIPSTimers">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TIPSTimer[]"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="TimerExists0Request">
+    <part name="TimerID" type="xs:unsignedShort"/>
+  </message>
+  <message name="TimerExists0Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="CheckTimer1Request">
+    <part name="TimerID" type="xs:unsignedShort"/>
+  </message>
+  <message name="CheckTimer1Response"/>
+  <message name="GetTimer2Request">
+    <part name="TimerID" type="xs:unsignedShort"/>
+  </message>
+  <message name="GetTimer2Response">
+    <part name="return" type="ns1:TIPSTimer"/>
+  </message>
+  <message name="GetTimers3Request">
+    <part name="TimerIDs" type="ns1:TTimerIDs"/>
+  </message>
+  <message name="GetTimers3Response">
+    <part name="return" type="ns1:TIPSTimers"/>
+  </message>
+  <message name="GetTimerList4Request"/>
+  <message name="GetTimerList4Response">
+    <part name="return" type="ns1:TTimerIDs"/>
+  </message>
+  <portType name="IIPSTimerPool">
+    <operation name="TimerExists">
+      <input message="tns:TimerExists0Request"/>
+      <output message="tns:TimerExists0Response"/>
+    </operation>
+    <operation name="CheckTimer">
+      <input message="tns:CheckTimer1Request"/>
+      <output message="tns:CheckTimer1Response"/>
+    </operation>
+    <operation name="GetTimer">
+      <input message="tns:GetTimer2Request"/>
+      <output message="tns:GetTimer2Response"/>
+    </operation>
+    <operation name="GetTimers">
+      <input message="tns:GetTimers3Request"/>
+      <output message="tns:GetTimers3Response"/>
+    </operation>
+    <operation name="GetTimerList">
+      <input message="tns:GetTimerList4Request"/>
+      <output message="tns:GetTimerList4Response"/>
+    </operation>
+  </portType>
+  <binding name="IIPSTimerPoolbinding" type="tns:IIPSTimerPool">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="TimerExists">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSTimerPool#TimerExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSTimerPool"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSTimerPool"/>
+      </output>
+    </operation>
+    <operation name="CheckTimer">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSTimerPool#CheckTimer" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSTimerPool"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSTimerPool"/>
+      </output>
+    </operation>
+    <operation name="GetTimer">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSTimerPool#GetTimer" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSTimerPool"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSTimerPool"/>
+      </output>
+    </operation>
+    <operation name="GetTimers">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSTimerPool#GetTimers" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSTimerPool"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSTimerPool"/>
+      </output>
+    </operation>
+    <operation name="GetTimerList">
+      <soap:operation soapAction="urn:UIPSTypes-IIPSTimerPool#GetTimerList" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSTimerPool"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UIPSTypes-IIPSTimerPool"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IIPSTimerPoolservice">
+    <port name="IIPSTimerPoolPort" binding="tns:IIPSTimerPoolbinding">
+      <soap:address location="http://localhost:3773/soap/IIPSTimerPool"/>
+    </port>
+  </service>
+</definitions>
+
