@@ -28,8 +28,8 @@
 
 	<modules>
 		<module>hm-core</module>
-		<module>hm-ui</module>
-		<!-- module>hm-plugins</module -->
+		<module>hm-mod-calendar</module>
+		<module>hm-mod-trigger</module>
 	</modules>
 
 

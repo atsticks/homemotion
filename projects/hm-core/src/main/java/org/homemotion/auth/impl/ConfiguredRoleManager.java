@@ -14,6 +14,7 @@ import org.homemotion.auth.Role;
 import org.homemotion.auth.RoleManager;
 import org.homemotion.common.config.ConfigSection;
 import org.homemotion.common.config.Configuration;
+import org.homemotion.common.config.ConfigurationService;
 import org.homemotion.common.config.Row;
 import org.homemotion.dao.spi.AbstractConfiguredItemManager;
 
@@ -24,8 +25,8 @@ public class ConfiguredRoleManager extends AbstractConfiguredItemManager<Role>
 	private List<Role> defaultRoles = new ArrayList<Role>();
 
 	@Inject
-	public ConfiguredRoleManager(ActionManager actionManager) {
-		super(Role.class, "security/Roles");
+	public ConfiguredRoleManager(ActionManager actionManager, ConfigurationService configurationService) {
+		super(Role.class, "security/Roles", configurationService);
 		this.actionManager = actionManager;
 		load();
 	}

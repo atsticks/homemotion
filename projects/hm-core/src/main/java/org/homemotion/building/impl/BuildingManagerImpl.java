@@ -9,17 +9,19 @@ import org.homemotion.building.Building;
 import org.homemotion.building.BuildingManager;
 import org.homemotion.common.config.ConfigSection;
 import org.homemotion.common.config.Configuration;
+import org.homemotion.common.config.ConfigurationService;
 import org.homemotion.common.config.Row;
 import org.homemotion.dao.spi.AbstractConfiguredItem;
 import org.homemotion.dao.spi.AbstractConfiguredItemManager;
 
 @Singleton
-public class BuildingManagerImpl extends AbstractConfiguredItemManager<Building>
+public class BuildingManagerImpl extends
+		AbstractConfiguredItemManager<Building>
 		implements BuildingManager {
 
 	@Inject
-	public BuildingManagerImpl() {
-		super(Building.class, "buildings/Buildings");
+	public BuildingManagerImpl(ConfigurationService configurationService) {
+		super(Building.class, "buildings/Buildings", configurationService);
 		load();
 	}
 
@@ -44,10 +46,6 @@ public class BuildingManagerImpl extends AbstractConfiguredItemManager<Building>
 
 	protected void setAttributes(AbstractConfiguredItem b, String attributes) {
 		// TODO parse all attributes
-	}
-
-	public static void main(String[] args) {
-		new BuildingManagerImpl();
 	}
 
 }

@@ -9,6 +9,7 @@ import javax.inject.Singleton;
 import org.homemotion.Status;
 import org.homemotion.common.config.ConfigSection;
 import org.homemotion.common.config.Configuration;
+import org.homemotion.common.config.ConfigurationService;
 import org.homemotion.common.config.Row;
 import org.homemotion.common.context.ItemContextManager;
 import org.homemotion.dao.spi.AbstractConfiguredItemManager;
@@ -22,15 +23,17 @@ import org.slf4j.LoggerFactory;
 public class MacroManagerImpl extends AbstractConfiguredItemManager<Macro>
 		implements MacroManager {
 
-	private static final Logger LOG = LoggerFactory.getLogger(MacroManagerImpl.class);
-	
+	private static final Logger LOG = LoggerFactory
+			.getLogger(MacroManagerImpl.class);
+
 	private Map<String, MacroEngine> macroEngines = new TreeMap<String, MacroEngine>();
 
 	@Inject
 	private ItemContextManager contextManager;
 
-	public MacroManagerImpl() {
-		super(Macro.class, "runtime/Macros");
+	@Inject
+	public MacroManagerImpl(ConfigurationService configurationService) {
+		super(Macro.class, "runtime/Macros", configurationService);
 		load();
 	}
 
@@ -58,7 +61,7 @@ public class MacroManagerImpl extends AbstractConfiguredItemManager<Macro>
 			return result;
 		} catch (Exception e) {
 			if (macro != null) {
-				LOG.error("Error running macro: " + macro.getId(),e);
+				LOG.error("Error running macro: " + macro.getId(), e);
 				contextManager.getContext(macro).setAttribute(Status.ERROR);
 				contextManager.getContext(macro).setAttribute("execFailure", e,
 						Throwable.class, false);

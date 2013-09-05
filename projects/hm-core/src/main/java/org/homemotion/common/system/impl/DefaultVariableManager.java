@@ -6,23 +6,25 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.homemotion.common.config.ConfigSection;
 import org.homemotion.common.config.Configuration;
+import org.homemotion.common.config.ConfigurationService;
 import org.homemotion.common.config.Row;
-import org.homemotion.dao.spi.AbstractConfiguredItemManager;
 import org.homemotion.common.system.Variable;
 import org.homemotion.common.system.VariableManager;
+import org.homemotion.dao.spi.AbstractConfiguredItemManager;
 import org.slf4j.LoggerFactory;
 
 @Singleton
 public class DefaultVariableManager extends AbstractConfiguredItemManager<Variable>
 		implements VariableManager {
 
-	public DefaultVariableManager() {
-		super(Variable.class, "runtime/Variables");
-		load();
+	@Inject
+	public DefaultVariableManager(ConfigurationService configurationService) {
+		super(Variable.class, "runtime/Variables", configurationService);
 	}
 
 	public boolean define(String name, Class<?> type) {

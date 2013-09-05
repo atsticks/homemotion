@@ -1,6 +1,6 @@
 package org.homemotion.dao.spi;
 
-//package org.homemotion.dao;
+// package org.homemotion.dao;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.homemotion.common.config.Configuration;
+import org.homemotion.common.config.ConfigurationService;
 import org.homemotion.dao.Attributable;
 import org.homemotion.dao.Identifiable;
 import org.homemotion.dao.NamedItemManager;
@@ -29,11 +30,13 @@ public abstract class AbstractConfiguredItemManager<T extends Identifiable>
 
 	protected final Class<T> itemClass;
 
-	protected Configuration configuration;
-
 	protected final String binding;
 
-	public AbstractConfiguredItemManager(Class<T> itemClass, String binding) {
+	protected ConfigurationService configurationService;
+
+	
+	public AbstractConfiguredItemManager(Class<T> itemClass, String binding,
+			ConfigurationService configurationService) {
 		if (itemClass == null) {
 			throw new IllegalArgumentException("Item class must not be null.");
 		}
@@ -42,27 +45,28 @@ public abstract class AbstractConfiguredItemManager<T extends Identifiable>
 		}
 		this.itemClass = itemClass;
 		this.binding = binding;
+		this.configurationService = configurationService;
 	}
 
 	public Set<String> getIdentifiers() {
 		return items.keySet();
 	}
-	
+
 	public String getBinding() {
 		return binding;
 	}
 
 	protected final void load() {
-		configuration = new Configuration(binding);
-		load(configuration, this.items);
+		Configuration cfg = configurationService.getConfiguration(binding);
+		load(cfg, this.items);
 	}
 
 	protected abstract void load(Configuration configuration,
 			Map<String, T> items);
-        
-        public void load(String type, String configuredItem){
-            throw new UnsupportedOperationException();
-        }
+
+	public void load(String type, String configuredItem) {
+		throw new UnsupportedOperationException();
+	}
 
 	public void create(T item) {
 		throw new UnsupportedOperationException(
@@ -169,7 +173,8 @@ public abstract class AbstractConfiguredItemManager<T extends Identifiable>
 
 	@Override
 	public Iterator<T> iterator() {
-		return Collections.unmodifiableCollection(this.items.values()).iterator();
+		return Collections.unmodifiableCollection(this.items.values())
+				.iterator();
 	}
 
 }

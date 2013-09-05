@@ -13,6 +13,7 @@ import org.homemotion.building.Zone;
 import org.homemotion.building.ZoneManager;
 import org.homemotion.common.config.ConfigSection;
 import org.homemotion.common.config.Configuration;
+import org.homemotion.common.config.ConfigurationService;
 import org.homemotion.common.config.Row;
 import org.homemotion.common.system.Variable;
 import org.homemotion.common.system.VariableManager;
@@ -40,8 +41,9 @@ public class ZoneManagerImpl extends AbstractConfiguredItemManager<Zone>
 	@Inject
 	private VariableManager variableManager;
 
-	public ZoneManagerImpl() {
-		super(Zone.class, "tree/Nodes");
+	@Inject
+	public ZoneManagerImpl(ConfigurationService configurationService) {
+		super(Zone.class, "buildings/Zones",configurationService);
 	}
 
 	public Zone get(Building building) {
@@ -66,7 +68,7 @@ public class ZoneManagerImpl extends AbstractConfiguredItemManager<Zone>
 						NODES_PREFIX.length());
 				Building b = buildingManager.get(buildingId);
 				if (b == null) {
-					logger.error("Failed to load tree for building '"
+					logger.error("Failed to load zone tree for building '"
 							+ buildingId + "': building not found.");
 					continue;
 				}
@@ -93,7 +95,7 @@ public class ZoneManagerImpl extends AbstractConfiguredItemManager<Zone>
 						Device d = deviceManager.get(deviceIds[i]);
 						if (d == null) {
 							logger.error("Failed to add device '"
-									+ deviceIds[i] + "' to group '" + id
+									+ deviceIds[i] + "' to zone '" + id
 									+ "': device not found.");
 							continue;
 						}
@@ -108,43 +110,12 @@ public class ZoneManagerImpl extends AbstractConfiguredItemManager<Zone>
 						Macro m = macroManager.get(macroIds[i]);
 						if (m == null) {
 							logger.error("Failed to add macro '" + macroIds[i]
-									+ "' to group '" + id
+									+ "' to zone '" + id
 									+ "': macro not found.");
 							continue;
 						}
 						zone.addItem(m);
 					}
-					// Rooms
-					// String[] roomIds = extractIds(r.get("rooms"));
-					// for (int i = 0; i < roomIds.length; i++) {
-					// if (roomIds[i].isEmpty()) {
-					// continue;
-					// }
-					// Room room = roomManager.get(roomIds[i]);
-					// if (room == null) {
-					// logger.error("Failed to add room '" + roomIds[i]
-					// + "' to group '" + id
-					// + "': trigger not found.");
-					// continue;
-					// }
-					// group.addChild(r);
-					// }
-					// // Floors
-					// String[] floorIds = extractIds(r.get("floors"));
-					// for (int i = 0; i < floorIds.length; i++) {
-					// if (floorIds[i].isEmpty()) {
-					// continue;
-					// }
-					// Floor f = floorManager.get(floorIds[i]);
-					// if (f == null) {
-					// logger.error("Failed to add floor '" + floorIds[i]
-					// + "' to group '" + id
-					// + "': floor not found.");
-					// continue;
-					// }
-					// group.addChild(f);
-					// }
-					// Variables
 					String[] variableIds = extractIds(r.get("variables"));
 					for (int i = 0; i < variableIds.length; i++) {
 						if (variableIds[i].isEmpty()) {
@@ -153,7 +124,7 @@ public class ZoneManagerImpl extends AbstractConfiguredItemManager<Zone>
 						Variable v = variableManager.get(variableIds[i]);
 						if (v == null) {
 							logger.error("Failed to add variable '"
-									+ variableIds[i] + "' to group '" + id
+									+ variableIds[i] + "' to zone '" + id
 									+ "': variable not found.");
 							continue;
 						}
@@ -162,7 +133,7 @@ public class ZoneManagerImpl extends AbstractConfiguredItemManager<Zone>
 				}
 			}
 		}
-		logger.info("Configured trees: " + this.roots);
+		logger.info("Configured zone trees: " + this.roots);
 	}
 
 	protected String[] extractIds(String value) {

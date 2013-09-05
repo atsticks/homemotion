@@ -6,12 +6,13 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.homemotion.Extension;
 import org.homemotion.adapt.Adapter;
 import org.homemotion.adapt.AdapterManager;
-import org.homemotion.common.AnnotationManager;
+import org.homemotion.common.system.AnnotationManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,6 +25,8 @@ public class AdapterManagerImpl implements AdapterManager {
 
 	private Map<String, Set<Class>> registeredAdapterClasses = new ConcurrentHashMap<String, Set<Class>>();
 
+	@Inject
+	private AnnotationManager annotationManager;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -55,7 +58,7 @@ public class AdapterManagerImpl implements AdapterManager {
 	@SuppressWarnings("unchecked")
 	@PostConstruct
 	public void load() {
-		Set<String> extensionClasses = AnnotationManager
+		Set<String> extensionClasses = annotationManager
 				.getAnnotatedClasses(Extension.class.getName());
 		if (extensionClasses != null) {
 			for (String className : extensionClasses) {

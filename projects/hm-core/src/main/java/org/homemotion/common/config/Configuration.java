@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ServiceLoader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,28 +23,47 @@ public class Configuration implements Serializable {
 	 */
 	private static final long serialVersionUID = 27883158298790551L;
 
-	private static final ConfigFormat DEFAULT_FORMAT = new TabularConfigFormat();
-
-	private static Map<String, Class<ConfigFormat>> FORMATS = new HashMap<String, Class<ConfigFormat>>();
-
-	static {
-		ServiceLoader<ConfigFormat> loader = ServiceLoader
-				.load(ConfigFormat.class);
-		for (ConfigFormat f : loader) {
-			FORMATS.put(f.getId(), (Class<ConfigFormat>) f.getClass());
-		}
-	}
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(Configuration.class);
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(Configuration.class);
 
 	private String configId;
 
 	private Map<String, ConfigSection> sections = new HashMap<String, ConfigSection>();
 
-	public Configuration(String configId) {
+	public Configuration(String configId, Map<String, ConfigFormat> formats,
+			URL... resourceLocations) {
+		this.configId = configId;
+		for (URL resource : resourceLocations) {
+			InputStream is = null;
+			try {
+				is = resource.openStream();
+				byte[] inputArray = new byte[1024];
+				int read = is.read(inputArray);
+				ByteArrayOutputStream bos = new ByteArrayOutputStream();
+				while (read > 0) {
+					bos.write(inputArray, 0, read);
+					read = is.read(inputArray);
+				}
+				String contents = new String(bos.toByteArray());
+				load(contents, formats, resource);
+			} catch (Exception e) {
+				LOGGER.error("Error reading resource: " + resource, e);
+			} finally {
+				if (is != null) {
+					try {
+						is.close();
+					} catch (Exception e2) {
+						LOGGER.warn("Error closing resource: " + resource, e2);
+					}
+				}
+			}
+		}
+	}
+
+	public Configuration(String configId, Map<String, ConfigFormat> formats,
+			String resourceLocation) {
 		this.configId = configId;
 		Enumeration<URL> resources;
-		String resourceLocation = createBindingLocation(configId);
 		try {
 			resources = getClass().getClassLoader().getResources(
 					resourceLocation);
@@ -67,7 +85,7 @@ public class Configuration implements Serializable {
 					read = is.read(inputArray);
 				}
 				String contents = new String(bos.toByteArray());
-				load(contents, resource);
+				load(contents, formats, resource);
 			} catch (Exception e) {
 				LOGGER.error("Error reading resource: " + resource, e);
 			} finally {
@@ -82,11 +100,8 @@ public class Configuration implements Serializable {
 		}
 	}
 
-	protected String createBindingLocation(String configId) {
-		return "cfg/" + configId + ".conf";
-	}
-
-	protected void load(String contents, URL resource) throws IOException {
+	protected void load(String contents, Map<String, ConfigFormat> formats,
+			URL resource) throws IOException {
 		ConfigSection currentSection = null;
 		LineReader lr = new LineReader(new StringReader(contents));
 		String line = lr.readLine();
@@ -95,22 +110,24 @@ public class Configuration implements Serializable {
 				String trimmedLine = line.trim();
 				if (trimmedLine.isEmpty() || trimmedLine.startsWith("#")) {
 					continue;
-				} else if (trimmedLine.startsWith("[") && trimmedLine.contains("]")) {
+				} else if (trimmedLine.startsWith("[")
+						&& trimmedLine.contains("]")) {
 					int end = trimmedLine.lastIndexOf("]");
 					String sectionId = trimmedLine.substring(1, end);
 					String formatId = "tabular";
-					String part2 = trimmedLine.substring(end+1);
+					String part2 = trimmedLine.substring(end + 1);
 					if (part2.trim().startsWith("{") && part2.endsWith("}")) {
-						formatId = part2.trim().substring(1, part2.length() - 1);
+						formatId = part2.trim()
+								.substring(1, part2.length() - 1);
 					}
-					ConfigFormat format = getFormat(formatId);
-					if(currentSection!=null){
+					ConfigFormat format = formats.get(formatId);
+					if (currentSection != null) {
 						currentSection.getFormat().release();
 					}
 					currentSection = getSection(sectionId, format, true);
 				} else {
 					if (currentSection == null) {
-						currentSection = getSection("", getDefaultFormat(),
+						currentSection = getSection("", formats.get(""),
 								true);
 					}
 					currentSection.parseLine(line);
@@ -121,25 +138,9 @@ public class Configuration implements Serializable {
 				line = lr.readLine();
 			}
 		}
-		if(currentSection!=null){
+		if (currentSection != null) {
 			currentSection.getFormat().release();
 		}
-	}
-
-	private ConfigFormat getDefaultFormat() {
-		return new TabularConfigFormat();
-	}
-
-	private ConfigFormat getFormat(String formatId) {
-		Class<ConfigFormat> f = FORMATS.get(formatId);
-		if (f != null) {
-			try {
-				return f.newInstance();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return new TabularConfigFormat();
 	}
 
 	public String getConfigId() {
